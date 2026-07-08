@@ -19,15 +19,15 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "AL 046-1.jpeg",
-      "AL 046-2.jpeg",
-      "AL 046-3.jpeg",
+      "AL 046-1 .jpeg",
+      "D AL 046-2.jpeg",
+      "AL 046-3 .jpeg",
       "AL 046-4.jpeg"
     ],
     "originals": [
-      "AL 046-1.jpeg",
-      "AL 046-2.jpeg",
-      "AL 046-3.jpeg",
+      "AL 046-1 .jpeg",
+      "D AL 046-2.jpeg",
+      "AL 046-3 .jpeg",
       "AL 046-4.jpeg"
     ],
     "imageWatermarks": [
@@ -79,13 +79,13 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "AL 045-1.jpeg",
-      "AL 045-2.jpeg",
+      "D AL 045-1 .jpeg",
+      "D AL 045-2.jpeg",
       "AL 045-3.jpeg"
     ],
     "originals": [
-      "AL 045-1.jpeg",
-      "AL 045-2.jpeg",
+      "D AL 045-1 .jpeg",
+      "D AL 045-2.jpeg",
       "AL 045-3.jpeg"
     ],
     "imageWatermarks": [
@@ -116,14 +116,14 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "AL 044-1.jpeg",
-      "AL 044-2.jpeg",
-      "AL 044-3.jpeg"
+      "AL 044-1 jpeg",
+      "D AL 044-2.jpeg",
+      "D AL 044-3.jpeg"
     ],
     "originals": [
-      "AL 044-1.jpeg",
-      "AL 044-2.jpeg",
-      "AL 044-3.jpeg"
+      "AL 044-1 jpeg",
+      "D AL 044-2.jpeg",
+      "D AL 044-3.jpeg"
     ],
     "imageWatermarks": [
       {
@@ -168,24 +168,16 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "AL 043-1.jpeg",
       "AL 043-2.jpeg",
       "AL 043-3.jpeg",
-      "AL 043-4.jpeg"
+      "D AL 043-4.jpeg"
     ],
     "originals": [
-      "AL 043-1.jpeg",
       "AL 043-2.jpeg",
       "AL 043-3.jpeg",
-      "AL 043-4.jpeg"
+      "D AL 043-4.jpeg"
     ],
     "imageWatermarks": [
-      {
-        "apply": true,
-        "pos": "bottom-left",
-        "size": "medium",
-        "color": "black"
-      },
       {
         "apply": true,
         "pos": "top-left",
