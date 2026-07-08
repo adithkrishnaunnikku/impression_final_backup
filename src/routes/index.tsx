@@ -3,11 +3,8 @@ import { ExploreSections } from "@/components/explore-sections";
 import { useEffect, useRef, useState, useCallback } from "react";
 import weddingCard from "@/assets/wedding-card.jpg";
 import invitations from "@/assets/invitations.jpg";
-import registry from "@/assets/registry.jpg";
 import logo from "@/assets/IMP_LOGO_final.png";
-
-
-const luxuryImage = registry; // reuse or a dedicated luxury asset
+const luxuryImage = weddingCard;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -333,7 +330,7 @@ function Landing() {
             eyebrow="Door II"
             badge="Create From Scratch"
             copy="Start with a blank page. Shape every word, every stroke, your own."
-            image={registry}
+            image={weddingCard}
             hovered={hovered === "custom"}
             otherHovered={hovered === "shop"}
             onEnter={() => setHovered("custom")}

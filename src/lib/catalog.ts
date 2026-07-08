@@ -1,5 +1,4 @@
-export const DATA_URL = "https://raw.githubusercontent.com/allurecards/allurecards.in/main/data/cards.json";
-export const IMAGE_BASE = "https://raw.githubusercontent.com/allurecards/allurecards.in/main/";
+export const IMAGE_BASE = "";
 
 export type ChargedItem = { name: string; price: number };
 

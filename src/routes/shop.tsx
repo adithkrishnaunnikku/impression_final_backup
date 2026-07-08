@@ -4,7 +4,18 @@ import { Search, Heart, ChevronDown, ShoppingBag } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import invitations from "@/assets/invitations.jpg";
 import heroVenue from "@/assets/hero-venue.jpg";
-import { DATA_URL, IMAGE_BASE, type Catalog } from "@/lib/catalog";
+import type { Catalog } from "@/lib/catalog";
+import cardsData from "@/data/cards.json";
+
+const displayImages = import.meta.glob('@/assets/cards/display/*.{jpeg,jpg,png}', {
+  eager: true,
+  query: { url: true },
+  import: 'default',
+}) as Record<string, string>;
+
+function imgUrl(filename: string): string {
+  return displayImages[`/src/assets/cards/display/${filename}`] || filename;
+}
 
 const CATEGORIES = ["All", "MINIMAL", "MODERN", "PASTEL"];
 const PAGE_SIZE = 10;
@@ -154,13 +165,8 @@ function ShopPage() {
 
   useEffect(() => {
     const t = setTimeout(() => {
-      fetch(DATA_URL)
-        .then((r) => r.json())
-        .then((data: Catalog[]) => {
-          setItems(data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
+      setItems(cardsData as Catalog[]);
+      setLoading(false);
     }, 250);
     return () => clearTimeout(t);
   }, []);
@@ -451,7 +457,7 @@ function ShopPage() {
                     <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f7f5f0]">
                       {c.images.length > 0 && (
                         <img
-                          src={IMAGE_BASE + c.images[0]}
+                          src={imgUrl(c.images[0])}
                           alt={c.id}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                           loading="lazy"
@@ -585,7 +591,7 @@ function ShopPage() {
                   <div className="relative">
                     {active.images.length > 0 && (
                       <img
-                        src={IMAGE_BASE + active.images[selectedImageIndex]}
+                        src={imgUrl(active.images[selectedImageIndex])}
                         alt={active.id}
                         className="w-full object-cover"
                         style={{ aspectRatio: '4 / 5' }}
@@ -606,7 +612,7 @@ function ShopPage() {
                           idx === selectedImageIndex ? "border-[#1a1a1a]" : "border-transparent"
                         }`}
                       >
-                        <img src={IMAGE_BASE + src} alt="" className="aspect-square w-full object-cover" />
+                        <img src={imgUrl(src)} alt="" className="aspect-square w-full object-cover" />
                       </button>
                     ))}
                   </div>
@@ -792,7 +798,7 @@ function ShopPage() {
                 Close ✕
               </button>
               <img
-                src={IMAGE_BASE + active.images[galleryIndex]}
+                src={imgUrl(active.images[galleryIndex])}
                 alt={active.id}
                 className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain"
               />

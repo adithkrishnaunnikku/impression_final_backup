@@ -19,16 +19,16 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "assets/cards/al-046-1.jpeg",
-      "assets/cards/al-046-2.jpeg",
-      "assets/cards/al-046-3.jpeg",
-      "assets/cards/al-046-4.jpeg"
+      "AL 046-1.jpeg",
+      "AL 046-2.jpeg",
+      "AL 046-3.jpeg",
+      "AL 046-4.jpeg"
     ],
     "originals": [
-      "assets/cards/original/al-046-1.jpeg",
-      "assets/cards/original/al-046-2.jpeg",
-      "assets/cards/original/al-046-3.jpeg",
-      "assets/cards/original/al-046-4.jpeg"
+      "AL 046-1.jpeg",
+      "AL 046-2.jpeg",
+      "AL 046-3.jpeg",
+      "AL 046-4.jpeg"
     ],
     "imageWatermarks": [
       {
@@ -79,14 +79,14 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "assets/cards/al-045-1.jpeg",
-      "assets/cards/al-045-2.jpeg",
-      "assets/cards/al-045-3.jpeg"
+      "AL 045-1.jpeg",
+      "AL 045-2.jpeg",
+      "AL 045-3.jpeg"
     ],
     "originals": [
-      "assets/cards/original/al-045-1.jpeg",
-      "assets/cards/original/al-045-2.jpeg",
-      "assets/cards/original/al-045-3.jpeg"
+      "AL 045-1.jpeg",
+      "AL 045-2.jpeg",
+      "AL 045-3.jpeg"
     ],
     "imageWatermarks": [
       null,
@@ -116,14 +116,14 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "assets/cards/al-044-1.jpeg",
-      "assets/cards/al-044-2.jpeg",
-      "assets/cards/al-044-3.jpeg"
+      "AL 044-1.jpeg",
+      "AL 044-2.jpeg",
+      "AL 044-3.jpeg"
     ],
     "originals": [
-      "assets/cards/original/al-044-1.jpeg",
-      "assets/cards/original/al-044-2.jpeg",
-      "assets/cards/original/al-044-3.jpeg"
+      "AL 044-1.jpeg",
+      "AL 044-2.jpeg",
+      "AL 044-3.jpeg"
     ],
     "imageWatermarks": [
       {
@@ -168,16 +168,16 @@
     "watermarkSize": "medium",
     "watermarkPath": "assets/cards/watermark_white.png",
     "images": [
-      "assets/cards/al-043-1.jpeg",
-      "assets/cards/al-043-2.jpeg",
-      "assets/cards/al-043-3.jpeg",
-      "assets/cards/al-043-4.jpeg"
+      "AL 043-1.jpeg",
+      "AL 043-2.jpeg",
+      "AL 043-3.jpeg",
+      "AL 043-4.jpeg"
     ],
     "originals": [
-      "assets/cards/original/al-043-1.jpeg",
-      "assets/cards/original/al-043-2.jpeg",
-      "assets/cards/original/al-043-3.jpeg",
-      "assets/cards/original/al-043-4.jpeg"
+      "AL 043-1.jpeg",
+      "AL 043-2.jpeg",
+      "AL 043-3.jpeg",
+      "AL 043-4.jpeg"
     ],
     "imageWatermarks": [
       {

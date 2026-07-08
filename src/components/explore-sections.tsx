@@ -1,12 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
-import heroVenue from "@/assets/hero-venue.jpg";        // not used now, kept for possible future reference
-import guestList from "@/assets/guest-list.jpg";        // not used now
-import weddingWebsite from "@/assets/wedding-website.jpg"; // not used now
-import registry from "@/assets/registry.jpg";           // still used
-import invitations from "@/assets/invitations.jpg";     // still used
+import invitations from "@/assets/invitations.jpg";
 import logo from "@/assets/IMP_LOGO_final.png";
+import weddingCard from "@/assets/wedding-card.jpg";
+const registry = weddingCard;
 import {
   DoodleHeritage,
   DoodleMinimal,
