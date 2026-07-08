@@ -83,10 +83,73 @@ function ShopPage() {
     }
   }, [active?.id]);
 
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [shareCopied, setShareCopied] = useState(false);
+
+  useEffect(() => {
+    if (active) {
+      setSelectedImageIndex(0);
+      setGalleryIndex(0);
+      setGalleryOpen(false);
+    }
+  }, [active?.id]);
+
+  useEffect(() => {
+    if (active) {
+      window.history.replaceState(null, "", `#card=${active.id}`);
+    } else if (window.location.hash.startsWith("#card=")) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, [active]);
+
+  useEffect(() => {
+    if (!galleryOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setGalleryOpen(false);
+      if ((e.key === "ArrowLeft" || e.key === "ArrowRight") && active && active.images.length > 1) {
+        setGalleryIndex((prev) => {
+          const len = active.images.length;
+          return e.key === "ArrowLeft" ? (prev - 1 + len) % len : (prev + 1) % len;
+        });
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [galleryOpen, active]);
+
+  const qty = modalQuantity;
+  const cardCost = active ? qty * active.price : 0;
+  const extraTotal = active?.extraCharges?.reduce((sum, ch) => sum + ch.price, 0) || 0;
+  const showPrinting = active?.minOrder === 100;
+  const printingFee = showPrinting && qty < 200 ? 600 : 0;
+  const printingWaived = showPrinting && printingFee === 0 ? 600 : 0;
+  let discountPct = 0;
+  if (qty >= 1000) discountPct = 10;
+  else if (qty >= 500) discountPct = 5;
+  const discountAmt = Math.round(cardCost * discountPct / 100);
+  const finalTotal = Math.round(cardCost * (1 - discountPct / 100)) + printingFee + extraTotal;
+  const totalSavings = printingWaived + discountAmt;
+
+  const shareUrl = typeof window !== "undefined"
+    ? `${window.location.origin}/shop#card=${active?.id}`
+    : "";
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 1800);
+    } catch {}
+  };
+
   function getQuantityOptions(minOrder: number): number[] {
-    const presets = [25, 50, 75, 100, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500];
-    const idx = presets.findIndex((v) => v >= minOrder);
-    return idx === -1 ? [minOrder] : presets.slice(idx);
+    const options: number[] = [];
+    for (let qty = minOrder; qty <= 1500; qty += 50) {
+      options.push(qty);
+    }
+    return options;
   }
 
   useEffect(() => {
@@ -487,18 +550,15 @@ function ShopPage() {
       {/* QuickView modal */}
       {active && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-[80] flex items-end justify-center bg-[#0d0d0d]/70 backdrop-blur-sm md:items-center"
           onClick={closeModal}
           style={{
             opacity: modalMounted ? 1 : 0,
-            backgroundColor: modalMounted ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0)',
-            backdropFilter: modalMounted ? 'blur(4px)' : 'blur(0px)',
-            WebkitBackdropFilter: modalMounted ? 'blur(4px)' : 'blur(0px)',
-            transition: 'opacity 200ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms cubic-bezier(0.23, 1, 0.32, 1), backdrop-filter 200ms cubic-bezier(0.23, 1, 0.32, 1)',
+            transition: 'opacity 200ms cubic-bezier(0.23, 1, 0.32, 1)',
           }}
         >
           <div
-            className="relative mx-4 max-h-[85vh] w-full max-w-4xl overflow-y-auto rounded-xl bg-zola-cream shadow-2xl"
+            className="relative max-h-[92vh] w-full overflow-y-auto rounded-t-3xl bg-[#f5f0e6] text-[#1a1a1a] md:max-w-5xl md:rounded-3xl"
             onClick={(e) => e.stopPropagation()}
             style={{
               opacity: modalMounted ? 1 : 0,
@@ -506,34 +566,60 @@ function ShopPage() {
               transition: 'opacity 250ms cubic-bezier(0.23, 1, 0.32, 1), transform 250ms cubic-bezier(0.23, 1, 0.32, 1)',
             }}
           >
-            {/* Close button */}
             <button
               onClick={closeModal}
-              className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-zola-ink/50 backdrop-blur transition duration-150 ease-out hover:bg-white hover:text-zola-ink active:scale-[0.92]"
+              className="absolute right-4 top-4 z-10 rounded-full bg-[#1a1a1a] px-3 py-1.5 text-xs font-semibold text-[#f5f0e6]"
+              aria-label="Close"
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="2" y1="2" x2="12" y2="12" />
-                <line x1="12" y1="2" x2="2" y2="12" />
-              </svg>
+              Close ✕
             </button>
 
-            <div className="grid md:grid-cols-2">
-              {/* Image */}
-              <div className="overflow-hidden rounded-t-xl md:rounded-l-xl md:rounded-tr-none bg-[#f7f5f0]">
-                {active.images.length > 0 && (
-                  <img
-                    src={IMAGE_BASE + active.images[0]}
-                    alt={active.id}
-                    className="h-full w-full object-cover"
-                    style={{ aspectRatio: '4 / 5' }}
-                  />
+            <div className="grid gap-10 p-6 md:grid-cols-2 md:p-10">
+              {/* Gallery */}
+              <div>
+                <button
+                  onClick={() => { setGalleryIndex(selectedImageIndex); setGalleryOpen(true); }}
+                  className="block w-full overflow-hidden rounded-2xl bg-[#eee6d5] p-6"
+                  aria-label="Open full screen"
+                >
+                  <div className="relative">
+                    {active.images.length > 0 && (
+                      <img
+                        src={IMAGE_BASE + active.images[selectedImageIndex]}
+                        alt={active.id}
+                        className="w-full object-cover"
+                        style={{ aspectRatio: '4 / 5' }}
+                      />
+                    )}
+                    <span className="absolute bottom-2 right-2 rounded-full bg-[#1a1a1a]/80 px-3 py-1 text-[10px] uppercase tracking-wider text-[#f5f0e6]">
+                      Tap to enlarge
+                    </span>
+                  </div>
+                </button>
+                {active.images.length > 1 && (
+                  <div className="mt-4 grid grid-cols-3 gap-3">
+                    {active.images.map((src, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setSelectedImageIndex(idx)}
+                        className={`overflow-hidden rounded-lg border-2 ${
+                          idx === selectedImageIndex ? "border-[#1a1a1a]" : "border-transparent"
+                        }`}
+                      >
+                        <img src={IMAGE_BASE + src} alt="" className="aspect-square w-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
 
-              {/* Content */}
-              <div className="flex flex-col p-6 md:p-8 md:pl-7">
-                <div className="flex items-start justify-between gap-3">
-                  <h2 className="font-serif text-xl tracking-tight text-zola-ink md:text-2xl">
+              {/* Details */}
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] opacity-60">
+                  {active.id} · {active.category || "Allure"}
+                </p>
+                <div className="mt-1 flex items-start justify-between gap-3">
+                  <h2 className="font-serif text-4xl tracking-tight text-[#1a1a1a]">
                     {active.id}
                   </h2>
                   <button
@@ -542,89 +628,187 @@ function ShopPage() {
                       toggleFavorite(active.id);
                     }}
                     aria-label={favorites.includes(active.id) ? "Remove from favorites" : "Add to favorites"}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-zola-ink/5 text-zola-ink/50 transition duration-150 ease-out hover:bg-zola-ink/10 hover:text-zola-ink active:scale-[0.92]"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1a1a1a]/5 text-[#1a1a1a]/50 transition hover:bg-[#1a1a1a]/10 hover:text-[#1a1a1a]"
                   >
-                    <Heart className="h-4 w-4" fill={favorites.includes(active.id) ? "currentColor" : "none"} />
+                    <Heart className="h-5 w-5" fill={favorites.includes(active.id) ? "currentColor" : "none"} />
                   </button>
                 </div>
-
                 {active.description && (
-                  <p className="mt-2 text-sm leading-relaxed text-zola-ink/60">
-                    {active.description}
+                  <p className="mt-3 text-sm opacity-80">{active.description}</p>
+                )}
+
+                {/* Size & Material */}
+                {(active.size || active.material) && (
+                  <p className="mt-3 text-sm opacity-70">
+                    {active.size && <><strong>Size:</strong> {active.size}</>}
+                    {active.size && active.material && <br />}
+                    {active.material && <><strong>Material:</strong> {active.material}</>}
                   </p>
                 )}
 
-                {/* Options */}
-                <div className="mt-5 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-zola-ink">Size</span>
-                    <Select value={modalSize} onValueChange={setModalSize}>
-                      <SelectTrigger className="h-8 w-28 gap-1 rounded-lg border-zola-ink/15 bg-zola-ink/5 px-3 text-xs text-zola-ink shadow-none transition duration-150 ease-out hover:border-zola-ink/30 focus:border-zola-ink/30 focus:ring-1 focus:ring-zola-ink/10 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-zola-ink/30 [&>svg]:opacity-100">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="min-w-[7rem] rounded-xl border-zola-ink/10 bg-zola-cream shadow-lg">
-                        <SelectItem value={active.size} className="cursor-pointer rounded-lg text-xs focus:bg-zola-ink/5 focus:text-zola-ink">
-                          {active.size}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
+                {/* Calculator */}
+                <div className="mt-6 rounded-2xl border border-[#1a1a1a]/15 bg-white p-5">
+                  <label className="text-xs font-semibold uppercase tracking-[0.18em] opacity-70">Quantity</label>
+                  <div className="mt-3 flex items-center gap-3">
+                    <button
+                      onClick={() => setModalQuantity((q) => Math.max(active.minOrder, q - 50))}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a]"
+                    >−</button>
+                    <input
+                      type="number"
+                      value={modalQuantity}
+                      min={active.minOrder}
+                      max={1500}
+                      step={50}
+                      onChange={(e) => {
+                        const v = Number(e.target.value);
+                        if (Number.isFinite(v)) setModalQuantity(Math.min(1500, Math.max(active.minOrder, v)));
+                      }}
+                      className="w-24 rounded-md border border-[#1a1a1a]/20 px-3 py-2 text-center text-sm text-[#1a1a1a]"
+                    />
+                    <button
+                      onClick={() => setModalQuantity((q) => Math.min(1500, q + 50))}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a]"
+                    >+</button>
+                    <span className="text-xs opacity-60">pcs</span>
                   </div>
+                  <input
+                    type="range"
+                    min={active.minOrder}
+                    max={1500}
+                    step={50}
+                    value={modalQuantity}
+                    onChange={(e) => setModalQuantity(Number(e.target.value))}
+                    className="mt-4 w-full accent-[#1a1a1a]"
+                  />
+                  <p className="mt-1 text-xs opacity-50">
+                    Min {active.minOrder} · Step 50 · Max 1500 &nbsp;·&nbsp; 5% off 500+ · 10% off 1000+
+                  </p>
 
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-zola-ink">Quantity</span>
-                    <Select value={String(modalQuantity)} onValueChange={(v) => setModalQuantity(Number(v))}>
-                      <SelectTrigger className="h-8 w-28 gap-1 rounded-lg border-zola-ink/15 bg-zola-ink/5 px-3 text-xs text-zola-ink shadow-none transition duration-150 ease-out hover:border-zola-ink/30 focus:border-zola-ink/30 focus:ring-1 focus:ring-zola-ink/10 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-zola-ink/30 [&>svg]:opacity-100">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="min-w-[7rem] rounded-xl border-zola-ink/10 bg-zola-cream shadow-lg">
-                        {getQuantityOptions(active.minOrder).map((q) => (
-                          <SelectItem key={q} value={String(q)} className="cursor-pointer rounded-lg text-xs focus:bg-zola-ink/5 focus:text-zola-ink">
-                            {q} pieces
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {active.material && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-zola-ink">Material</span>
-                      <span className="rounded-md bg-zola-ink/5 px-2.5 py-1 text-xs text-zola-ink/70">
-                        {active.material}
-                      </span>
+                  <div className="mt-5 space-y-1.5 text-sm">
+                    <div className="flex items-baseline justify-between">
+                      <span className="opacity-80">Card Cost · {qty} × ₹{active.price}</span>
+                      <span>₹{cardCost.toLocaleString()}</span>
                     </div>
-                  )}
+
+                    {active.extraCharges?.map((ch, i) => (
+                      <div key={i} className="flex items-baseline justify-between">
+                        <span className="opacity-80">{ch.name}</span>
+                        <span>₹{ch.price.toLocaleString()}</span>
+                      </div>
+                    ))}
+                    {active.extraCharges && active.extraCharges.length > 1 && (
+                      <div className="flex items-baseline justify-between font-medium">
+                        <span className="opacity-80">Total Extra Charges</span>
+                        <span>₹{extraTotal.toLocaleString()}</span>
+                      </div>
+                    )}
+
+                    {showPrinting && (
+                      <div className="flex items-baseline justify-between">
+                        <span className="opacity-80">Extra charge below 200</span>
+                        {printingFee > 0 ? (
+                          <span>₹600</span>
+                        ) : (
+                          <span className="text-green-700">
+                            <span className="opacity-40 line-through">₹600</span> FREE
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {discountPct > 0 && (
+                      <div className="flex items-baseline justify-between text-[#1a3c2a]">
+                        <span className="opacity-80">Volume discount ({discountPct}%)</span>
+                        <span>−₹{discountAmt.toLocaleString()}</span>
+                      </div>
+                    )}
+
+                    <div className="mt-3 flex items-baseline justify-between border-t border-[#1a1a1a]/10 pt-3">
+                      <span className="font-serif text-xl text-[#1a1a1a]">Total</span>
+                      <span className="font-serif text-2xl text-[#1a1a1a]">₹{finalTotal.toLocaleString()}</span>
+                    </div>
+                    {totalSavings > 0 && (
+                      <p className="text-xs text-[#1a3c2a]">You save ₹{totalSavings.toLocaleString()}</p>
+                    )}
+                  </div>
                 </div>
 
-                {/* Pricing */}
-                <div className="mt-auto space-y-3 pt-6">
-                  <div className="rounded-xl bg-zola-ink/[0.03] px-4 py-3">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-zola-ink/50">₹{active.price.toFixed(2)} × {modalQuantity}</span>
-                      <span className="font-medium text-zola-ink">₹{(active.price * modalQuantity).toFixed(2)}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2.5">
-                    <a
-                      href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="flex items-center justify-center gap-2.5 rounded-xl bg-zola-ink px-5 py-3 text-sm font-semibold text-zola-cream transition duration-150 ease-out active:scale-[0.97] hover:opacity-90"
-                    >
-                      <ShoppingBag className="h-4 w-4" /> Order on WhatsApp
-                    </a>
-                    <Link
-                      to="/customize"
-                      className="flex items-center justify-center gap-2 rounded-xl border border-zola-ink/15 px-5 py-3 text-sm font-medium text-zola-ink transition duration-150 ease-out active:scale-[0.97] hover:border-zola-ink/30"
-                    >
-                      Customize this card
-                    </Link>
-                  </div>
+                {/* Buttons */}
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                      [
+                        `Hi Allure Cards! I'd like to order:`,
+                        ``,
+                        `• ${active.id} (${active.category || "Allure"} Collection)`,
+                        `• Quantity: ${qty} pcs`,
+                        `• Card Cost: ₹${cardCost.toLocaleString()}`,
+                        ...(active.extraCharges?.map((ch) => `• ${ch.name}: ₹${ch.price}`) || []),
+                        ...(showPrinting
+                          ? printingFee > 0
+                            ? [`• Extra charge below 200: ₹600`]
+                            : [`• Extra charge below 200: FREE`]
+                          : []),
+                        ...(discountAmt > 0
+                          ? [`• Volume discount (${discountPct}%): −₹${discountAmt.toLocaleString()}`]
+                          : []),
+                        `• Total: ₹${finalTotal.toLocaleString()}`,
+                        ...(totalSavings > 0 ? [`• You save: ₹${totalSavings.toLocaleString()}`] : []),
+                        ``,
+                        `Link: ${shareUrl}`,
+                      ].join("\n")
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 rounded-full bg-[#1a3c2a] px-6 py-3 text-center text-sm font-semibold text-[#f5f0e6] hover:bg-[#2d5a3d]"
+                  >
+                    Order on WhatsApp
+                  </a>
+                  <button
+                    onClick={copyLink}
+                    className="flex-1 rounded-full border border-[#1a1a1a] px-6 py-3 text-sm font-semibold text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f5f0e6]"
+                  >
+                    {shareCopied ? "Link copied ✓" : "Copy product link"}
+                  </button>
                 </div>
+                <p className="mt-4 break-all text-xs opacity-60">{shareUrl}</p>
+
+
               </div>
             </div>
           </div>
+
+          {/* Gallery lightbox */}
+          {galleryOpen && (
+            <div
+              onClick={() => setGalleryOpen(false)}
+              className="fixed inset-0 z-[90] flex items-center justify-center bg-black/95 p-4"
+            >
+              <button
+                onClick={(e) => { e.stopPropagation(); setGalleryOpen(false); }}
+                className="absolute right-6 top-6 rounded-full bg-white/10 px-4 py-2 text-sm text-white"
+              >
+                Close ✕
+              </button>
+              <img
+                src={IMAGE_BASE + active.images[galleryIndex]}
+                alt={active.id}
+                className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain"
+              />
+              {active.images.length > 1 && (
+                <div className="absolute bottom-8 flex gap-2">
+                  {active.images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={(e) => { e.stopPropagation(); setGalleryIndex(i); }}
+                      className={`h-2 w-8 rounded-full ${galleryIndex === i ? "bg-white" : "bg-white/30"}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </>
