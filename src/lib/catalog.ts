@@ -23,6 +23,7 @@ export type Catalog = {
   watermarkPos?: string;
   watermarkSize?: string;
   watermarkPath?: string;
+  instagram?: string;
   images: string[];
   originals: string[];
   imageWatermarks: (WatermarkEntry | null)[];

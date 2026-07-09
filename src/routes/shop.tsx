@@ -412,85 +412,82 @@ function ShopPage() {
         ) : (
           <>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {page.map((c, idx) => (
-                idx === 3 ? (
-                  <a
-                    key="ad-allure"
-                    href="https://www.allurecards.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block relative rounded-sm overflow-hidden text-white"
-                    style={{ backgroundColor: "#0f2740" }}
-                  >
-                    <img
-                      src={heroVenue}
-                      alt="Allure Cards premium wedding stationery"
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
-                    />
-                    <div className="relative z-10 flex flex-col justify-between p-6 aspect-[4/5]">
-                      <div>
-                        <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Sponsored</div>
-                        <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
-                          <em className="not-italic">Allure</em> Cards
-                        </h3>
-                        <p className="mt-3 text-sm leading-relaxed max-w-[240px]">
-                          <span className="font-semibold">Premium</span> foil,{' '}
-                          <span className="font-semibold">letterpress</span>, and{' '}
-                          <span className="font-semibold">luxury</span> paper.
-                          Elevate your invitation suite.
-                        </p>
-                      </div>
-                      <div>
-                        <span className="inline-flex items-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-4 py-2 rounded-full">
-                          Shop Allure Cards &rarr;
+              {page.map((c) => (
+                <article
+                  key={c.id}
+                  onClick={() => setActive(c)}
+                  className="group cursor-pointer"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f7f5f0]">
+                    {c.images.length > 0 && (
+                      <img
+                        src={imgUrl(c.images[0])}
+                        alt={c.id}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        loading="lazy"
+                      />
+                    )}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(c.id);
+                      }}
+                      aria-label={favorites.includes(c.id) ? "Remove from favorites" : "Add to favorites"}
+                      className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur hover:bg-white"
+                    >
+                      <Heart className="h-4 w-4" fill={favorites.includes(c.id) ? "currentColor" : "none"} />
+                    </button>
+                  </div>
+                  <div className="pt-4">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-medium">{c.id}</h3>
+                      {c.featured && (
+                        <span className="rounded-sm bg-[#e8d9b0] px-2 py-0.5 text-xs text-[#5a4a1a] whitespace-nowrap">
+                          Featured
                         </span>
-                      </div>
-                    </div>
-                  </a>
-                ) : (
-                  <article
-                    key={c.id}
-                    onClick={() => setActive(c)}
-                    className="group cursor-pointer"
-                  >
-                    <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f7f5f0]">
-                      {c.images.length > 0 && (
-                        <img
-                          src={imgUrl(c.images[0])}
-                          alt={c.id}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                          loading="lazy"
-                        />
-                      )}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleFavorite(c.id);
-                        }}
-                        aria-label={favorites.includes(c.id) ? "Remove from favorites" : "Add to favorites"}
-                        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur hover:bg-white"
-                      >
-                        <Heart className="h-4 w-4" fill={favorites.includes(c.id) ? "currentColor" : "none"} />
-                      </button>
-                    </div>
-                    <div className="pt-4">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-medium">{c.id}</h3>
-                        {c.featured && (
-                          <span className="rounded-sm bg-[#e8d9b0] px-2 py-0.5 text-xs text-[#5a4a1a] whitespace-nowrap">
-                            Featured
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-3 text-sm">₹{c.price.toFixed(2)} each</p>
-                      {c.description && (
-                        <p className="mt-1 line-clamp-1 text-sm text-zola-ink/70">{c.description}</p>
                       )}
                     </div>
-                  </article>
-                )
+                    <p className="mt-3 text-sm">₹{c.price.toFixed(2)} each</p>
+                    {c.description && (
+                      <p className="mt-1 line-clamp-1 text-sm text-zola-ink/70">{c.description}</p>
+                    )}
+                  </div>
+                </article>
               ))}
+              <a
+                key="ad-allure"
+                href="https://www.allurecards.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block relative rounded-sm overflow-hidden text-white"
+                style={{ backgroundColor: "#0f2740" }}
+              >
+                <img
+                  src={heroVenue}
+                  alt="Allure Cards premium wedding stationery"
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
+                />
+                <div className="relative z-10 flex flex-col justify-between p-6 aspect-[4/5]">
+                  <div>
+                    <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Sponsored</div>
+                    <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
+                      <em className="not-italic">Allure</em> Cards
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed max-w-[240px]">
+                      <span className="font-semibold">Premium</span> foil,{' '}
+                      <span className="font-semibold">letterpress</span>, and{' '}
+                      <span className="font-semibold">luxury</span> paper.
+                      Elevate your invitation suite.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="inline-flex items-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-4 py-2 rounded-full">
+                      Shop Allure Cards &rarr;
+                    </span>
+                  </div>
+                </div>
+              </a>
               <Link
                 to="/customize"
                 className="group block relative rounded-sm overflow-hidden text-white"
@@ -654,7 +651,7 @@ function ShopPage() {
 
                 {/* Instagram */}
                 <a
-                  href="https://www.instagram.com/impressions.in/"
+                  href={active.instagram || "https://www.instagram.com/impressions_wedding_cards"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 flex items-center gap-2 text-sm opacity-60 transition hover:opacity-100"
