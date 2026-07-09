@@ -13,8 +13,9 @@ const displayImages = import.meta.glob('@/assets/cards/display/*.{jpeg,jpg,png}'
   import: 'default',
 }) as Record<string, string>;
 
-function imgUrl(filename: string): string {
-  return displayImages[`/src/assets/cards/display/${filename}`] || filename;
+function imgUrl(filepath: string): string {
+  const filename = filepath.split('/').pop() || filepath;
+  return displayImages[`/src/assets/cards/display/${filename}`] || `/impressions/media/${filepath}`;
 }
 
 const CATEGORIES = ["All", "MINIMAL", "MODERN", "PASTEL"];
