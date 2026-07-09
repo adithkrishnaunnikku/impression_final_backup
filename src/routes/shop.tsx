@@ -166,7 +166,7 @@ function ShopPage() {
 
   useEffect(() => {
     const t = setTimeout(() => {
-      setItems(cardsData as Catalog[]);
+      setItems(Array.isArray(cardsData) ? (cardsData as Catalog[]) : []);
       setLoading(false);
     }, 250);
     return () => clearTimeout(t);
@@ -406,10 +406,6 @@ function ShopPage() {
           <div className="flex items-center justify-center py-20">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-zola-ink border-t-transparent" />
           </div>
-        ) : page.length === 0 ? (
-          <p className="py-20 text-center text-zola-ink/70">
-            No cards found. Try a different search or filter.
-          </p>
         ) : (
           <>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
