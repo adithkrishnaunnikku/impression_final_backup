@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "Impressions Test",
+    "category": "PASTEL",
+    "price": 99,
+    "featured": true,
+    "minOrder": 100,
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
+    "description": "Test",
+    "instagram_url": "https://www.instagram.com/reel/Daev-cYyDmy/",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "white",
+    "watermarkPath": "",
+    "images": [
+      "src/assets/cards/display/impressions-test-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/impressions-test-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ]
+  }
+]
