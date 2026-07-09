@@ -19,9 +19,8 @@
     "originals": [
       "assets/impressions/original/impressions-test-1.jpg"
     ],
-    "imageWatermarks": [
-      null
-    ]
+    "imageWatermarks": [],
+    "watermarkColor": "white"
   },
   {
     "id": "AL - Tes",
