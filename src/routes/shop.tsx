@@ -134,15 +134,12 @@ function ShopPage() {
   const qty = modalQuantity;
   const cardCost = active ? qty * active.price : 0;
   const extraTotal = active?.extraCharges?.reduce((sum, ch) => sum + ch.price, 0) || 0;
-  const showPrinting = active?.minOrder === 100;
-  const printingFee = showPrinting && qty < 200 ? 600 : 0;
-  const printingWaived = showPrinting && printingFee === 0 ? 600 : 0;
   let discountPct = 0;
   if (qty >= 1000) discountPct = 10;
   else if (qty >= 500) discountPct = 5;
   const discountAmt = Math.round(cardCost * discountPct / 100);
-  const finalTotal = Math.round(cardCost * (1 - discountPct / 100)) + printingFee + extraTotal;
-  const totalSavings = printingWaived + discountAmt;
+  const finalTotal = Math.round(cardCost * (1 - discountPct / 100)) + extraTotal;
+  const totalSavings = discountAmt;
 
   const shareUrl = typeof window !== "undefined"
     ? `${window.location.origin}/shop#card=${active?.id}`
@@ -619,9 +616,14 @@ function ShopPage() {
                   {active.id} · {active.category || "Allure"}
                 </p>
                 <div className="mt-1 flex items-start justify-between gap-3">
-                  <h2 className="font-serif text-4xl tracking-tight text-[#1a1a1a]">
-                    {active.id}
-                  </h2>
+                  <div>
+                    <h2 className="font-serif text-4xl tracking-tight text-[#1a1a1a]">
+                      {active.id}
+                    </h2>
+                    <p className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-[#1a1a1a]/10 bg-[#1a1a1a]/5 px-3 py-0.5 text-xs font-medium text-[#1a1a1a]/70">
+                      ₹{active.price} / card
+                    </p>
+                  </div>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -726,19 +728,6 @@ function ShopPage() {
                       </div>
                     )}
 
-                    {showPrinting && (
-                      <div className="flex items-baseline justify-between">
-                        <span className="opacity-80">Extra charge below 200</span>
-                        {printingFee > 0 ? (
-                          <span>₹600</span>
-                        ) : (
-                          <span className="text-green-700">
-                            <span className="opacity-40 line-through">₹600</span> FREE
-                          </span>
-                        )}
-                      </div>
-                    )}
-
                     {discountPct > 0 && (
                       <div className="flex items-baseline justify-between text-[#1a3c2a]">
                         <span className="opacity-80">Volume discount ({discountPct}%)</span>
@@ -767,23 +756,16 @@ function ShopPage() {
                         `• Quantity: ${qty} pcs`,
                         `• Card Cost: ₹${cardCost.toLocaleString()}`,
                         ...(active.extraCharges?.map((ch) => `• ${ch.name}: ₹${ch.price}`) || []),
-                        ...(showPrinting
-                          ? printingFee > 0
-                            ? [`• Extra charge below 200: ₹600`]
-                            : [`• Extra charge below 200: FREE`]
-                          : []),
                         ...(discountAmt > 0
                           ? [`• Volume discount (${discountPct}%): −₹${discountAmt.toLocaleString()}`]
                           : []),
                         `• Total: ₹${finalTotal.toLocaleString()}`,
                         ...(totalSavings > 0 ? [`• You save: ₹${totalSavings.toLocaleString()}`] : []),
-                        ``,
-                        `Link: ${shareUrl}`,
                       ].join("\n")
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 rounded-full bg-[#1a3c2a] px-6 py-3 text-center text-sm font-semibold text-[#f5f0e6] hover:bg-[#2d5a3d]"
+                    className="flex-1 rounded-full bg-[#1a1a1a] px-6 py-3 text-center text-sm font-semibold text-[#efe0b8] transition-all duration-200 ease-out hover:bg-[#2a2a2a] active:scale-[0.97]"
                   >
                     Order on WhatsApp
                   </a>
@@ -794,10 +776,7 @@ function ShopPage() {
                     {shareCopied ? "Link copied ✓" : "Copy product link"}
                   </button>
                 </div>
-                <p className="mt-4 break-all text-xs opacity-60">{shareUrl}</p>
-
-
-              </div>
+                </div>
             </div>
           </div>
 
