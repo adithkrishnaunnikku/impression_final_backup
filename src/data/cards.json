@@ -1,5 +1,29 @@
 [
   {
+    "id": "Impressions Test",
+    "category": "MODERN",
+    "price": 98,
+    "featured": true,
+    "minOrder": 100,
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
+    "description": "Test",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkPath": "",
+    "images": [
+      "assets/impressions/impressions-test-1.jpg"
+    ],
+    "originals": [
+      "assets/impressions/original/impressions-test-1.jpg"
+    ],
+    "imageWatermarks": [
+      null
+    ]
+  },
+  {
     "id": "AL - Tes",
     "category": "PASTEL",
     "price": 89,
