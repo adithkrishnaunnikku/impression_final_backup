@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "AL - Tes",
+    "category": "PASTEL",
+    "price": 99,
+    "featured": true,
+    "minOrder": 100,
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
+    "description": "Testing",
+    "instagram_url": "https://www.instagram.com/reel/Daev-cYyDmy/",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "small",
+    "watermarkColor": "orange",
+    "watermarkPath": "",
+    "images": [
+      "src/assets/cards/display/al-tes-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/al-tes-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ]
+  }
+]
