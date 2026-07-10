@@ -25,11 +25,19 @@
     "variants": [
       {
         "name": "Standard",
-        "size": "5\" x 7\"",
         "size_id": 1,
-        "material": "Premium 350 gsm",
         "material_id": 1,
+        "size": "5\" x 7\"",
+        "material": "Premium 350 gsm",
         "price": 99
+      },
+      {
+        "name": "Medium",
+        "size_id": 2,
+        "material_id": 3,
+        "size": "6\" x 8\"",
+        "material": "Recycled Kraft",
+        "price": 109
       }
     ]
   }
