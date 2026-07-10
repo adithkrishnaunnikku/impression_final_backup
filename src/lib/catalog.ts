@@ -4,7 +4,6 @@ export type WatermarkEntry = {
   apply: boolean;
   pos: string;
   size: string;
-  color: string;
 };
 
 export type Catalog = {
@@ -20,9 +19,16 @@ export type Catalog = {
   applyWatermark: boolean;
   watermarkPos?: string;
   watermarkSize?: string;
-  watermarkPath?: string;
   instagram_url?: string;
   images: string[];
   originals: string[];
   imageWatermarks: (WatermarkEntry | null)[];
+  variants?: {
+    name: string;
+    size: string;
+    size_id: number;
+    material: string;
+    material_id: number;
+    price: number;
+  }[];
 };

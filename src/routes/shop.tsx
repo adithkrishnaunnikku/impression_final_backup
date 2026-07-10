@@ -13,9 +13,15 @@ const displayImages = import.meta.glob('@/assets/cards/display/*.{jpeg,jpg,png}'
   import: 'default',
 }) as Record<string, string>;
 
+const displayImageMap = Object.fromEntries(
+  Object.entries(displayImages).map(([key, url]) => [key.split('/').pop()!, url]),
+);
+
+const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' fill='%23f0ece4'%3E%3Crect width='400' height='500'/%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%2390857a' font-size='14' font-family='sans-serif'%3EImage not available%3C/text%3E%3C/svg%3E";
+
 function imgUrl(filepath: string): string {
   const filename = filepath.split('/').pop() || filepath;
-  return displayImages[`/src/assets/cards/display/${filename}`] || `/impressions/media/${filepath}`;
+  return displayImageMap[filename] || FALLBACK_IMAGE;
 }
 
 const CATEGORIES = ["All", "MINIMAL", "MODERN", "PASTEL"];
@@ -105,10 +111,12 @@ function ShopPage() {
   };
 
   const [modalQuantity, setModalQuantity] = useState(0);
+  const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
 
   useEffect(() => {
     if (active) {
       setModalQuantity(active.minOrder);
+      setSelectedVariantIdx(0);
     }
   }, [active?.id]);
 
@@ -149,7 +157,8 @@ function ShopPage() {
     return () => window.removeEventListener("keydown", handler);
   }, [galleryOpen, active]);
 
-  const cardCost = active ? modalQuantity * active.price : 0;
+  const activeVar = active?.variants?.[selectedVariantIdx];
+  const cardCost = active ? modalQuantity * (activeVar?.price ?? active.price) : 0;
   const extraTotal = active?.extraCharges?.reduce((sum, ch) => sum + ch.price, 0) || 0;
   let discountPct = 0;
   if (modalQuantity >= 1000) discountPct = 10;
@@ -157,13 +166,10 @@ function ShopPage() {
   const discountAmt = Math.round(cardCost * discountPct / 100);
   const finalTotal = Math.round(cardCost * (1 - discountPct / 100)) + extraTotal;
 
-  const shareUrl = typeof window !== "undefined"
-    ? `${window.location.origin}/shop#card=${active?.id}`
-    : "";
-
   const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(shareUrl);
+      const url = `${window.location.origin}/shop#card=${active?.id}`;
+      await navigator.clipboard.writeText(url);
       setShareCopied(true);
       setTimeout(() => setShareCopied(false), 1800);
     } catch {}
@@ -631,7 +637,7 @@ function ShopPage() {
                       {active.id}
                     </h2>
                     <p className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-[#1a1a1a]/10 bg-[#1a1a1a]/5 px-3 py-0.5 text-xs font-medium text-[#1a1a1a]/70">
-                      ₹{active.price} / card
+                      ₹{activeVar?.price ?? active.price} / card
                     </p>
                   </div>
                   <button
@@ -650,12 +656,28 @@ function ShopPage() {
                 )}
 
                 {/* Size & Material */}
-                {(active.size || active.material) && (
+                {((activeVar?.size ?? active.size) || (activeVar?.material ?? active.material)) && (
                   <p className="mt-3 text-sm opacity-70">
-                    {active.size && <><strong>Size:</strong> {active.size}</>}
-                    {active.size && active.material && <br />}
-                    {active.material && <><strong>Material:</strong> {active.material}</>}
+                    {(activeVar?.size ?? active.size) && <><strong>Size:</strong> {activeVar?.size ?? active.size}</>}
+                    {(activeVar?.size ?? active.size) && (activeVar?.material ?? active.material) && <br />}
+                    {(activeVar?.material ?? active.material) && <><strong>Material:</strong> {activeVar?.material ?? active.material}</>}
                   </p>
+                )}
+
+                {/* Variant selector */}
+                {active.variants && active.variants.length > 1 && (
+                  <div className="mt-4">
+                    <label className="text-xs font-semibold uppercase tracking-[0.18em] opacity-70">Variant</label>
+                    <select
+                      value={selectedVariantIdx}
+                      onChange={(e) => setSelectedVariantIdx(Number(e.target.value))}
+                      className="mt-2 w-full rounded-xl border border-[#1a1a1a]/15 bg-white px-4 py-2.5 text-sm text-[#1a1a1a]"
+                    >
+                      {active.variants.map((v, i) => (
+                        <option key={i} value={i}>{v.name} — ₹{v.price}/card</option>
+                      ))}
+                    </select>
+                  </div>
                 )}
 
                 {/* Instagram */}
@@ -724,7 +746,7 @@ function ShopPage() {
 
                   <div className="mt-5 space-y-1.5 text-sm">
                     <div className="flex items-baseline justify-between">
-                      <span className="opacity-80">Card Cost · {modalQuantity} × ₹{active.price}</span>
+                      <span className="opacity-80">Card Cost · {modalQuantity} × ₹{activeVar?.price ?? active.price}</span>
                       <span>₹{cardCost.toLocaleString()}</span>
                     </div>
 
@@ -765,7 +787,7 @@ function ShopPage() {
                       [
                         `Hi Allure Cards! I'd like to order:`,
                         ``,
-                        `• ${active.id} (${active.category || "Allure"} Collection)`,
+                        `• ${active.id}${activeVar?.name ? ` - ${activeVar.name}` : ''} (${active.category || "Allure"} Collection)`,
                         `• Quantity: ${modalQuantity} pcs`,
                         `• Card Cost: ₹${cardCost.toLocaleString()}`,
                         ...(active.extraCharges?.map((ch) => `• ${ch.name}: ₹${ch.price}`) || []),

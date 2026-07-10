@@ -1,10 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ReactElement, ReactNode } from "react";
 import invitations from "@/assets/invitations.jpg";
 import logo from "@/assets/IMP_LOGO_final.png";
 import weddingCard from "@/assets/wedding-card.jpg";
-const registry = weddingCard;
 import {
   DoodleHeritage,
   DoodleMinimal,
@@ -84,7 +83,7 @@ const sections: Section[] = [
     copy: "Pick a design you love, add your names, dates, and wording, and watch it update in real time. Once it looks right, send the final version straight to our team for printing — no back-and-forth, no guesswork.",
     primary: "Start Customising",
     to: "/customize",
-    image: registry,
+    image: weddingCard,
     imageAlt: "Live preview of a customised wedding invitation on screen",
   },
   {
@@ -117,22 +116,29 @@ const sections: Section[] = [
  */
 export function ExploreSections() {
   const [activeBg, setActiveBg] = useState(sections[0].bg);
-  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const sectionRefCallback = useCallback((el: HTMLElement | null) => {
+    if (!observerRef.current) {
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const idx = Number((entry.target as HTMLElement).dataset.idx);
+              setActiveBg(sections[idx].bg);
+            }
+          });
+        },
+        { threshold: 0.55 },
+      );
+    }
+    if (el) {
+      observerRef.current.observe(el);
+    }
+  }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = Number((entry.target as HTMLElement).dataset.idx);
-            setActiveBg(sections[idx].bg);
-          }
-        });
-      },
-      { threshold: 0.55 },
-    );
-    sectionRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
+    return () => observerRef.current?.disconnect();
   }, []);
 
   return (
@@ -147,9 +153,7 @@ export function ExploreSections() {
         {sections.map((s, i) => (
           <section
             key={s.id}
-            ref={(el) => {
-              sectionRefs.current[i] = el;
-            }}
+            ref={sectionRefCallback}
             data-idx={i}
             className="relative flex min-h-screen items-center px-6 py-24 md:px-16 lg:px-24"
             style={{ color: s.accent }}
@@ -279,8 +283,8 @@ function BentoSection() {
     { title: "Minimal Collection", desc: "Understated elegance for modern couples.", img: newMinimalImg, icon: DoodleMinimal, to: "/shop" },
     { title: "Floral Collection", desc: "Watercolour-inspired botanical prints.", img: newFloralImg, icon: DoodleFloral, to: "/shop" },
     { title: "Modern Collection", desc: "Contemporary & bold designs.", img: invitations, icon: DoodleModern, to: "/shop" },
-    { title: "Allure Cards", desc: "Our premium sub-brand — gold foil & elevated finishes.", img: registry, icon: DoodleAllure, href: "https://www.allurecards.in" },
-    { title: "Customise Your Card", desc: "Live preview — design your invitation in minutes.", img: registry, icon: DoodleCustomize, to: "/customize" },
+    { title: "Allure Cards", desc: "Our premium sub-brand — gold foil & elevated finishes.", img: weddingCard, icon: DoodleAllure, href: "https://www.allurecards.in" },
+    { title: "Customise Your Card", desc: "Live preview — design your invitation in minutes.", img: weddingCard, icon: DoodleCustomize, to: "/customize" },
   ];
 
   return (

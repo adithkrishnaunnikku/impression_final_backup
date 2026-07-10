@@ -11,7 +11,7 @@ import { useCardDesign, encodeDesignForUrl } from "@/hooks/use-card-design";
  *
  * TODO: replace with the studio's real WhatsApp number / email.
  */
-const OWNER_WHATSAPP_NUMBER = ""; // e.g. "911234567890" — country code, digits only, no + or spaces
+const OWNER_WHATSAPP_NUMBER = "911234567890"; // e.g. "911234567890" — country code, digits only, no + or spaces
 const OWNER_EMAIL = "hello@impressionscards.in";
 
 export function ExportBar({ svgRef: _svgRef }: { svgRef: React.RefObject<SVGSVGElement | null> }) {

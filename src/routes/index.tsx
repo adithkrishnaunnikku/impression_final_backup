@@ -47,18 +47,6 @@ function Landing() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Track hero for wordmark visibility (unused here but kept)
-  const [heroPassed, setHeroPassed] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setHeroPassed(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    const heroSection = document.querySelector("#cinematic-hero");
-    if (heroSection) observer.observe(heroSection);
-    return () => observer.disconnect();
-  }, []);
-
   // Stage progression
   useEffect(() => {
     const t1 = setTimeout(() => setStage(1), 250);

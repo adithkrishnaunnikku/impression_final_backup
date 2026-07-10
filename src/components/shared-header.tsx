@@ -20,7 +20,7 @@ export function SharedHeader({ showSubnav, subnavContent }: SharedHeaderProps) {
             <span className="hidden sm:inline">
               Discover our premium letterpress & foil atelier line
             </span>
-            <a href="#" className="underline underline-offset-2 hover:opacity-80">
+            <a href="https://www.allurecards.in" className="underline underline-offset-2 hover:opacity-80">
               Visit Allure &rarr;
             </a>
           </div>

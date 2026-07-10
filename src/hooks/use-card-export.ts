@@ -1,14 +1,16 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import type { ExportStatus } from "@/types/card-design";
 import { exportCardAsPdf, exportCardAsPng, type ExportResolution } from "@/lib/card-export";
 
 export function useCardExport(svgRef: React.RefObject<SVGSVGElement | null>) {
   const [status, setStatus] = useState<ExportStatus>("idle");
   const [error, setError] = useState("");
+  const exportingRef = useRef(false);
 
   const run = useCallback(
     async (task: () => Promise<void>) => {
-      if (status === "exporting") return;
+      if (exportingRef.current) return;
+      exportingRef.current = true;
       setStatus("exporting");
       setError("");
       try {
@@ -17,9 +19,11 @@ export function useCardExport(svgRef: React.RefObject<SVGSVGElement | null>) {
       } catch (e) {
         setError(e instanceof Error ? e.message : "The design could not be exported. Please try again.");
         setStatus("error");
+      } finally {
+        exportingRef.current = false;
       }
     },
-    [status],
+    [],
   );
 
   const downloadPng = useCallback(

@@ -13,8 +13,6 @@
     "applyWatermark": true,
     "watermarkPos": "bottom-left",
     "watermarkSize": "medium",
-    "watermarkColor": "white",
-    "watermarkPath": "",
     "images": [
       "src/assets/cards/display/impressions-test-1.png"
     ],
@@ -23,6 +21,16 @@
     ],
     "imageWatermarks": [
       null
+    ],
+    "variants": [
+      {
+        "name": "Standard",
+        "size": "5\" x 7\"",
+        "size_id": 1,
+        "material": "Premium 350 gsm",
+        "material_id": 1,
+        "price": 99
+      }
     ]
   }
 ]
