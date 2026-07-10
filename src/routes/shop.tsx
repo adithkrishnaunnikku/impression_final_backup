@@ -196,7 +196,17 @@ function ShopPage() {
       result = result.filter((c) => c.category === category);
     }
     if (q) {
-      result = result.filter((c) => c.id.toLowerCase().includes(q));
+      result = result.filter((c) => {
+        const searchable = [
+          c.id,
+          c.description,
+          c.category,
+          c.size,
+          c.material,
+          ...(c.variants?.flatMap(v => [v.name, v.size, v.material]) ?? []),
+        ].filter(Boolean).join(" ").toLowerCase();
+        return searchable.includes(q);
+      });
     }
     if (showFavorites) {
       result = result.filter((c) => favorites.includes(c.id));
