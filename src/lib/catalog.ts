@@ -8,7 +8,7 @@ export type WatermarkEntry = {
 
 export type Catalog = {
   id: string;
-  category: "PASTEL" | "MODERN" | "MINIMAL";
+  category: string;
   price: number;
   featured: boolean;
   minOrder: number;

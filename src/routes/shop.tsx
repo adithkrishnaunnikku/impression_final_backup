@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Search, Heart, ChevronDown, ShoppingBag } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ShareSheet } from "@/components/share-sheet";
 import invitations from "@/assets/invitations.jpg";
 import heroVenue from "@/assets/hero-venue.jpg";
 import type { Catalog } from "@/lib/catalog";
@@ -24,33 +25,38 @@ function imgUrl(filepath: string): string {
   return displayImageMap[filename] || FALLBACK_IMAGE;
 }
 
-const CATEGORIES = ["All", "MINIMAL", "MODERN", "PASTEL"];
 const PAGE_SIZE = 10;
-const WHATSAPP_NUMBER = "9199999999";
-
-const categoryCircles = [
-  {
-    label: "Minimal",
-    cat: "MINIMAL",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=150&h=150&fit=crop&crop=face",
-  },
-  {
-    label: "Modern",
-    cat: "MODERN",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=150&h=150&fit=crop&crop=face",
-  },
-  {
-    label: "Pastel",
-    cat: "PASTEL",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=150&h=150&fit=crop&crop=face",
-  },
-];
+const WHATSAPP_NUMBER = "919526577999";
 
 function ShopPage() {
   const [items, setItems] = useState<Catalog[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const categories = useMemo(() => {
+    const cats = new Set(items.map((c) => c.category));
+    return ["All", ...Array.from(cats)];
+  }, [items]);
+
+  const circles = useMemo(() => {
+    const allImg = items.find(() => true)?.images[0] ?? "";
+    const result = [{ label: "All Cards", cat: "All", image: allImg }];
+    for (const cat of categories) {
+      if (cat === "All") continue;
+      const first = items.find(c => c.category === cat);
+      result.push({ label: cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase(), cat, image: first?.images[0] ?? allImg });
+    }
+    return result;
+  }, [categories, items]);
+
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState(() => {
+    const data = Array.isArray(cardsData) ? (cardsData as Catalog[]) : [];
+    const cats: string[] = [];
+    for (const c of data) {
+      if (!cats.includes(c.category)) cats.push(c.category);
+    }
+    return cats[0] || "All";
+  });
   const [sort, setSort] = useState<"featured" | "price-asc" | "price-desc">("featured");
   const [visible, setVisible] = useState(PAGE_SIZE);
   const [active, setActive] = useState<Catalog | null>(null);
@@ -92,7 +98,7 @@ function ShopPage() {
   useEffect(() => {
     const hash = window.location.hash;
     if (hash.startsWith("#card=")) {
-      const cardId = hash.replace("#card=", "");
+      const cardId = decodeURIComponent(hash.replace("#card=", ""));
       const found = Array.isArray(cardsData) ? (cardsData as Catalog[]).find((c) => c.id === cardId) : undefined;
       if (found) {
         const t = setTimeout(() => setActive(found), 300);
@@ -124,7 +130,7 @@ function ShopPage() {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [shareCopied, setShareCopied] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
 
   useEffect(() => {
     if (active) {
@@ -136,7 +142,7 @@ function ShopPage() {
 
   useEffect(() => {
     if (active) {
-      window.history.replaceState(null, "", `#card=${active.id}`);
+      window.history.replaceState(null, "", `#card=${encodeURIComponent(active.id)}`);
     } else if (window.location.hash.startsWith("#card=")) {
       window.history.replaceState(null, "", window.location.pathname);
     }
@@ -165,15 +171,6 @@ function ShopPage() {
   else if (modalQuantity >= 500) discountPct = 5;
   const discountAmt = Math.round(cardCost * discountPct / 100);
   const finalTotal = Math.round(cardCost * (1 - discountPct / 100)) + extraTotal;
-
-  const copyLink = async () => {
-    try {
-      const url = `${window.location.origin}/shop#card=${active?.id}`;
-      await navigator.clipboard.writeText(url);
-      setShareCopied(true);
-      setTimeout(() => setShareCopied(false), 1800);
-    } catch {}
-  };
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -290,7 +287,7 @@ function ShopPage() {
         {/* Sub-nav */}
         <div className="border-t border-zola-ink/10">
           <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-8 overflow-x-auto px-6 py-4 text-sm">
-            {CATEGORIES.map((c) => (
+            {categories.map((c) => (
               <button
                 key={c}
                 onClick={() => setCategoryAndReset(c)}
@@ -330,7 +327,7 @@ function ShopPage() {
       {/* Category circles */}
       <section className="mx-auto max-w-[1400px] px-6 pb-10 pt-8">
         <div className="flex items-center justify-center gap-10">
-          {categoryCircles.map((c) => (
+          {circles.map((c) => (
             <button
               key={c.cat}
               onClick={() => setCategoryAndReset(c.cat)}
@@ -341,7 +338,7 @@ function ShopPage() {
                   category === c.cat ? "ring-2 ring-zola-ink" : "ring-zola-ink/15"
                 }`}
               >
-                <img src={c.image} alt={c.label} className="h-full w-full object-cover" />
+                <img src={c.image.startsWith("http") ? c.image : imgUrl(c.image)} alt={c.label} className="h-full w-full object-cover" />
               </div>
               <span className="text-sm font-medium text-zola-ink">{c.label}</span>
             </button>
@@ -388,7 +385,7 @@ function ShopPage() {
               <SelectValue placeholder="Style" />
             </SelectTrigger>
             <SelectContent className="rounded-xl border-zola-ink/10 bg-zola-cream shadow-lg">
-              {CATEGORIES.map((c) => (
+              {categories.map((c) => (
                 <SelectItem key={c} value={c} className="cursor-pointer rounded-lg text-sm capitalize focus:bg-zola-ink/5 focus:text-zola-ink">
                   {c === "All" ? "All Styles" : c.toLowerCase()}
                 </SelectItem>
@@ -717,41 +714,37 @@ function ShopPage() {
                   <label htmlFor="modal-qty" className="text-xs font-semibold uppercase tracking-[0.18em] opacity-70">Quantity</label>
                   <div className="mt-3 flex items-center gap-3">
                     <button
-                      onClick={() => setModalQuantity((q) => Math.max(active.minOrder, q - 50))}
+                      onClick={() => setModalQuantity((q) => Math.max(1, q - 1))}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a] active:scale-[0.95]"
                     >−</button>
                     <input
                       id="modal-qty"
                       type="number"
                       value={modalQuantity}
-                      min={active.minOrder}
-                      max={1500}
-                      step={50}
                       inputMode="numeric"
                       onChange={(e) => {
                         const v = Number(e.target.value);
-                        if (Number.isFinite(v)) setModalQuantity(Math.min(1500, Math.max(active.minOrder, v)));
+                        if (Number.isFinite(v)) setModalQuantity(v);
                       }}
                       className="w-24 rounded-md border border-[#1a1a1a]/20 px-3 py-2 text-center text-sm text-[#1a1a1a]"
                     />
                     <button
-                      onClick={() => setModalQuantity((q) => Math.min(1500, q + 50))}
+                      onClick={() => setModalQuantity((q) => q + 1)}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a] active:scale-[0.95]"
                     >+</button>
                     <span className="text-xs opacity-60">pcs</span>
                   </div>
                   <input
                     type="range"
-                    min={active.minOrder}
-                    max={1500}
-                    step={50}
+                    min={1}
+                    max={5000}
                     value={modalQuantity}
                     onChange={(e) => setModalQuantity(Number(e.target.value))}
                     aria-label="Select quantity"
                     className="mt-4 w-full accent-[#1a1a1a]"
                   />
                   <p className="mt-1 text-xs opacity-50">
-                    Min {active.minOrder} · Step 50 · Max 1500 &nbsp;·&nbsp; 5% off 500+ · 10% off 1000+
+                    5% off 500+ · 10% off 1000+
                   </p>
 
                   <div className="mt-5 space-y-1.5 text-sm">
@@ -795,7 +788,7 @@ function ShopPage() {
                   <a
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                       [
-                        `Hi Allure Cards! I'd like to order:`,
+                        `Hi Impressions! I'd like to order:`,
                         ``,
                         `• ${active.id}${activeVar?.name ? ` - ${activeVar.name}` : ''} (${active.category || "Allure"} Collection)`,
                         `• Quantity: ${modalQuantity} pcs`,
@@ -815,15 +808,22 @@ function ShopPage() {
                     Order on WhatsApp
                   </a>
                   <button
-                    onClick={copyLink}
+                    onClick={() => setShareOpen(true)}
                     className="flex-1 rounded-full border border-[#1a1a1a] px-6 py-3 text-sm font-semibold text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f5f0e6] active:scale-[0.97]"
                   >
-                    {shareCopied ? "Link copied ✓" : "Copy product link"}
+                    Share Card
                   </button>
                 </div>
                 </div>
             </div>
           </div>
+
+          <ShareSheet
+            open={shareOpen}
+            onOpenChange={setShareOpen}
+            productUrl={`${window.location.origin}/shop#card=${encodeURIComponent(active?.id ?? "")}`}
+            productTitle={active?.id ?? ""}
+          />
 
           {/* Gallery lightbox */}
           {galleryOpen && (
