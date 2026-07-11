@@ -4,6 +4,13 @@ import type { ReactElement, ReactNode } from "react";
 import invitations from "@/assets/invitations.jpg";
 import logo from "@/assets/IMP_LOGO_final.png";
 import weddingCard from "@/assets/wedding-card.jpg";
+import heritageImg from "@/assets/bento/heritage.jpeg";
+import minimalImg from "@/assets/bento/minimal.jpeg";
+import floralImg from "@/assets/bento/floral.jpeg";
+import allureImg from "@/assets/bento/allure.jpeg";
+import customiseImg from "@/assets/bento/customise.jpeg";
+import redCard from "@/assets/red.jpeg";
+import greenCard from "@/assets/green.png";
 import {
   DoodleHeritage,
   DoodleMinimal,
@@ -63,7 +70,7 @@ const sections: Section[] = [
     copy: "Allure is our premium sub-brand, built for couples who want their invitation suite to feel like a keepsake from the very first touch — richer papers, elevated foiling, and a more considered presentation throughout. It lives on its own address, designed entirely around that feeling.",
     primary: "Visit Allure Cards",
     href: "https://www.allurecards.in",
-    image: newHeritageImg,
+    image: redCard,
     imageAlt: "Premium gold foil wedding invitation from Allure Cards",
   },
   {
@@ -83,7 +90,7 @@ const sections: Section[] = [
     copy: "Pick a design you love, add your names, dates, and wording, and watch it update in real time. Once it looks right, send the final version straight to our team for printing — no back-and-forth, no guesswork.",
     primary: "Start Customising",
     to: "/customize",
-    image: weddingCard,
+    image: greenCard,
     imageAlt: "Live preview of a customised wedding invitation on screen",
   },
   {
@@ -293,12 +300,12 @@ function BentoSection() {
     to?: string;
     href?: string;
   }[] = [
-    { title: "Heritage Collection", desc: "Rich, traditional luxury on heirloom-inspired paper.", img: newHeritageImg, icon: DoodleHeritage, to: "/shop" },
-    { title: "Minimal Collection", desc: "Understated elegance for modern couples.", img: newMinimalImg, icon: DoodleMinimal, to: "/shop" },
-    { title: "Floral Collection", desc: "Watercolour-inspired botanical prints.", img: newFloralImg, icon: DoodleFloral, to: "/shop" },
+    { title: "Heritage Collection", desc: "Rich, traditional luxury on heirloom-inspired paper.", img: heritageImg, icon: DoodleHeritage, to: "/shop" },
+    { title: "Minimal Collection", desc: "Understated elegance for modern couples.", img: minimalImg, icon: DoodleMinimal, to: "/shop" },
+    { title: "Floral Collection", desc: "Watercolour-inspired botanical prints.", img: floralImg, icon: DoodleFloral, to: "/shop" },
     { title: "Modern Collection", desc: "Contemporary & bold designs.", img: invitations, icon: DoodleModern, to: "/shop" },
-    { title: "Allure Cards", desc: "Our premium sub-brand — gold foil & elevated finishes.", img: weddingCard, icon: DoodleAllure, href: "https://www.allurecards.in" },
-    { title: "Customise Your Card", desc: "Live preview — design your invitation in minutes.", img: weddingCard, icon: DoodleCustomize, to: "/customize" },
+    { title: "Allure Cards", desc: "Our premium sub-brand — gold foil & elevated finishes.", img: allureImg, icon: DoodleAllure, href: "https://www.allurecards.in" },
+    { title: "Customise Your Card", desc: "Live preview — design your invitation in minutes.", img: customiseImg, icon: DoodleCustomize, to: "/customize" },
   ];
 
   return (

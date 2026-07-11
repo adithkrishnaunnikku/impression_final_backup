@@ -277,10 +277,10 @@ function ShopPage() {
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5">
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
             <button className="flex items-center gap-1 hover:opacity-70">
-              Shop <ChevronDown className="h-3.5 w-3.5" />
+              Shop
             </button>
             <Link to="/customize" className="flex items-center gap-1 hover:opacity-70">
-              Customize <ChevronDown className="h-3.5 w-3.5" />
+              Customize
             </Link>
             <Link to="/" className="hover:opacity-70">
               Home
@@ -322,11 +322,11 @@ function ShopPage() {
                   category === c ? "border-b-2 border-zola-ink pb-1 font-semibold" : "hover:opacity-70"
                 } active:scale-[0.97]`}
               >
-                {c === "All" ? "All cards" : c} <ChevronDown className="h-3.5 w-3.5" />
+                {c === "All" ? "All cards" : c}
               </button>
             ))}
             <Link to="/customize" className="flex items-center gap-1 whitespace-nowrap hover:opacity-70">
-              Customize <ChevronDown className="h-3.5 w-3.5" />
+              Customize
             </Link>
           </div>
         </div>
@@ -335,7 +335,7 @@ function ShopPage() {
       {/* Breadcrumb */}
       <div className="mx-auto max-w-[1400px] px-6 pt-6 text-sm text-zola-ink/70">
         <Link to="/" className="hover:underline">
-          Allure Cards
+          Impressions
         </Link>
         <span className="mx-2">/</span>
         <span className="text-zola-ink">Wedding cards</span>
