@@ -1,5 +1,40 @@
 [
   {
+    "id": "Test 2",
+    "category": "New Test",
+    "price": 56,
+    "featured": false,
+    "minOrder": 200,
+    "size": "6\" x 8\"",
+    "material": "Textured Matte",
+    "description": "ASDFGHJK",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "top-left",
+    "watermarkSize": "large",
+    "watermarkColor": "#00ff7b",
+    "images": [
+      "src/assets/cards/display/test-2-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/test-2-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "Poly",
+        "size_id": 2,
+        "material_id": 2,
+        "size": "6\" x 8\"",
+        "material": "Textured Matte",
+        "price": 56
+      }
+    ]
+  },
+  {
     "id": "TEST-DEBUG-1",
     "category": "Test",
     "price": 100,
