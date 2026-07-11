@@ -43,7 +43,7 @@
     "id": "Test 3",
     "category": "Another one",
     "price": 44,
-    "featured": false,
+    "featured": true,
     "minOrder": 200,
     "size": "5\" x 7\"",
     "material": "Premium 350 gsm",
@@ -65,15 +65,15 @@
     "imageWatermarks": [
       {
         "apply": true,
-        "pos": "bottom-left",
-        "size": "medium",
-        "color": "#00ff2a"
+        "pos": "bottom-right",
+        "size": "xlarge",
+        "color": "#0040ff"
       },
       {
         "apply": true,
-        "pos": "bottom-right",
-        "size": "medium",
-        "color": "#00ff2a"
+        "pos": "top-left",
+        "size": "large",
+        "color": "#ff0026"
       }
     ],
     "variants": [
