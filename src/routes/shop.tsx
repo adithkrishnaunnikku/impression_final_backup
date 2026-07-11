@@ -15,8 +15,18 @@ const thumbnailImages = import.meta.glob('@/assets/cards/thumbnails/*.{jpeg,jpg,
   import: 'default',
 }) as Record<string, string>;
 
+const displayImages = import.meta.glob('@/assets/cards/display/*.{jpeg,jpg,png}', {
+  eager: true,
+  query: { url: true },
+  import: 'default',
+}) as Record<string, string>;
+
 const thumbnailImageMap = Object.fromEntries(
   Object.entries(thumbnailImages).map(([key, url]) => [key.split('/').pop()!, url]),
+);
+
+const displayImageMap = Object.fromEntries(
+  Object.entries(displayImages).map(([key, url]) => [key.split('/').pop()!, url]),
 );
 
 const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' fill='%23f0ece4'%3E%3Crect width='400' height='500'/%3E%3Ctext x='200' y='250' text-anchor='middle' fill='%2390857a' font-size='14' font-family='sans-serif'%3EImage not available%3C/text%3E%3C/svg%3E";
@@ -24,6 +34,11 @@ const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 function imgUrl(filepath: string): string {
   const filename = filepath.split('/').pop() || filepath;
   return thumbnailImageMap[filename] || FALLBACK_IMAGE;
+}
+
+function displayUrl(filepath: string): string {
+  const filename = filepath.split('/').pop() || filepath;
+  return displayImageMap[filename] || FALLBACK_IMAGE;
 }
 
 const PAGE_SIZE = 10;
@@ -632,7 +647,7 @@ function ShopPage() {
                   <div className="relative">
                     {active.images.length > 0 && (
                       <img
-                        src={imgUrl(active.images[selectedImageIndex])}
+                        src={displayUrl(active.images[selectedImageIndex])}
                         alt={active.id}
                         className="w-full object-cover"
                         style={{ aspectRatio: '4 / 5' }}
@@ -865,7 +880,7 @@ function ShopPage() {
                 Close ✕
               </button>
               <img
-                src={imgUrl(active.images[galleryIndex])}
+                src={displayUrl(active.images[galleryIndex])}
                 alt={active.id}
                 className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain"
               />
