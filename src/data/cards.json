@@ -128,7 +128,7 @@
     "price": 99,
     "featured": true,
     "minOrder": 200,
-    "size": "5\" x 8\"",
+    "size": "5\" x 7\"",
     "material": "Premium 350 gsm",
     "description": "Testing",
     "instagram_url": "https://www.allurecards.in",
@@ -145,7 +145,12 @@
       "src/assets/cards/originals/impressions-test-2.jpeg"
     ],
     "imageWatermarks": [
-      null,
+      {
+        "apply": true,
+        "pos": "bottom-left",
+        "size": "medium",
+        "color": "#FFD700"
+      },
       null
     ],
     "variants": [
@@ -153,10 +158,11 @@
         "name": "Test",
         "size_id": 1,
         "material_id": 1,
-        "size": "5\" x 8\"",
+        "size": "5\" x 7\"",
         "material": "Premium 350 gsm",
         "price": 99
       }
-    ]
+    ],
+    "watermarkColor": "#ffd700"
   }
 ]
