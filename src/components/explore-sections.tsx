@@ -101,8 +101,8 @@ const sections: Section[] = [
       </>
     ),
     copy: "Every Impressions design starts as one of four collections — Heritage, Minimal, Floral, or Modern — art-directed in-house, then personalised with your details before we print on premium cardstock and finish with foil or texture. Follow along on Instagram to see new collections and real weddings as they happen.",
-    primary: "Follow @impressions.in",
-    href: "https://www.instagram.com/impressions.in/",
+    primary: "Follow @impressions_wedding_cards",
+    href: "https://www.instagram.com/impressions_wedding_cards/",
     image: instaVideo1,
     imageAlt: "Instagram reel showing an Impressions wedding invitation collection",
     video: true,
@@ -237,35 +237,49 @@ export function ExploreSections() {
 
 function Footer() {
   return (
-    <footer className="bg-[#1a1a1a] px-6 py-20 text-[#f5f0e6] md:px-16">
-      <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-4">
-        <div>
-          <img src={logo} alt="Impressions" className="h-16 w-auto" />
-        </div>
-        {[
-          { h: "Collections", items: ["Heritage", "Minimal", "Floral", "Modern"] },
-          { h: "Customise", items: ["Design your card", "Templates", "Bible verses", "Live preview"] },
-          { h: "Company", items: ["Our atelier", "Allure Cards", "Contact", "Directions"] },
-        ].map((col) => (
-          <div key={col.h}>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] opacity-70">
-              {col.h}
-            </h4>
-            <ul className="space-y-2 text-sm">
-              {col.items.map((i) => (
-                <li key={i}>
-                  <a href="#" className="opacity-90 hover:opacity-60">
-                    {i}
-                  </a>
-                </li>
-              ))}
-            </ul>
+    <footer id="contact" className="bg-[#1a1a1a] px-6 py-20 text-[#f5f0e6] md:px-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="pt-6">
+            <img src={logo} alt="Impressions" className="h-20 w-auto" />
+            <address className="mt-4 space-y-1 text-sm not-italic leading-relaxed opacity-70">
+              <p>Paravattani, Opp. Childrens Park,</p>
+              <p>East Fort P.O.,</p>
+              <p>Thrissur, Kerala — 680005</p>
+            </address>
+            <p className="mt-3 text-sm opacity-70">
+              <a href="tel:+919526577999" className="hover:opacity-60">+91 95265 77 999</a>
+              <span className="mx-2">·</span>
+              <a href="tel:+919020077999" className="hover:opacity-60">+91 90200 77 999</a>
+            </p>
           </div>
-        ))}
+          <div>
+            <div className="overflow-hidden rounded-lg">
+              <iframe
+                src="https://maps.google.com/maps?q=Impressions+Castle+Paravattani+Thrissur+Kerala&output=embed"
+                width="100%"
+                height="260"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Impressions Wedding Cards — Atelier Location"
+              />
+            </div>
+            <a
+              href="https://maps.app.goo.gl/ZJTa4s78fDbU1HjF7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block text-sm opacity-70 transition-opacity hover:opacity-50"
+            >
+              Get Directions to our Atelier
+            </a>
+          </div>
+        </div>
+
+        <p className="mt-16 text-xs opacity-50">
+          © {new Date().getFullYear()} Impressions Wedding Cards. All rights reserved.
+        </p>
       </div>
-      <p className="mx-auto mt-16 max-w-6xl text-xs opacity-50">
-        © {new Date().getFullYear()} Impressions Wedding Cards. All rights reserved.
-      </p>
     </footer>
   );
 }

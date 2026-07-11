@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef } from "react";
 import { SharedHeader } from "@/components/shared-header";
-import { SharedFooter } from "@/components/shared-footer";
+
 import { CardDesignProvider, useCardDesign } from "@/hooks/use-card-design";
 import { getTemplate } from "@/data/templates";
 import { CardSvg } from "@/components/customize/CardSvg";
@@ -83,7 +83,28 @@ function CustomizePageInner() {
         </div>
       </main>
 
-      <SharedFooter />
+      <footer className="bg-zola-ink text-zola-cream">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-6 py-12 text-sm md:grid-cols-4">
+          <div>
+            <h4 className="font-serif text-xl mb-4">Impressions</h4>
+            <p className="opacity-70">Wedding cards, made for you.</p>
+          </div>
+          <div>
+            <h5 className="mb-3 font-semibold">Shop</h5>
+            <ul className="space-y-2 opacity-70">
+              <li><Link to="/shop" className="hover:opacity-60">All cards</Link></li>
+              <li><Link to="/customize" className="hover:opacity-60">Customize</Link></li>
+              <li><Link to="/customize" className="hover:opacity-60">Design your own</Link></li>
+            </ul>
+          </div>
+
+        </div>
+        <div className="border-t border-zola-cream/10">
+          <p className="mx-auto max-w-[1400px] px-6 py-6 text-xs opacity-50">
+            &copy; {new Date().getFullYear()} Impressions Cards. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -1,5 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { z } from "zod";
 import { Search, Heart, ChevronDown, ShoppingBag } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ShareSheet } from "@/components/share-sheet";
@@ -28,7 +29,14 @@ function imgUrl(filepath: string): string {
 const PAGE_SIZE = 10;
 const WHATSAPP_NUMBER = "919526577999";
 
+const shopSearchSchema = z.object({
+  category: z.string().optional(),
+});
+
 function ShopPage() {
+  const navigate = useNavigate();
+  const { category: urlCategory } = Route.useSearch();
+
   const [items, setItems] = useState<Catalog[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,8 +63,26 @@ function ShopPage() {
     for (const c of data) {
       if (!cats.includes(c.category)) cats.push(c.category);
     }
-    return cats[0] || "All";
+    if (urlCategory && cats.includes(urlCategory)) return urlCategory;
+    return "All";
   });
+
+  const prevUrlCategory = useRef(urlCategory);
+  useEffect(() => {
+    if (urlCategory !== prevUrlCategory.current) {
+      prevUrlCategory.current = urlCategory;
+      const data = Array.isArray(cardsData) ? (cardsData as Catalog[]) : [];
+      const cats: string[] = [];
+      for (const c of data) {
+        if (!cats.includes(c.category)) cats.push(c.category);
+      }
+      const next = urlCategory && cats.includes(urlCategory) ? urlCategory : "All";
+      setCategory(next);
+      setVisible(PAGE_SIZE);
+      setActive(null);
+    }
+  }, [urlCategory]);
+
   const [sort, setSort] = useState<"featured" | "price-asc" | "price-desc">("featured");
   const [visible, setVisible] = useState(PAGE_SIZE);
   const [active, setActive] = useState<Catalog | null>(null);
@@ -184,6 +210,7 @@ function ShopPage() {
     setCategory(c);
     setVisible(PAGE_SIZE);
     setActive(null);
+    navigate({ search: { category: c === "All" ? undefined : c }, replace: true });
   };
 
   const filtered = useMemo(() => {
@@ -338,7 +365,7 @@ function ShopPage() {
                   category === c.cat ? "ring-2 ring-zola-ink" : "ring-zola-ink/15"
                 }`}
               >
-                <img src={c.image.startsWith("http") ? c.image : imgUrl(c.image)} alt={c.label} className="h-full w-full object-cover" />
+                <img src={c.image.startsWith("http") || c.image.startsWith("/") ? c.image : imgUrl(c.image)} alt={c.label} className="h-full w-full object-cover" />
               </div>
               <span className="text-sm font-medium text-zola-ink">{c.label}</span>
             </button>
@@ -690,7 +717,7 @@ function ShopPage() {
                 {/* Instagram */}
                 {(() => {
                   const instaHref = active.instagram_url || "https://www.instagram.com/impressions_wedding_cards";
-                  const label = active.instagram_url ? "Watch on Instagram" : "Follow @impressions.in";
+                  const label = active.instagram_url ? "Watch on Instagram" : "Follow @impressions_wedding_cards";
                   return (
                     <a
                       href={instaHref}
@@ -862,6 +889,7 @@ function ShopPage() {
 }
 
 export const Route = createFileRoute("/shop")({
+  validateSearch: shopSearchSchema,
   head: () => ({
     meta: [
       {

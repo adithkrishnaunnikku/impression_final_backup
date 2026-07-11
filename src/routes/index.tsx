@@ -114,8 +114,8 @@ function Landing() {
       <header className="relative z-30 w-full bg-transparent">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
           {/* Logo */}
-          <a href="#" className="h-10">
-            <img src={logo} alt="Impressions" className="h-full w-auto" />
+          <a href="#">
+            <img src={logo} alt="Impressions" className="h-10 w-auto -translate-x-2 translate-y-5 scale-[1.8] origin-left" />
           </a>
 
           {/* Links */}
@@ -132,11 +132,13 @@ function Landing() {
             >
               Customise
             </Link>
-            <a 
-              href="/explore#allure"
-              className="text-sm font-medium text-[#f5f0e6] transition-opacity hover:opacity-70"
+            <a
+              href="https://www.allurecards.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative text-sm font-medium text-[#f5f0e6] transition-colors duration-300 after:absolute after:-bottom-1 after:left-1/2 after:h-px after:w-0 after:-translate-x-1/2 after:bg-[#d9a87c] after:transition-all after:duration-300 hover:text-[#d9a87c] group-hover:after:w-full"
             >
-              <i><strong>Allure</strong></i>
+              <span className="tracking-[0.08em]">Allure</span>
             </a>
             <a
               href="/#contact"

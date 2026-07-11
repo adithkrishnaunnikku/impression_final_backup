@@ -24,14 +24,6 @@ export function SharedHeader({ showSubnav, subnavContent }: SharedHeaderProps) {
               Visit Allure &rarr;
             </a>
           </div>
-          <nav className="hidden items-center gap-6 text-sm md:flex">
-            <Link to="/" className="hover:opacity-80">
-              Impressions Home
-            </Link>
-            <a href="#" className="hover:opacity-80">
-              For vendors
-            </a>
-          </nav>
         </div>
       </div>
 
