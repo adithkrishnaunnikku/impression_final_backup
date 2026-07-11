@@ -10,10 +10,10 @@
     "description": "",
     "instagram_url": "",
     "extraCharges": [],
-    "applyWatermark": true,
-    "watermarkPos": "center",
-    "watermarkSize": "xlarge",
-    "watermarkColor": "#FF0000",
+    "applyWatermark": false,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#FFD700",
     "images": [
       "src/assets/cards/display/test-final-2-1.png"
     ],
