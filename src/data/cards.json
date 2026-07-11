@@ -1,5 +1,51 @@
 [
   {
+    "id": "IMP 102",
+    "category": "Test",
+    "price": 50,
+    "featured": false,
+    "minOrder": 200,
+    "size": "5\" x 7\"",
+    "material": "Textured Matte",
+    "description": "fsdfsdfsd",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "images": [
+      "src/assets/cards/display/imp-102-1.png",
+      "src/assets/cards/display/imp-102-2.png",
+      "src/assets/cards/display/imp-102-3.png",
+      "src/assets/cards/display/imp-102-4.png",
+      "src/assets/cards/display/imp-102-5.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/imp-102-1.png",
+      "src/assets/cards/originals/imp-102-2.png",
+      "src/assets/cards/originals/imp-102-3.png",
+      "src/assets/cards/originals/imp-102-4.png",
+      "src/assets/cards/originals/imp-102-5.png"
+    ],
+    "imageWatermarks": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 1,
+        "material_id": 2,
+        "size": "5\" x 7\"",
+        "material": "Textured Matte",
+        "price": 50
+      }
+    ]
+  },
+  {
     "id": "Impressions Test",
     "category": "Test",
     "price": 99,
