@@ -3,7 +3,7 @@ import { ExploreSections } from "@/components/explore-sections";
 import { useEffect, useRef, useState, useCallback } from "react";
 import weddingCard from "@/assets/wedding-card.jpg";
 import invitations from "@/assets/invitations.jpg";
-import registry from "@/assets/registry.jpg.jpeg";
+import registry from "@/assets/register.jpeg";
 import logo from "@/assets/IMP_LOGO_final.png";
 const luxuryImage = weddingCard;
 
