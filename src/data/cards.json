@@ -1,5 +1,48 @@
 [
   {
+    "id": "Test 3",
+    "category": "Another one",
+    "price": 43,
+    "featured": false,
+    "minOrder": 200,
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
+    "description": "Test test",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#00ff2a",
+    "images": [
+      "src/assets/cards/display/test-3-1.jpeg",
+      "src/assets/cards/display/test-3-2.jpeg"
+    ],
+    "originals": [
+      "src/assets/cards/originals/test-3-1.jpeg",
+      "src/assets/cards/originals/test-3-2.jpeg"
+    ],
+    "imageWatermarks": [
+      null,
+      {
+        "apply": true,
+        "pos": "center",
+        "size": "medium",
+        "color": "#ff0019"
+      }
+    ],
+    "variants": [
+      {
+        "name": "John",
+        "size_id": 1,
+        "material_id": 1,
+        "size": "5\" x 7\"",
+        "material": "Premium 350 gsm",
+        "price": 43
+      }
+    ]
+  },
+  {
     "id": "Test 2",
     "category": "New Test",
     "price": 57,
