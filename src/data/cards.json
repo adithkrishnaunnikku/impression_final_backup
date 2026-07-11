@@ -2,11 +2,11 @@
   {
     "id": "Test 2",
     "category": "New Test",
-    "price": 56,
+    "price": 57,
     "featured": false,
     "minOrder": 200,
-    "size": "6\" x 8\"",
-    "material": "Textured Matte",
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
     "description": "ASDFGHJK",
     "instagram_url": "",
     "extraCharges": [],
@@ -21,16 +21,21 @@
       "src/assets/cards/originals/test-2-1.png"
     ],
     "imageWatermarks": [
-      null
+      {
+        "apply": true,
+        "pos": "top-left",
+        "size": "large",
+        "color": "#00ff7b"
+      }
     ],
     "variants": [
       {
         "name": "Poly",
-        "size_id": 2,
-        "material_id": 2,
-        "size": "6\" x 8\"",
-        "material": "Textured Matte",
-        "price": 56
+        "size_id": 1,
+        "material_id": 1,
+        "size": "5\" x 7\"",
+        "material": "Premium 350 gsm",
+        "price": 57
       }
     ]
   },
