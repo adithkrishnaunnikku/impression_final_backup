@@ -4,7 +4,7 @@
     "category": "Test",
     "price": 50,
     "featured": false,
-    "minOrder": 100,
+    "minOrder": 200,
     "size": "5\" x 7\"",
     "material": "Premium 350 gsm",
     "description": "UPDATED: Edited via API test",
@@ -13,7 +13,7 @@
     "applyWatermark": true,
     "watermarkPos": "bottom-left",
     "watermarkSize": "medium",
-    "watermarkColor": "#FFD700",
+    "watermarkColor": "#ffd700",
     "images": [
       "src/assets/cards/display/api-test-1-1.png"
     ],
@@ -21,7 +21,12 @@
       "src/assets/cards/originals/api-test-1-1.png"
     ],
     "imageWatermarks": [
-      null
+      {
+        "apply": true,
+        "pos": "bottom-right",
+        "size": "medium",
+        "color": "#191515"
+      }
     ],
     "variants": [
       {
