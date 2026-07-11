@@ -778,7 +778,7 @@ function ShopPage() {
                   </div>
                   <input
                     type="range"
-                    min={1}
+                    min={active.minOrder}
                     max={5000}
                     value={modalQuantity}
                     onChange={(e) => setModalQuantity(Number(e.target.value))}
