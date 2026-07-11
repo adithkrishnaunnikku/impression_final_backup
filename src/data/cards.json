@@ -5,7 +5,7 @@
     "price": 55,
     "featured": true,
     "minOrder": 100,
-    "size": "6\" x 8\"",
+    "size": "5\" x 7\"",
     "material": "Premium 350 gsm",
     "description": "pmlmpokp",
     "instagram_url": "",
@@ -40,9 +40,9 @@
     "variants": [
       {
         "name": "",
-        "size_id": 2,
+        "size_id": 1,
         "material_id": 1,
-        "size": "6\" x 8\"",
+        "size": "5\" x 7\"",
         "material": "Premium 350 gsm",
         "price": 55
       }
