@@ -147,11 +147,16 @@
     "imageWatermarks": [
       {
         "apply": true,
-        "pos": "bottom-left",
+        "pos": "bottom-right",
         "size": "medium",
-        "color": "#FFD700"
+        "color": "#ffd700"
       },
-      null
+      {
+        "apply": true,
+        "pos": "top-right",
+        "size": "medium",
+        "color": "#ffd700"
+      }
     ],
     "variants": [
       {
