@@ -207,7 +207,10 @@ function ShopPage() {
 
   const activeVar = active?.variants?.[selectedVariantIdx];
   const cardCost = active ? modalQuantity * (activeVar?.price ?? active.price) : 0;
-  const extraTotal = active?.extraCharges?.reduce((sum, ch) => sum + ch.price, 0) || 0;
+  const minChargeExtra = active && active.minOrder < 200 && modalQuantity < 200
+    ? { name: "Extra charge below 200", price: 600 }
+    : null;
+  const extraTotal = (active?.extraCharges?.reduce((sum, ch) => sum + ch.price, 0) || 0) + (minChargeExtra?.price ?? 0);
   let discountPct = 0;
   if (modalQuantity >= 1000) discountPct = 10;
   else if (modalQuantity >= 500) discountPct = 5;
@@ -837,7 +840,13 @@ function ShopPage() {
                         <span>₹{ch.price.toLocaleString()}</span>
                       </div>
                     ))}
-                    {active.extraCharges && active.extraCharges.length > 1 && (
+                    {minChargeExtra && (
+                      <div key={minChargeExtra.name} className="flex items-baseline justify-between">
+                        <span className="opacity-80">{minChargeExtra.name}</span>
+                        <span>₹{minChargeExtra.price.toLocaleString()}</span>
+                      </div>
+                    )}
+                    {(active.extraCharges?.length ?? 0) + (minChargeExtra ? 1 : 0) >= 2 && (
                       <div className="flex items-baseline justify-between font-medium">
                         <span className="opacity-80">Total Extra Charges</span>
                         <span>₹{extraTotal.toLocaleString()}</span>
@@ -872,6 +881,7 @@ function ShopPage() {
                         `• Quantity: ${modalQuantity} pcs`,
                         `• Card Cost: ₹${cardCost.toLocaleString()}`,
                         ...(active.extraCharges?.map((ch) => `• ${ch.name}: ₹${ch.price}`) || []),
+                        ...(minChargeExtra ? [`• ${minChargeExtra.name}: ₹${minChargeExtra.price}`] : []),
                         ...(discountAmt > 0
                           ? [`• Volume discount (${discountPct}%): −₹${discountAmt.toLocaleString()}`]
                           : []),
