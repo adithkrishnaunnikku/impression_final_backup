@@ -8,7 +8,7 @@
     "size": "5\" x 7\"",
     "material": "Premium 350 gsm",
     "description": "new",
-    "instagram_url": "",
+    "instagram_url": "https://impression-final-backup.vercel.app/shop",
     "extraCharges": [
       {
         "name": "foil",
@@ -47,9 +47,9 @@
       },
       {
         "name": "dale",
-        "size_id": 2,
+        "size_id": 1,
         "material_id": 1,
-        "size": "6\" x 8\"",
+        "size": "5\" x 7\"",
         "material": "Premium 350 gsm",
         "price": 95
       }
