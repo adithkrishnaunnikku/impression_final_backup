@@ -792,7 +792,7 @@ function ShopPage() {
                   <label htmlFor="modal-qty" className="text-xs font-semibold uppercase tracking-[0.18em] opacity-70">Quantity</label>
                   <div className="mt-3 flex items-center gap-3">
                     <button
-                      onClick={() => setModalQuantity((q) => Math.max(1, q - 1))}
+                      onClick={() => setModalQuantity((q) => Math.max(active.minOrder, q - 1))}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a] active:scale-[0.95]"
                     >−</button>
                     <input
@@ -802,7 +802,7 @@ function ShopPage() {
                       inputMode="numeric"
                       onChange={(e) => {
                         const v = Number(e.target.value);
-                        if (Number.isFinite(v)) setModalQuantity(v);
+                        if (Number.isFinite(v)) setModalQuantity(Math.max(active.minOrder, v));
                       }}
                       className="w-24 rounded-md border border-[#1a1a1a]/20 px-3 py-2 text-center text-sm text-[#1a1a1a]"
                     />
