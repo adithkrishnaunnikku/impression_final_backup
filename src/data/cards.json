@@ -1,50 +1,239 @@
 [
   {
-    "id": "IMP 102",
-    "category": "brand",
-    "price": 55,
-    "featured": true,
+    "id": "IM 201",
+    "category": "TRADITIONAL",
+    "price": 30,
+    "featured": false,
     "minOrder": 100,
-    "size": "6\" x 8\"",
-    "material": "Premium 350 gsm",
-    "description": "pmlmpokp",
+    "size": "8X8",
+    "material": "260 GSM TEXTURED",
+    "description": "",
     "instagram_url": "",
     "extraCharges": [],
     "applyWatermark": true,
-    "watermarkPos": "center",
-    "watermarkSize": "xlarge",
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
     "images": [
-      "src/assets/cards/display/imp-102-1.png",
-      "src/assets/cards/display/imp-102-2.png",
-      "src/assets/cards/display/imp-102-3.png",
-      "src/assets/cards/display/imp-102-4.png",
-      "src/assets/cards/display/imp-102-5.png",
-      "src/assets/cards/display/imp-102-6.png"
+      "src/assets/cards/display/im-201-1.jpeg"
     ],
     "originals": [
-      "src/assets/cards/originals/imp-102-1.png",
-      "src/assets/cards/originals/imp-102-2.png",
-      "src/assets/cards/originals/imp-102-3.png",
-      "src/assets/cards/originals/imp-102-4.png",
-      "src/assets/cards/originals/imp-102-5.png",
-      "src/assets/cards/originals/imp-102-6.png"
+      "src/assets/cards/originals/im-201-1.jpeg"
     ],
     "imageWatermarks": [
-      null,
-      null,
-      null,
-      null,
-      null,
       null
     ],
     "variants": [
       {
-        "name": "",
-        "size_id": 2,
+        "name": "MEDIUM",
+        "size_id": 4,
+        "material_id": 4,
+        "size": "8X8",
+        "material": "260 GSM TEXTURED",
+        "price": 30
+      },
+      {
+        "name": "SMALL",
+        "size_id": 5,
+        "material_id": 4,
+        "size": "7X7",
+        "material": "260 GSM TEXTURED",
+        "price": 24
+      }
+    ]
+  },
+  {
+    "id": "IM 101",
+    "category": "TRADITIONAL",
+    "price": 30,
+    "featured": false,
+    "minOrder": 100,
+    "size": "8X8",
+    "material": "260 GSM TEXTURED",
+    "description": "SIZE : 195 MM X 195 MM  MATERIAL: 260 GSM TEXTURED  ",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/im-101-1.jpeg"
+    ],
+    "originals": [
+      "src/assets/cards/originals/im-101-1.jpeg"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 4,
+        "material_id": 4,
+        "size": "8X8",
+        "material": "260 GSM TEXTURED",
+        "price": 30
+      }
+    ]
+  },
+  {
+    "id": "imp test two",
+    "category": "testb two",
+    "price": 98,
+    "featured": true,
+    "minOrder": 200,
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
+    "description": "new",
+    "instagram_url": "https://impression-final-backup.vercel.app/shop",
+    "extraCharges": [
+      {
+        "name": "foil",
+        "price": 198
+      }
+    ],
+    "applyWatermark": true,
+    "watermarkPos": "center",
+    "watermarkSize": "xlarge",
+    "watermarkColor": "#e66060",
+    "images": [
+      "src/assets/cards/display/imp-test-two-1.png",
+      "src/assets/cards/display/imp-test-two-2.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/imp-test-two-1.png",
+      "src/assets/cards/originals/imp-test-two-2.png"
+    ],
+    "imageWatermarks": [
+      null,
+      {
+        "apply": true,
+        "pos": "bottom-left",
+        "size": "medium",
+        "color": "#FFD700"
+      }
+    ],
+    "variants": [
+      {
+        "name": "john",
+        "size_id": 1,
         "material_id": 1,
-        "size": "6\" x 8\"",
+        "size": "5\" x 7\"",
         "material": "Premium 350 gsm",
-        "price": 55
+        "price": 98
+      },
+      {
+        "name": "dale",
+        "size_id": 2,
+        "material_id": 3,
+        "size": "6\" x 8\"",
+        "material": "Recycled Kraft",
+        "price": 95
+      },
+      {
+        "name": "adith",
+        "size_id": 3,
+        "material_id": 2,
+        "size": "A6",
+        "material": "Textured Matte",
+        "price": 100
+      },
+      {
+        "name": "alwin",
+        "size_id": 4,
+        "material_id": 4,
+        "size": "15",
+        "material": "vibranium",
+        "price": 109
+      }
+    ]
+  },
+  {
+    "id": "Test 3",
+    "category": "Another one",
+    "price": 44,
+    "featured": true,
+    "minOrder": 200,
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
+    "description": "Test test",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#00ff2a",
+    "images": [
+      "src/assets/cards/display/test-3-1.jpeg",
+      "src/assets/cards/display/test-3-2.jpeg"
+    ],
+    "originals": [
+      "src/assets/cards/originals/test-3-1.jpeg",
+      "src/assets/cards/originals/test-3-2.jpeg"
+    ],
+    "imageWatermarks": [
+      {
+        "apply": true,
+        "pos": "bottom-right",
+        "size": "xlarge",
+        "color": "#0040ff"
+      },
+      {
+        "apply": true,
+        "pos": "top-left",
+        "size": "large",
+        "color": "#ff0026"
+      }
+    ],
+    "variants": [
+      {
+        "name": "John",
+        "size_id": 1,
+        "material_id": 1,
+        "size": "5\" x 7\"",
+        "material": "Premium 350 gsm",
+        "price": 44
+      }
+    ]
+  },
+  {
+    "id": "Test 2",
+    "category": "New Test",
+    "price": 59,
+    "featured": false,
+    "minOrder": 200,
+    "size": "5\" x 7\"",
+    "material": "Premium 350 gsm",
+    "description": "ASDFGHJK",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "top-left",
+    "watermarkSize": "large",
+    "watermarkColor": "#00ff7b",
+    "images": [
+      "src/assets/cards/display/test-2-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/test-2-1.png"
+    ],
+    "imageWatermarks": [
+      {
+        "apply": true,
+        "pos": "top-left",
+        "size": "large",
+        "color": "#00ff7b"
+      }
+    ],
+    "variants": [
+      {
+        "name": "Poly",
+        "size_id": 1,
+        "material_id": 1,
+        "size": "5\" x 7\"",
+        "material": "Premium 350 gsm",
+        "price": 59
       }
     ]
   },
@@ -54,7 +243,7 @@
     "price": 99,
     "featured": true,
     "minOrder": 200,
-    "size": "5\" x 8\"",
+    "size": "5\" x 7\"",
     "material": "Premium 350 gsm",
     "description": "Testing",
     "instagram_url": "https://www.allurecards.in",
@@ -71,18 +260,29 @@
       "src/assets/cards/originals/impressions-test-2.jpeg"
     ],
     "imageWatermarks": [
-      null,
-      null
+      {
+        "apply": true,
+        "pos": "bottom-right",
+        "size": "medium",
+        "color": "#ffd700"
+      },
+      {
+        "apply": true,
+        "pos": "top-right",
+        "size": "medium",
+        "color": "#ffd700"
+      }
     ],
     "variants": [
       {
         "name": "Test",
         "size_id": 1,
         "material_id": 1,
-        "size": "5\" x 8\"",
+        "size": "5\" x 7\"",
         "material": "Premium 350 gsm",
         "price": 99
       }
-    ]
+    ],
+    "watermarkColor": "#ffd700"
   }
 ]
