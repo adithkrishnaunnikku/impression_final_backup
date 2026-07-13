@@ -115,11 +115,14 @@ function ShopPage() {
   }, [favorites]);
 
   const [showFavorites, setShowFavorites] = useState(false);
+  const [qvNeedsPadding, setQvNeedsPadding] = useState(false);
   const [modalMounted, setModalMounted] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollPosRef = useRef(0);
 
   useEffect(() => {
     if (active) {
+      scrollPosRef.current = window.scrollY;
       const raf = requestAnimationFrame(() => setModalMounted(true));
       return () => cancelAnimationFrame(raf);
     }
@@ -128,7 +131,10 @@ function ShopPage() {
 
   const closeModal = useCallback(() => {
     setModalMounted(false);
-    closeTimerRef.current = setTimeout(() => setActive(null), 200);
+    closeTimerRef.current = setTimeout(() => {
+      setActive(null);
+      window.scrollTo(0, scrollPosRef.current);
+    }, 200);
   }, []);
 
   useEffect(() => {
@@ -165,6 +171,7 @@ function ShopPage() {
     if (active) {
       setModalQuantity(active.minOrder);
       setSelectedVariantIdx(0);
+      setQvNeedsPadding(false);
     }
   }, [active?.id]);
 
@@ -185,8 +192,6 @@ function ShopPage() {
   useEffect(() => {
     if (active) {
       window.history.replaceState(null, "", `#card=${encodeURIComponent(active.id)}`);
-    } else if (window.location.hash.startsWith("#card=")) {
-      window.history.replaceState(null, "", window.location.pathname);
     }
   }, [active]);
 
@@ -467,7 +472,7 @@ function ShopPage() {
       </section>
 
       {/* Product grid */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-12">
+      <section className="mx-auto max-w-[1200px] px-6 pb-12">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-zola-ink border-t-transparent" />
@@ -475,48 +480,56 @@ function ShopPage() {
         ) : (
           <>
             {(() => {
-              const card = (c: Catalog) => (
-                <article
-                  key={c.id}
-                  onClick={() => setActive(c)}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f7f5f0]">
-                    {c.images.length > 0 && (
-                      <img
-                        src={imgUrl(c.images[0])}
-                        alt={c.id}
-                        className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
-                        loading="lazy"
-                      />
-                    )}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleFavorite(c.id);
-                      }}
-                      aria-label={favorites.includes(c.id) ? "Remove from favorites" : "Add to favorites"}
-                      className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur hover:bg-white"
-                    >
-                      <Heart className="h-4 w-4" fill={favorites.includes(c.id) ? "currentColor" : "none"} />
-                    </button>
-                  </div>
-                  <div className="pt-4">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-medium">{c.id}</h3>
-                      {c.featured && (
-                        <span className="rounded-sm bg-[#e8d9b0] px-2 py-0.5 text-xs text-[#5a4a1a] whitespace-nowrap">
-                          Featured
-                        </span>
+              function ShopCard({ c }: { c: Catalog }) {
+                const [needsPadding, setNeedsPadding] = useState(false);
+                return (
+                  <article
+                    onClick={() => setActive(c)}
+                    className="group cursor-pointer rounded-lg overflow-hidden flex flex-col bg-white border border-[#f0f0f0] p-[18px]"
+                  >
+                    <div className="relative w-full h-[360px] overflow-hidden bg-white mb-[18px]">
+                      {c.images.length > 0 && (
+                        <img
+                          src={imgUrl(c.images[0])}
+                          alt={c.id}
+                          className={`h-full w-full transition-transform duration-500 group-hover:scale-105 ${
+                            needsPadding ? 'object-contain p-4' : 'object-cover'
+                          }`}
+                          loading="lazy"
+                          onLoad={(e) => {
+                            const ratio = e.currentTarget.naturalWidth / e.currentTarget.naturalHeight;
+                            setNeedsPadding(Math.abs(ratio - 0.943) / 0.943 > 0.15);
+                          }}
+                        />
+                      )}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFavorite(c.id);
+                        }}
+                        aria-label={favorites.includes(c.id) ? "Remove from favorites" : "Add to favorites"}
+                        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors duration-200"
+                      >
+                        <Heart className="h-4 w-4" fill={favorites.includes(c.id) ? "currentColor" : "none"} />
+                      </button>
+                    </div>
+                    <div>
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-medium text-zola-ink">{c.id}</h3>
+                        {c.featured && (
+                          <span className="rounded-sm bg-[#e8d9b0] px-2 py-0.5 text-xs text-[#5a4a1a] whitespace-nowrap">
+                            Featured
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-2 text-sm text-zola-ink/60">₹{c.price.toFixed(2)} each</p>
+                      {c.description && (
+                        <p className="mt-1.5 line-clamp-1 text-sm text-zola-ink/50">{c.description}</p>
                       )}
                     </div>
-                    <p className="mt-3 text-sm">₹{c.price.toFixed(2)} each</p>
-                    {c.description && (
-                      <p className="mt-1 line-clamp-1 text-sm text-zola-ink/70">{c.description}</p>
-                    )}
-                  </div>
-                </article>
-              );
+                  </article>
+                );
+              }
 
               const allureAd = (
                 <a
@@ -533,7 +546,7 @@ function ShopPage() {
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
                   />
-                  <div className="relative z-10 flex flex-col justify-between p-6 aspect-[4/5]">
+                  <div className="relative z-10 flex flex-col justify-between p-6 aspect-[1/1.06]">
                     <div>
                       <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Sponsored</div>
                       <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
@@ -562,7 +575,7 @@ function ShopPage() {
                   style={{ backgroundColor: "#1a1a1a" }}
                 >
                   <img src={invitations} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-200" />
-                  <div className="relative z-10 flex flex-col justify-between p-6 aspect-[4/5]">
+                  <div className="relative z-10 flex flex-col justify-between p-6 aspect-[1/1.06]">
                     <div>
                       <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Custom</div>
                       <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
@@ -582,10 +595,10 @@ function ShopPage() {
               );
 
               return (
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                  {page.slice(0, 3).map(card)}
+                <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-3">
+                  {page.slice(0, 2).map((c, i) => <ShopCard key={c.id + '-' + i} c={c} />)}
                   {allureAd}
-                  {page.slice(3).map(card)}
+                  {page.slice(2).map((c, i) => <ShopCard key={c.id + '-' + (i + 2)} c={c} />)}
                   {customTile}
                 </div>
               );
@@ -663,13 +676,19 @@ function ShopPage() {
                   className="block w-full overflow-hidden rounded-2xl bg-[#eee6d5] p-6"
                   aria-label="Open full screen"
                 >
-                  <div className="relative">
+                  <div className="relative flex items-center justify-center">
                     {active.images.length > 0 && (
                       <img
                         src={displayUrl(active.images[selectedImageIndex])}
                         alt={active.id}
-                        className="w-full object-cover"
-                        style={{ aspectRatio: '4 / 5' }}
+                        className={`h-full w-full transition-transform duration-200 ${
+                          qvNeedsPadding ? 'object-contain p-3' : 'object-cover'
+                        }`}
+                        style={{ aspectRatio: '1 / 1.06' }}
+                        onLoad={(e) => {
+                          const ratio = e.currentTarget.naturalWidth / e.currentTarget.naturalHeight;
+                          setQvNeedsPadding(Math.abs(ratio - 1.25) / 1.25 > 0.15);
+                        }}
                       />
                     )}
                     <span className="absolute bottom-2 right-2 rounded-full bg-[#1a1a1a]/80 px-3 py-1 text-[10px] uppercase tracking-wider text-[#f5f0e6]">
@@ -687,7 +706,7 @@ function ShopPage() {
                           idx === selectedImageIndex ? "border-[#1a1a1a]" : "border-transparent"
                         }`}
                       >
-                        <img src={imgUrl(src)} alt="" className="aspect-square w-full object-cover" />
+                        <img src={imgUrl(src)} alt="" className="aspect-[1/1.06] w-full object-cover" />
                       </button>
                     ))}
                   </div>
