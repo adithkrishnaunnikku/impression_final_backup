@@ -1,13 +1,13 @@
 [
   {
-    "id": "IM 201",
+    "id": "IM 101",
     "category": "TRADITIONAL",
     "price": 30,
-    "featured": false,
+    "featured": true,
     "minOrder": 100,
-    "size": "8X8",
+    "size": "195 MM X195 MM",
     "material": "260 GSM TEXTURED",
-    "description": "",
+    "description": "DIGITALPRINTING",
     "instagram_url": "",
     "extraCharges": [],
     "applyWatermark": true,
@@ -15,137 +15,35 @@
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
     "images": [
-      "src/assets/cards/display/im-201-1.jpeg"
+      "src/assets/cards/display/im-101-1.PNG"
     ],
     "originals": [
-      "src/assets/cards/originals/im-201-1.jpeg"
+      "src/assets/cards/originals/im-101-1.PNG"
     ],
     "imageWatermarks": [
-      null
+      {
+        "apply": true,
+        "pos": "center",
+        "size": "medium",
+        "color": "#ffffff"
+      }
     ],
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 4,
+        "size_id": 6,
         "material_id": 4,
-        "size": "8X8",
+        "size": "195 MM X195 MM",
         "material": "260 GSM TEXTURED",
         "price": 30
       },
       {
         "name": "SMALL",
-        "size_id": 5,
+        "size_id": 7,
         "material_id": 4,
-        "size": "7X7",
+        "size": "170 MMX 170 MM",
         "material": "260 GSM TEXTURED",
-        "price": 24
-      }
-    ]
-  },
-  {
-    "id": "IM 101",
-    "category": "TRADITIONAL",
-    "price": 30,
-    "featured": false,
-    "minOrder": 100,
-    "size": "8X8",
-    "material": "260 GSM TEXTURED",
-    "description": "SIZE : 195 MM X 195 MM  MATERIAL: 260 GSM TEXTURED  ",
-    "instagram_url": "",
-    "extraCharges": [],
-    "applyWatermark": true,
-    "watermarkPos": "bottom-left",
-    "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/im-101-1.jpeg"
-    ],
-    "originals": [
-      "src/assets/cards/originals/im-101-1.jpeg"
-    ],
-    "imageWatermarks": [
-      null
-    ],
-    "variants": [
-      {
-        "name": "MEDIUM",
-        "size_id": 4,
-        "material_id": 4,
-        "size": "8X8",
-        "material": "260 GSM TEXTURED",
-        "price": 30
-      }
-    ]
-  },
-  {
-    "id": "imp test two",
-    "category": "testb two",
-    "price": 98,
-    "featured": true,
-    "minOrder": 200,
-    "size": "5\" x 7\"",
-    "material": "Premium 350 gsm",
-    "description": "new",
-    "instagram_url": "https://impression-final-backup.vercel.app/shop",
-    "extraCharges": [
-      {
-        "name": "foil",
-        "price": 198
-      }
-    ],
-    "applyWatermark": true,
-    "watermarkPos": "center",
-    "watermarkSize": "xlarge",
-    "watermarkColor": "#e66060",
-    "images": [
-      "src/assets/cards/display/imp-test-two-1.png",
-      "src/assets/cards/display/imp-test-two-2.png"
-    ],
-    "originals": [
-      "src/assets/cards/originals/imp-test-two-1.png",
-      "src/assets/cards/originals/imp-test-two-2.png"
-    ],
-    "imageWatermarks": [
-      null,
-      {
-        "apply": true,
-        "pos": "bottom-left",
-        "size": "medium",
-        "color": "#FFD700"
-      }
-    ],
-    "variants": [
-      {
-        "name": "john",
-        "size_id": 1,
-        "material_id": 1,
-        "size": "5\" x 7\"",
-        "material": "Premium 350 gsm",
-        "price": 98
-      },
-      {
-        "name": "dale",
-        "size_id": 2,
-        "material_id": 3,
-        "size": "6\" x 8\"",
-        "material": "Recycled Kraft",
-        "price": 95
-      },
-      {
-        "name": "adith",
-        "size_id": 3,
-        "material_id": 2,
-        "size": "A6",
-        "material": "Textured Matte",
-        "price": 100
-      },
-      {
-        "name": "alwin",
-        "size_id": 4,
-        "material_id": 4,
-        "size": "15",
-        "material": "vibranium",
-        "price": 109
+        "price": 25
       }
     ]
   },
