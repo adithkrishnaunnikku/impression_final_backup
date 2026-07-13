@@ -189,6 +189,7 @@ function loadInitialState(): CardDesignState {
       return {
         ...DEFAULT_DESIGN,
         ...parsed,
+        monograms: Array.isArray(parsed.monograms) ? parsed.monograms : DEFAULT_DESIGN.monograms,
         classicChurch: parsed.classicChurch ?? createDefaultClassicChurchState(),
         scriptLayout: parsed.scriptLayout ?? createDefaultScriptState(),
       };
@@ -209,6 +210,7 @@ function useCardDesignReducer() {
   const future = useRef<CardDesignState[]>([]);
   const skipHistory = useRef(false);
   const shareLoaded = useRef(false);
+  const initialShareLoaded = useRef(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -218,6 +220,7 @@ function useCardDesignReducer() {
     getShare({ data: { key } }).then((result) => {
       if (result) {
         shareLoaded.current = true;
+        initialShareLoaded.current = true;
         skipHistory.current = true;
         dispatch({ type: "LOAD", state: { ...DEFAULT_DESIGN, ...result } });
       }
@@ -236,6 +239,10 @@ function useCardDesignReducer() {
   }, [present]);
 
   useEffect(() => {
+    if (initialShareLoaded.current) {
+      initialShareLoaded.current = false;
+      return;
+    }
     if (shareLoaded.current || !new URLSearchParams(window.location.search).has("d")) {
       const id = window.setTimeout(() => {
         try {
