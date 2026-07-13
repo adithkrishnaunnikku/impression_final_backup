@@ -10,13 +10,13 @@ import heroVenue from "@/assets/hero-venue.jpg";
 import type { Catalog } from "@/lib/catalog";
 import cardsData from "@/data/cards.json";
 
-const thumbnailImages = import.meta.glob('@/assets/cards/thumbnails/*.{jpeg,jpg,png}', {
+const thumbnailImages = import.meta.glob('@/assets/cards/thumbnails/*.{[jJ][pP][gG],[jJ][pP][eE][gG],[pP][nN][gG]}', {
   eager: true,
   query: { url: true },
   import: 'default',
 }) as Record<string, string>;
 
-const displayImages = import.meta.glob('@/assets/cards/display/*.{jpeg,jpg,png}', {
+const displayImages = import.meta.glob('@/assets/cards/display/*.{[jJ][pP][gG],[jJ][pP][eE][gG],[pP][nN][gG]}', {
   eager: true,
   query: { url: true },
   import: 'default',
