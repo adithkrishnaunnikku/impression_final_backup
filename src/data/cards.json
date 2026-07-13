@@ -1,48 +1,5 @@
 [
   {
-    "id": "IM 201",
-    "category": "TRADITIONAL",
-    "price": 30,
-    "featured": false,
-    "minOrder": 100,
-    "size": "8X8",
-    "material": "260 GSM TEXTURED",
-    "description": "",
-    "instagram_url": "",
-    "extraCharges": [],
-    "applyWatermark": true,
-    "watermarkPos": "bottom-left",
-    "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/im-201-1.jpeg"
-    ],
-    "originals": [
-      "src/assets/cards/originals/im-201-1.jpeg"
-    ],
-    "imageWatermarks": [
-      null
-    ],
-    "variants": [
-      {
-        "name": "MEDIUM",
-        "size_id": 4,
-        "material_id": 4,
-        "size": "8X8",
-        "material": "260 GSM TEXTURED",
-        "price": 30
-      },
-      {
-        "name": "SMALL",
-        "size_id": 5,
-        "material_id": 4,
-        "size": "7X7",
-        "material": "260 GSM TEXTURED",
-        "price": 24
-      }
-    ]
-  },
-  {
     "id": "IM 101",
     "category": "TRADITIONAL",
     "price": 30,
