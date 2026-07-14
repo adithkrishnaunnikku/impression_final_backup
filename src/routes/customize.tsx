@@ -5,6 +5,7 @@ import { SharedHeader } from "@/components/shared-header";
 import { CardDesignProvider, useCardDesign } from "@/hooks/use-card-design";
 import { getTemplate } from "@/data/templates";
 import { CardSvg } from "@/components/customize/CardSvg";
+import { LayoutPicker } from "@/components/customize/LayoutPicker";
 import { TemplatePicker } from "@/components/customize/TemplatePicker";
 import { EssentialDetailsPanel } from "@/components/customize/EssentialDetailsPanel";
 import { BackgroundPanel } from "@/components/customize/BackgroundPanel";
@@ -78,6 +79,7 @@ function CustomizePageInner() {
         </div>
 
         <div className="space-y-10">
+          <LayoutPicker />
           <TemplatePicker />
           <EssentialDetailsPanel />
           <BackgroundPanel />

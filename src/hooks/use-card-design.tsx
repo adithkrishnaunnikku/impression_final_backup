@@ -33,8 +33,8 @@ export const DEFAULT_DESIGN: CardDesignState = {
   rsvp: "Kindly reply by May 1, 2026",
   closing: "impressionscards.in/demo",
 
-  bodyFontId: "sans",
-  nameFontId: "serif",
+  bodyFontId: "signika",
+  nameFontId: "playball",
   textColor: "",
   nameSize: 46,
 
