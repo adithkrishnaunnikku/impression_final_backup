@@ -1,59 +1,5 @@
 [
   {
-    "id": "Test 4",
-    "category": "Another one",
-    "price": 55,
-    "featured": false,
-    "minOrder": 100,
-    "size": "5\" x 7\"",
-    "material": "Premium 350 gsm",
-    "description": "ABC",
-    "instagram_url": "",
-    "extraCharges": [],
-    "applyWatermark": true,
-    "watermarkPos": "bottom-left",
-    "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/test-4-1.jpeg",
-      "src/assets/cards/display/test-4-2.PNG"
-    ],
-    "originals": [
-      "src/assets/cards/originals/test-4-1.jpeg",
-      "src/assets/cards/originals/test-4-2.PNG"
-    ],
-    "imageWatermarks": [
-      null,
-      null
-    ],
-    "variants": [
-      {
-        "name": "Small",
-        "size_id": 1,
-        "material_id": 1,
-        "size": "5\" x 7\"",
-        "material": "Premium 350 gsm",
-        "price": 55
-      },
-      {
-        "name": "Medium",
-        "size_id": 2,
-        "material_id": 1,
-        "size": "6\" x 8\"",
-        "material": "Premium 350 gsm",
-        "price": 65
-      },
-      {
-        "name": "Large",
-        "size_id": 4,
-        "material_id": 1,
-        "size": "7\" x 9\"",
-        "material": "Premium 350 gsm",
-        "price": 75
-      }
-    ]
-  },
-  {
     "id": "IM 201",
     "category": "TRADITIONAL",
     "price": 28,
