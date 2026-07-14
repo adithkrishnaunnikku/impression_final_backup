@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { Search, Heart, ChevronDown, ShoppingBag } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -47,6 +47,62 @@ const WHATSAPP_NUMBER = "919526577999";
 
 const shopSearchSchema = z.object({
   category: z.string().optional(),
+});
+
+const ShopCard = memo(function ShopCard({ c, onSelect, onToggleFavorite, isFavorite }: {
+  c: Catalog;
+  onSelect: (c: Catalog) => void;
+  onToggleFavorite: (id: string) => void;
+  isFavorite: boolean;
+}) {
+  const [needsPadding, setNeedsPadding] = useState(false);
+  return (
+    <article
+      onClick={() => onSelect(c)}
+      className="group cursor-pointer rounded-lg overflow-hidden flex flex-col bg-white border border-[#f0f0f0] p-[18px]"
+    >
+      <div className="relative w-full h-[360px] overflow-hidden bg-white mb-[18px]">
+        {c.images.length > 0 && (
+          <img
+            src={imgUrl(c.images[0])}
+            alt={c.id}
+            className={`h-full w-full transition-transform duration-500 group-hover:scale-105 ${
+              needsPadding ? 'object-contain p-4' : 'object-cover'
+            }`}
+            loading="lazy"
+            onLoad={(e) => {
+              const ratio = e.currentTarget.naturalWidth / e.currentTarget.naturalHeight;
+              setNeedsPadding(Math.abs(ratio - 0.943) / 0.943 > 0.15);
+            }}
+          />
+        )}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleFavorite(c.id);
+          }}
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors duration-200"
+        >
+          <Heart className="h-4 w-4" fill={isFavorite ? "currentColor" : "none"} />
+        </button>
+      </div>
+      <div>
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="font-medium text-zola-ink">{c.id}</h3>
+          {c.featured && (
+            <span className="rounded-sm bg-[#e8d9b0] px-2 py-0.5 text-xs text-[#5a4a1a] whitespace-nowrap">
+              Featured
+            </span>
+          )}
+        </div>
+        <p className="mt-2 text-sm text-zola-ink/60">₹{c.price.toFixed(2)} each</p>
+        {c.description && (
+          <p className="mt-1.5 line-clamp-1 text-sm text-zola-ink/50">{c.description}</p>
+        )}
+      </div>
+    </article>
+  );
 });
 
 function ShopPage() {
@@ -115,7 +171,6 @@ function ShopPage() {
   }, [favorites]);
 
   const [showFavorites, setShowFavorites] = useState(false);
-  const [qvNeedsPadding, setQvNeedsPadding] = useState(false);
   const [modalMounted, setModalMounted] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scrollPosRef = useRef(0);
@@ -171,7 +226,6 @@ function ShopPage() {
     if (active) {
       setModalQuantity(active.minOrder);
       setSelectedVariantIdx(0);
-      setQvNeedsPadding(false);
     }
   }, [active?.id]);
 
@@ -264,7 +318,10 @@ function ShopPage() {
     } else if (sort === "price-desc") {
       result = [...result].sort((a, b) => b.price - a.price);
     } else {
-      result = [...result].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+      const sorted = [...result].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+      const featured = sorted.filter(c => c.featured);
+      const notFeatured = sorted.filter(c => !c.featured).reverse();
+      result = [...featured, ...notFeatured];
     }
     return result;
   }, [items, category, query, sort, showFavorites, favorites]);
@@ -479,130 +536,72 @@ function ShopPage() {
           </div>
         ) : (
           <>
-            {(() => {
-              function ShopCard({ c }: { c: Catalog }) {
-                const [needsPadding, setNeedsPadding] = useState(false);
-                return (
-                  <article
-                    onClick={() => setActive(c)}
-                    className="group cursor-pointer rounded-lg overflow-hidden flex flex-col bg-white border border-[#f0f0f0] p-[18px]"
-                  >
-                    <div className="relative w-full h-[360px] overflow-hidden bg-white mb-[18px]">
-                      {c.images.length > 0 && (
-                        <img
-                          src={imgUrl(c.images[0])}
-                          alt={c.id}
-                          className={`h-full w-full transition-transform duration-500 group-hover:scale-105 ${
-                            needsPadding ? 'object-contain p-4' : 'object-cover'
-                          }`}
-                          loading="lazy"
-                          onLoad={(e) => {
-                            const ratio = e.currentTarget.naturalWidth / e.currentTarget.naturalHeight;
-                            setNeedsPadding(Math.abs(ratio - 0.943) / 0.943 > 0.15);
-                          }}
-                        />
-                      )}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleFavorite(c.id);
-                        }}
-                        aria-label={favorites.includes(c.id) ? "Remove from favorites" : "Add to favorites"}
-                        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors duration-200"
-                      >
-                        <Heart className="h-4 w-4" fill={favorites.includes(c.id) ? "currentColor" : "none"} />
-                      </button>
-                    </div>
-                    <div>
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-medium text-zola-ink">{c.id}</h3>
-                        {c.featured && (
-                          <span className="rounded-sm bg-[#e8d9b0] px-2 py-0.5 text-xs text-[#5a4a1a] whitespace-nowrap">
-                            Featured
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-2 text-sm text-zola-ink/60">₹{c.price.toFixed(2)} each</p>
-                      {c.description && (
-                        <p className="mt-1.5 line-clamp-1 text-sm text-zola-ink/50">{c.description}</p>
-                      )}
-                    </div>
-                  </article>
-                );
-              }
-
-              const allureAd = (
-                <a
-                  key="ad-allure"
-                  href="https://www.allurecards.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block relative rounded-sm overflow-hidden text-white"
-                  style={{ backgroundColor: "#0f2740" }}
-                >
-                  <img
-                    src={heroVenue}
-                    alt="Allure Cards premium wedding stationery"
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
-                  />
-                  <div className="relative z-10 flex flex-col justify-between p-6 aspect-[1/1.06]">
-                    <div>
-                      <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Sponsored</div>
-                      <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
-                        <em className="not-italic">Allure</em> Cards
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed max-w-[240px]">
-                        <span className="font-semibold">Premium</span> foil,{' '}
-                        <span className="font-semibold">letterpress</span>, and{' '}
-                        <span className="font-semibold">luxury</span> paper.
-                        Elevate your invitation suite.
-                      </p>
-                    </div>
-                    <div>
-                      <span className="inline-flex items-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-4 py-2 rounded-full">
-                        Shop Allure Cards &rarr;
-                      </span>
-                    </div>
+            <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-3">
+              {page.slice(0, 2).map((c, i) => (
+                <ShopCard key={c.id + '-' + i} c={c} onSelect={setActive} onToggleFavorite={toggleFavorite} isFavorite={favorites.includes(c.id)} />
+              ))}
+              <a
+                key="ad-allure"
+                href="https://www.allurecards.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block relative rounded-sm overflow-hidden text-white"
+                style={{ backgroundColor: "#0f2740" }}
+              >
+                <img
+                  src={heroVenue}
+                  alt="Allure Cards premium wedding stationery"
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
+                />
+                <div className="relative z-10 flex flex-col justify-between p-6 aspect-[1/1.06]">
+                  <div>
+                    <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Sponsored</div>
+                    <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
+                      <em className="not-italic">Allure</em> Cards
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed max-w-[240px]">
+                      <span className="font-semibold">Premium</span> foil,{' '}
+                      <span className="font-semibold">letterpress</span>, and{' '}
+                      <span className="font-semibold">luxury</span> paper.
+                      Elevate your invitation suite.
+                    </p>
                   </div>
-                </a>
-              );
-
-              const customTile = (
-                <Link
-                  to="/customize"
-                  className="group block relative rounded-sm overflow-hidden text-white"
-                  style={{ backgroundColor: "#1a1a1a" }}
-                >
-                  <img src={invitations} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-200" />
-                  <div className="relative z-10 flex flex-col justify-between p-6 aspect-[1/1.06]">
-                    <div>
-                      <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Custom</div>
-                      <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
-                        Design <em className="not-italic">Your Own</em>
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed max-w-[240px]">
-                        Start from scratch with our interactive designer. Pick templates, fonts, colors, verses and more.
-                      </p>
-                    </div>
-                    <div>
-                      <span className="inline-flex items-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-4 py-2 rounded-full transition-transform duration-150 active:scale-[0.97]">
-                        Start Designing &rarr;
-                      </span>
-                    </div>
+                  <div>
+                    <span className="inline-flex items-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-4 py-2 rounded-full">
+                      Shop Allure Cards &rarr;
+                    </span>
                   </div>
-                </Link>
-              );
-
-              return (
-                <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-3">
-                  {page.slice(0, 2).map((c, i) => <ShopCard key={c.id + '-' + i} c={c} />)}
-                  {allureAd}
-                  {page.slice(2).map((c, i) => <ShopCard key={c.id + '-' + (i + 2)} c={c} />)}
-                  {customTile}
                 </div>
-              );
-            })()}
+              </a>
+              {page.slice(2).map((c, i) => (
+                <ShopCard key={c.id + '-' + (i + 2)} c={c} onSelect={setActive} onToggleFavorite={toggleFavorite} isFavorite={favorites.includes(c.id)} />
+              ))}
+              <Link
+                key="custom-tile"
+                to="/customize"
+                className="group block relative rounded-sm overflow-hidden text-white"
+                style={{ backgroundColor: "#1a1a1a" }}
+              >
+                <img src={invitations} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity" />
+                <div className="relative z-10 flex flex-col justify-between p-6 aspect-[1/1.06]">
+                  <div>
+                    <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Custom</div>
+                    <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
+                      Design <em className="not-italic">Your Own</em>
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed max-w-[240px]">
+                      Start from scratch with our interactive designer. Pick templates, fonts, colors, verses and more.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="inline-flex items-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-4 py-2 rounded-full">
+                      Start Designing &rarr;
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </div>
             {hasMore && (
               <div className="mt-12 flex justify-center">
                 <button
@@ -643,6 +642,7 @@ function ShopPage() {
 
       {/* QuickView modal */}
       {active && (
+        <>
         <div
           className="fixed inset-0 z-[80] flex items-end justify-center bg-[#0d0d0d]/70 backdrop-blur-sm md:items-center"
           onClick={closeModal}
@@ -681,14 +681,8 @@ function ShopPage() {
                       <img
                         src={displayUrl(active.images[selectedImageIndex])}
                         alt={active.id}
-                        className={`h-full w-full transition-transform duration-200 ${
-                          qvNeedsPadding ? 'object-contain p-3' : 'object-cover'
-                        }`}
+                        className="h-full w-full object-contain transition-transform duration-200"
                         style={{ aspectRatio: '1 / 1.06' }}
-                        onLoad={(e) => {
-                          const ratio = e.currentTarget.naturalWidth / e.currentTarget.naturalHeight;
-                          setQvNeedsPadding(Math.abs(ratio - 1.25) / 1.25 > 0.15);
-                        }}
                       />
                     )}
                     <span className="absolute bottom-2 right-2 rounded-full bg-[#1a1a1a]/80 px-3 py-1 text-[10px] uppercase tracking-wider text-[#f5f0e6]">
@@ -931,38 +925,39 @@ function ShopPage() {
             productUrl={`${window.location.origin}/shop#card=${encodeURIComponent(active?.id ?? "")}`}
             productTitle={active?.id ?? ""}
           />
+        </div>
 
-          {/* Gallery lightbox */}
-          {galleryOpen && (
-            <div
-              onClick={() => setGalleryOpen(false)}
-              className="fixed inset-0 z-[90] flex items-center justify-center bg-black/95 p-4"
+        {/* Gallery lightbox */}
+        {galleryOpen && (
+          <div
+            onClick={() => setGalleryOpen(false)}
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/95 p-4"
+          >
+            <button
+              onClick={(e) => { e.stopPropagation(); setGalleryOpen(false); }}
+              className="absolute right-6 top-6 rounded-full bg-white/10 px-4 py-2 text-sm text-white"
             >
-              <button
-                onClick={(e) => { e.stopPropagation(); setGalleryOpen(false); }}
-                className="absolute right-6 top-6 rounded-full bg-white/10 px-4 py-2 text-sm text-white"
-              >
-                Close ✕
-              </button>
-              <img
-                src={displayUrl(active.images[galleryIndex])}
-                alt={active.id}
-                className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain"
-              />
-              {active.images.length > 1 && (
-                <div className="absolute bottom-8 flex gap-2">
-                  {active.images.map((src, i) => (
-                    <button
-                      key={src}
-                      onClick={(e) => { e.stopPropagation(); setGalleryIndex(i); }}
-                      className={`h-2 w-8 rounded-full ${galleryIndex === i ? "bg-white" : "bg-white/30"}`}
-                    />
-                  ))}
-                </div>
-              )}
+              Close ✕
+            </button>
+            <img
+              src={displayUrl(active.images[galleryIndex])}
+              alt={active.id}
+              className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain"
+            />
+            {active.images.length > 1 && (
+              <div className="absolute bottom-8 flex gap-2">
+                {active.images.map((src, i) => (
+                  <button
+                    key={src}
+                    onClick={(e) => { e.stopPropagation(); setGalleryIndex(i); }}
+                    className={`h-2 w-8 rounded-full ${galleryIndex === i ? "bg-white" : "bg-white/30"}`}
+                  />
+                ))}
+              </div>
+            )}
             </div>
           )}
-        </div>
+        </>
       )}
     </>
   );
