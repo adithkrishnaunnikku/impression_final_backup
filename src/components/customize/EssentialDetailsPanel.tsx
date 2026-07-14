@@ -4,17 +4,14 @@ import {
   FIELD_LABELS,
   SCRIPT_SECTIONS,
   SCRIPT_FIELD_LABELS,
-  TEXT_LAYOUTS,
 } from "@/types/card-design";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
 
 export function EssentialDetailsPanel() {
   const {
     state,
-    setTextLayout,
     setChurchText,
     toggleChurchElement,
     setScriptText,
@@ -32,27 +29,6 @@ export function EssentialDetailsPanel() {
           <h2 className="font-serif text-2xl tracking-tight">Your details</h2>
           <p className="text-sm text-muted-foreground">Edit each section — text updates the card in real time.</p>
         </div>
-      </div>
-
-      {/* Layout switcher */}
-      <div className="mt-4 grid grid-cols-2 gap-2 rounded-xl border border-border bg-muted/40 p-1">
-        {TEXT_LAYOUTS.map((layout) => {
-          const active = state.textLayoutId === layout.id;
-          return (
-            <button
-              key={layout.id}
-              type="button"
-              onClick={() => setTextLayout(layout.id)}
-              className={cn(
-                "rounded-lg px-3 py-2 text-left transition-colors",
-                active ? "bg-background shadow-sm" : "hover:bg-background/60",
-              )}
-            >
-              <span className="block text-sm font-medium">{layout.label}</span>
-              <span className="block text-xs text-muted-foreground">{layout.description}</span>
-            </button>
-          );
-        })}
       </div>
 
       {isClassic ? (

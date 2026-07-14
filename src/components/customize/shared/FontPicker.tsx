@@ -1,21 +1,22 @@
-import { FONTS } from "@/data/fonts";
 import type { FontDef } from "@/types/card-design";
 
 export function FontPicker({
   label,
   value,
   onChange,
+  fonts,
   scriptFilter,
 }: {
   label: string;
   value: FontDef;
   onChange: (f: FontDef) => void;
+  fonts: FontDef[];
   /** When provided, only fonts covering this script are shown (plus the current selection). */
   scriptFilter?: FontDef["scripts"][number];
 }) {
   const options = scriptFilter
-    ? FONTS.filter((f) => f.scripts.includes(scriptFilter) || f.id === value.id)
-    : FONTS;
+    ? fonts.filter((f) => f.scripts.includes(scriptFilter) || f.id === value.id)
+    : fonts;
 
   return (
     <div className="mt-3">

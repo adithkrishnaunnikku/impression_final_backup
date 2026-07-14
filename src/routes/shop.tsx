@@ -532,7 +532,7 @@ function ShopPage() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 items-start">
               {page.slice(0, 2).map((c, i) => (
                 <ShopCard key={c.id + '-' + i} c={c} onSelect={setActive} onToggleFavorite={toggleFavorite} isFavorite={favorites.includes(c.id)} />
               ))}
@@ -541,16 +541,16 @@ function ShopPage() {
                 href="https://www.allurecards.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block relative rounded-sm overflow-hidden text-white"
-                style={{ backgroundColor: "#0f2740" }}
+                className="group block relative rounded-sm overflow-hidden text-white p-3"
+                style={{ backgroundColor: "#1a1a1a" }}
               >
                 <img
-                  src={heroVenue}
+                  src={invitations}
                   alt="Allure Cards premium wedding stationery"
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
                 />
-                <div className="relative z-10 flex flex-col justify-between p-6 aspect-[4/3]">
+                <div className="relative z-10 flex flex-col justify-between aspect-[4/3] p-8">
                   <div>
                     <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Sponsored</div>
                     <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
@@ -573,30 +573,6 @@ function ShopPage() {
               {page.slice(2).map((c, i) => (
                 <ShopCard key={c.id + '-' + (i + 2)} c={c} onSelect={setActive} onToggleFavorite={toggleFavorite} isFavorite={favorites.includes(c.id)} />
               ))}
-              <Link
-                key="custom-tile"
-                to="/customize"
-                className="group block relative rounded-sm overflow-hidden text-white"
-                style={{ backgroundColor: "#1a1a1a" }}
-              >
-                <img src={invitations} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity" />
-                <div className="relative z-10 flex flex-col justify-between p-6 aspect-[4/3]">
-                  <div>
-                    <div className="text-xs uppercase tracking-widest font-semibold opacity-90">Custom</div>
-                    <h3 className="font-serif text-4xl leading-tight font-medium mt-3">
-                      Design <em className="not-italic">Your Own</em>
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed max-w-[240px]">
-                      Start from scratch with our interactive designer. Pick templates, fonts, colors, verses and more.
-                    </p>
-                  </div>
-                  <div>
-                    <span className="inline-flex items-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-4 py-2 rounded-full">
-                      Start Designing &rarr;
-                    </span>
-                  </div>
-                </div>
-              </Link>
             </div>
             {hasMore && (
               <div className="mt-12 flex justify-center">

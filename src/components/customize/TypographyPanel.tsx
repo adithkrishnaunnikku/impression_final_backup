@@ -1,6 +1,6 @@
 import { useCardDesign, DEFAULT_DESIGN } from "@/hooks/use-card-design";
 import { getTemplate } from "@/data/templates";
-import { getFont, ensureFontLoaded } from "@/data/fonts";
+import { BODY_FONTS, NAME_FONTS, getFont, ensureFontLoaded } from "@/data/fonts";
 import { FontPicker } from "./shared/FontPicker";
 import { Slider } from "./shared/Slider";
 import { Group } from "./shared/Group";
@@ -20,8 +20,8 @@ export function TypographyPanel() {
 
   return (
     <Group label="Typography">
-      <FontPicker label="Body font" value={getFont(state.bodyFontId)} onChange={(f) => setBodyFont(f.id)} />
-      <FontPicker label="Name font" value={getFont(state.nameFontId)} onChange={(f) => setNameFont(f.id)} />
+      <FontPicker label="Body font" fonts={BODY_FONTS} value={getFont(state.bodyFontId)} onChange={(f) => setBodyFont(f.id)} />
+      <FontPicker label="Name font" fonts={NAME_FONTS} value={getFont(state.nameFontId)} onChange={(f) => setNameFont(f.id)} />
 
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <label className="block text-sm">
