@@ -367,7 +367,7 @@
     "applyWatermark": true,
     "watermarkPos": "bottom-left",
     "watermarkSize": "medium",
-    "watermarkColor": "#bdb68f",
+    "watermarkColor": "#f0eac7",
     "images": [
       "src/assets/cards/display/im-112-1.png"
     ],
