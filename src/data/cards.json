@@ -276,7 +276,7 @@
     "price": 28,
     "featured": false,
     "minOrder": 100,
-    "size": "195 MM X195 MM",
+    "size": "170 MMX 170 MM",
     "material": "260 GSM TEXTURED",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
@@ -284,7 +284,7 @@
     "applyWatermark": true,
     "watermarkPos": "bottom-left",
     "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
+    "watermarkColor": "#dbd4ad",
     "images": [
       "src/assets/cards/display/im-114-1.png"
     ],
@@ -302,9 +302,9 @@
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 6,
+        "size_id": 7,
         "material_id": 4,
-        "size": "195 MM X195 MM",
+        "size": "170 MMX 170 MM",
         "material": "260 GSM TEXTURED",
         "price": 28
       },
