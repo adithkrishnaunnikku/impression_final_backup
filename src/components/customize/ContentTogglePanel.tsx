@@ -13,19 +13,6 @@ export function ContentTogglePanel() {
 
   return (
     <section className="rounded-2xl border border-border bg-card p-6">
-      <div className="flex items-baseline justify-between gap-4">
-        <div>
-          <h2 className="font-serif text-2xl tracking-tight">
-            {tab === "details" ? "Your Details" : "Templates"}
-          </h2>
-          <p className="text-sm text-muted-foreground">
-            {tab === "details"
-              ? "Edit each section — text updates the card in real time."
-              : "Choose a different template and colour scheme."}
-          </p>
-        </div>
-      </div>
-
       <div className="mt-4 grid grid-cols-2 gap-2 rounded-xl border border-border bg-muted/40 p-1">
         {CONTENT_TABS.map((t) => {
           const active = tab === t.id;
