@@ -15,20 +15,12 @@
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
     "images": [
-      "src/assets/cards/display/im-107-1.png",
       "src/assets/cards/display/im-107-2.png"
     ],
     "originals": [
-      "src/assets/cards/originals/im-107-1.png",
       "src/assets/cards/originals/im-107-2.png"
     ],
     "imageWatermarks": [
-      {
-        "apply": true,
-        "pos": "bottom-left",
-        "size": "medium",
-        "color": "#0d2c02"
-      },
       null
     ],
     "variants": [
