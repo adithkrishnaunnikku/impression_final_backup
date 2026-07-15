@@ -2,11 +2,11 @@
   {
     "id": "VELLUM 102",
     "category": "TRANSLUCENT",
-    "price": 0,
+    "price": 22,
     "featured": false,
     "minOrder": 100,
-    "size": "",
-    "material": "",
+    "size": "15 CM X 21 CM",
+    "material": "260 GSM TEXTURED",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
     "extraCharges": [],
@@ -23,7 +23,16 @@
     "imageWatermarks": [
       null
     ],
-    "variants": []
+    "variants": [
+      {
+        "name": "",
+        "size_id": 8,
+        "material_id": 4,
+        "size": "15 CM X 21 CM",
+        "material": "260 GSM TEXTURED",
+        "price": 22
+      }
+    ]
   },
   {
     "id": "VELLUM 101",
