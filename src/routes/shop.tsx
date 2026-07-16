@@ -354,10 +354,10 @@ function ShopPage() {
       <header className="border-b border-zola-ink/10 bg-zola-cream">
         <div className="mx-auto grid max-w-[1400px] grid-cols-3 items-center px-6 py-5">
           <nav className="flex items-center gap-8 text-sm font-medium">
-            <button className="hover:opacity-70">
+            <button className="hidden sm:inline hover:opacity-70">
               Shop
             </button>
-            <Link to="/customize" className="hover:opacity-70">
+            <Link to="/customize" className="hidden sm:inline hover:opacity-70">
               Customize
             </Link>
             <Link to="/" className="hover:opacity-70">
@@ -383,7 +383,7 @@ function ShopPage() {
                 </span>
               )}
             </button>
-            <Link to="/customize" className="rounded-full bg-zola-ink px-5 py-2.5 text-sm font-semibold text-zola-cream transition-transform duration-150 active:scale-[0.97]">
+            <Link to="/customize" className="hidden sm:inline-flex rounded-full bg-zola-ink px-5 py-2.5 text-sm font-semibold text-zola-cream transition-transform duration-150 active:scale-[0.97]">
               Design your own
             </Link>
           </div>
