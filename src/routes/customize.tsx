@@ -57,7 +57,7 @@ function CustomizePageInner() {
         <span className="text-foreground">Design your own</span>
       </div>
 
-      <section className="px-5 py-10 text-center sm:px-6 sm:py-16 md:px-12">
+      <section className="px-6 py-16 text-center md:px-12">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] opacity-70">Interactive designer</p>
         <h1 className="font-serif text-5xl tracking-tight md:text-6xl">Design your wedding card</h1>
         <p className="mx-auto mt-4 max-w-xl text-base opacity-85">
@@ -66,9 +66,9 @@ function CustomizePageInner() {
         </p>
       </section>
 
-      <main className="mx-auto grid max-w-7xl gap-8 sm:gap-12 px-6 pb-24 md:px-12 lg:grid-cols-[1fr_1fr]">
+      <main className="mx-auto grid max-w-7xl gap-12 px-6 pb-24 md:px-12 lg:grid-cols-[1fr_1fr]">
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <div className="rounded-2xl p-5 sm:p-6 shadow-xl md:p-10" style={{ backgroundColor: template.type === "image" ? state.imageBg : template.bg }}>
+          <div className="rounded-2xl p-6 shadow-xl md:p-10" style={{ backgroundColor: template.type === "image" ? state.imageBg : template.bg }}>
             <CardSvg ref={svgRef} />
           </div>
           <ExportBar svgRef={svgRef} />
