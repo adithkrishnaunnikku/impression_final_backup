@@ -152,7 +152,7 @@ export function ExploreSections() {
             key={s.id}
             ref={sectionRefCallback}
             data-idx={i}
-            className="relative flex min-h-screen items-center px-6 py-24 md:px-16 lg:px-24"
+            className="relative flex min-h-screen items-center px-5 py-16 sm:px-8 md:px-16 lg:px-24"
             style={{ color: s.accent }}
           >
             <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
@@ -270,7 +270,7 @@ function Footer() {
               <iframe
                 src="https://maps.google.com/maps?q=Impressions+Castle+Paravattani+Thrissur+Kerala&output=embed"
                 width="100%"
-                height="220"
+                height="180"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -316,10 +316,10 @@ function BentoSection() {
   ];
 
   return (
-    <section className="bg-[#f5f0e6] px-6 py-24 md:px-16 lg:px-24">
+    <section className="bg-[#f5f0e6] px-5 py-16 sm:px-8 md:px-16 lg:px-24">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_3fr]">
         <div className="lg:sticky lg:top-32 lg:self-start">
-          <h2 className="font-serif text-5xl leading-[1.05] tracking-tight text-[#1a1a1a] md:text-6xl">
+          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-[#1a1a1a] sm:text-5xl md:text-6xl">
             Everything you <em className="not-italic">need</em> for the perfect invitation
           </h2>
           <p className="mt-8 text-base text-[#1a1a1a]/75">From our Thrissur atelier to your guests’ hands</p>

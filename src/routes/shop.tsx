@@ -449,7 +449,7 @@ function ShopPage() {
         </div>
 
         {/* Filter pills */}
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        <div className="mt-4 flex items-center gap-2 overflow-x-auto scrollbar-hide sm:flex-wrap">
           <button
             onClick={() => { setSort("featured"); setVisible(PAGE_SIZE); }}
             className={`rounded-full border px-4 py-2 text-sm transition active:scale-[0.97] ${
@@ -510,7 +510,7 @@ function ShopPage() {
       </section>
 
       {/* Product grid */}
-      <section className="mx-auto max-w-[1600px] px-7 pb-12">
+      <section className="mx-auto max-w-[1600px] px-4 sm:px-7 pb-12">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-zola-ink border-t-transparent" />
@@ -609,7 +609,7 @@ function ShopPage() {
           }}
         >
           <div
-            className="relative max-h-[92vh] w-full overflow-y-auto rounded-t-3xl bg-[#f5f0e6] text-[#1a1a1a] md:max-w-5xl md:rounded-3xl "
+            className="relative max-h-[92vh] w-full overflow-y-auto rounded-t-3xl bg-[#f5f0e6] text-[#1a1a1a] md:max-w-5xl md:rounded-3xl pb-[env(safe-area-inset-bottom)]"
             onClick={(e) => e.stopPropagation()}
             style={{
               opacity: modalMounted ? 1 : 0,
@@ -799,38 +799,38 @@ function ShopPage() {
                   </p>
 
                   <div className="mt-5 space-y-1.5 text-sm">
-                    <div className="flex items-baseline justify-between">
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-1">
                       <span className="opacity-80">Card Cost · {modalQuantity} × ₹{activeVar?.price ?? active.price}</span>
                       <span>₹{cardCost.toLocaleString()}</span>
                     </div>
 
                     {active.extraCharges?.map((ch) => (
-                      <div key={ch.name} className="flex items-baseline justify-between">
+                      <div key={ch.name} className="flex flex-wrap items-baseline justify-between gap-x-1">
                         <span className="opacity-80">{ch.name}</span>
                         <span>₹{ch.price.toLocaleString()}</span>
                       </div>
                     ))}
                     {minChargeExtra && (
-                      <div key={minChargeExtra.name} className="flex items-baseline justify-between">
+                      <div key={minChargeExtra.name} className="flex flex-wrap items-baseline justify-between gap-x-1">
                         <span className="opacity-80">{minChargeExtra.name}</span>
                         <span>₹{minChargeExtra.price.toLocaleString()}</span>
                       </div>
                     )}
                     {(active.extraCharges?.length ?? 0) + (minChargeExtra ? 1 : 0) >= 2 && (
-                      <div className="flex items-baseline justify-between font-medium">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-1 font-medium">
                         <span className="opacity-80">Total Extra Charges</span>
                         <span>₹{extraTotal.toLocaleString()}</span>
                       </div>
                     )}
 
                     {discountPct > 0 && (
-                      <div className="flex items-baseline justify-between text-[#1a3c2a]">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-1 text-[#1a3c2a]">
                         <span className="opacity-80">Volume discount ({discountPct}%)</span>
                         <span>−₹{discountAmt.toLocaleString()}</span>
                       </div>
                     )}
 
-                    <div className="mt-3 flex items-baseline justify-between border-t border-[#1a1a1a]/10 pt-3">
+                    <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-1 border-t border-[#1a1a1a]/10 pt-3">
                       <span className="font-serif text-xl text-[#1a1a1a]">Total</span>
                       <span className="font-serif text-2xl text-[#1a1a1a]">₹{finalTotal.toLocaleString()}</span>
                     </div>
