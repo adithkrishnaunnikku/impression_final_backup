@@ -389,6 +389,25 @@ function ShopPage() {
           </div>
         </div>
 
+        {/* Sub-nav */}
+        <div className="border-t border-zola-ink/10">
+          <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-8 overflow-x-auto px-6 py-4 text-sm">
+            {categories.map((c) => (
+              <button
+                key={c}
+                onClick={() => setCategoryAndReset(c)}
+                className={`flex items-center gap-1 whitespace-nowrap transition-colors ${
+                  category === c ? "border-b-2 border-zola-ink pb-1 font-semibold" : "hover:opacity-70"
+                } active:scale-[0.97]`}
+              >
+                {c === "All" ? "All cards" : c}
+              </button>
+            ))}
+            <Link to="/customize" className="flex items-center gap-1 whitespace-nowrap hover:opacity-70">
+              Customize
+            </Link>
+          </div>
+        </div>
       </header>
 
       {/* Breadcrumb */}
@@ -412,12 +431,12 @@ function ShopPage() {
 
       {/* Category circles */}
       <section className="mx-auto max-w-[1400px] px-6 pb-10 pt-8">
-        <div className="flex items-center justify-start gap-4 overflow-x-auto px-4 -mx-4 sm:justify-center sm:gap-10 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-hide">
+        <div className="flex items-center justify-center gap-10">
           {circles.map((c) => (
             <button
               key={c.cat}
               onClick={() => setCategoryAndReset(c.cat)}
-              className="flex flex-col items-center gap-2 group active:scale-[0.95] shrink-0 snap-start"
+              className="flex flex-col items-center gap-2 group active:scale-[0.95]"
             >
               <div
                 className={`h-20 w-20 overflow-hidden rounded-full ring-1 transition-all duration-200 group-hover:ring-2 group-hover:ring-zola-ink ${
@@ -426,7 +445,7 @@ function ShopPage() {
               >
                 <img src={c.image.startsWith("http") || c.image.startsWith("/") ? c.image : imgUrl(c.image)} alt={c.label} className="h-full w-full object-cover" />
               </div>
-              <span className="text-sm font-medium text-zola-ink whitespace-nowrap">{c.label}</span>
+              <span className="text-sm font-medium text-zola-ink">{c.label}</span>
             </button>
           ))}
         </div>
