@@ -41,7 +41,7 @@ function displayUrl(filepath: string): string {
   return displayImageMap[filename] || FALLBACK_IMAGE;
 }
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 11;
 const WHATSAPP_NUMBER = "919526577999";
 
 const shopSearchSchema = z.object({
@@ -389,25 +389,6 @@ function ShopPage() {
           </div>
         </div>
 
-        {/* Sub-nav */}
-        <div className="border-t border-zola-ink/10">
-          <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-8 overflow-x-auto px-6 py-4 text-sm">
-            {categories.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCategoryAndReset(c)}
-                className={`flex items-center gap-1 whitespace-nowrap transition-colors ${
-                  category === c ? "border-b-2 border-zola-ink pb-1 font-semibold" : "hover:opacity-70"
-                } active:scale-[0.97]`}
-              >
-                {c === "All" ? "All cards" : c}
-              </button>
-            ))}
-            <Link to="/customize" className="flex items-center gap-1 whitespace-nowrap hover:opacity-70">
-              Customize
-            </Link>
-          </div>
-        </div>
       </header>
 
       {/* Breadcrumb */}
@@ -431,12 +412,12 @@ function ShopPage() {
 
       {/* Category circles */}
       <section className="mx-auto max-w-[1400px] px-6 pb-10 pt-8">
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex items-center justify-center gap-10 max-md:justify-start max-md:overflow-x-auto max-md:gap-3 max-md:px-4 max-md:snap-x max-md:[scrollbar-width:none]">
           {circles.map((c) => (
             <button
               key={c.cat}
               onClick={() => setCategoryAndReset(c.cat)}
-              className="flex flex-col items-center gap-2 group active:scale-[0.95]"
+              className="flex flex-col items-center gap-2 group active:scale-[0.95] max-md:snap-start max-md:shrink-0"
             >
               <div
                 className={`h-20 w-20 overflow-hidden rounded-full ring-1 transition-all duration-200 group-hover:ring-2 group-hover:ring-zola-ink ${
