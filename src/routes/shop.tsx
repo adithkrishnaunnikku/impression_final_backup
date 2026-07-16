@@ -392,7 +392,7 @@ function ShopPage() {
       </header>
 
       {/* Breadcrumb */}
-      <div className="mx-auto max-w-[1400px] px-6 pt-6 text-sm text-zola-ink/70">
+      <div className="mx-auto max-w-[1400px] pl-6 md:pr-6 pt-6 text-sm text-zola-ink/70">
         <Link to="/" className="hover:underline">
           Impressions
         </Link>
@@ -401,7 +401,7 @@ function ShopPage() {
       </div>
 
       {/* Page title */}
-      <section className="mx-auto max-w-[1400px] px-6 pt-10">
+      <section className="mx-auto max-w-[1400px] pl-6 md:pr-6 pt-10">
         <h1 className="font-serif text-4xl tracking-tight text-zola-ink">
           Wedding invitation cards
         </h1>
@@ -411,7 +411,7 @@ function ShopPage() {
       </section>
 
       {/* Category circles */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-10 pt-8">
+      <section className="mx-auto max-w-[1400px] pl-6 md:pr-6 pb-10 pt-8">
         <div className="flex items-center justify-center gap-10 max-md:justify-start max-md:overflow-x-auto max-md:gap-3 max-md:px-4 max-md:snap-x max-md:[scrollbar-width:none]">
           {circles.map((c) => (
             <button
@@ -433,7 +433,7 @@ function ShopPage() {
       </section>
 
       {/* Filter bar */}
-      <section className="mx-auto max-w-[1400px] border-t border-zola-ink/10 px-6 pb-6 pt-4">
+      <section className="mx-auto max-w-[1400px] border-t border-zola-ink/10 pl-6 md:pr-6 pb-6 pt-4">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <p className="text-sm text-zola-ink/70">
             {loading ? "Loading catalogue…" : `${filtered.length} results`}
@@ -510,7 +510,7 @@ function ShopPage() {
       </section>
 
       {/* Product grid */}
-      <section className="mx-auto max-w-[1600px] px-7 pb-12">
+      <section className="mx-auto max-w-[1600px] pl-7 md:pr-7 pb-12">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-zola-ink border-t-transparent" />
