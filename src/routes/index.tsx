@@ -115,7 +115,7 @@ function Landing() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
           {/* Logo */}
           <a href="#">
-            <img src={logo} alt="Impressions" className="h-10 w-auto -translate-x-2 translate-y-5 scale-[1.8] origin-left" />
+            <img src={logo} alt="Impressions" className="h-10 w-auto -translate-x-2 translate-y-5 scale-[1.4] sm:scale-[1.8] origin-left" />
           </a>
 
           {/* Links */}
@@ -234,8 +234,8 @@ function Landing() {
           — a short film about paper —
         </p>
 
-        <h1
-          className="font-serif text-5xl leading-[1.05] tracking-tight md:text-7xl lg:text-[6.5rem]"
+<h1
+            className="font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-7xl lg:text-[6.5rem]"
           style={{
             transform: `translate3d(${-px * 8}px, ${-py * 8 - scrollY * 0.25}px, 0)`,
             transition: "transform 700ms cubic-bezier(0.2,0.8,0.2,1)",
