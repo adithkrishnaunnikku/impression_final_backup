@@ -330,7 +330,7 @@ function ShopPage() {
     <>
       {/* Announcement bar */}
       <div className="bg-zola-ink text-zola-cream text-sm">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-2.5">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between pl-6 md:pr-6 py-2.5">
           <div className="flex items-center gap-3">
             <span className="rounded bg-zola-cream px-2 py-0.5 text-xs font-semibold text-zola-ink">
               Premium
@@ -352,7 +352,7 @@ function ShopPage() {
 
       {/* Header */}
       <header className="border-b border-zola-ink/10 bg-zola-cream">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between pl-6 md:pr-6 py-5">
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
             <button className="flex items-center gap-1 hover:opacity-70">
               Shop
@@ -364,10 +364,10 @@ function ShopPage() {
               Home
             </Link>
           </nav>
-          <Link to="/" className="font-serif text-3xl tracking-[0.2em] font-medium text-zola-ink">
+          <Link to="/" className="font-serif text-3xl max-md:text-xl max-md:tracking-[0.08em] tracking-[0.2em] font-medium text-zola-ink">
             IMPRESSIONS
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 max-md:gap-1">
             <button onClick={() => searchRef.current?.focus()} className="p-2 hover:opacity-70 active:scale-[0.97]" aria-label="Search">
               <Search className="h-5 w-5" />
             </button>
@@ -383,7 +383,7 @@ function ShopPage() {
                 </span>
               )}
             </button>
-            <Link to="/customize" className="rounded-full bg-zola-ink px-5 py-2.5 text-sm font-semibold text-zola-cream transition-transform duration-150 active:scale-[0.97]">
+            <Link to="/customize" className="max-sm:hidden rounded-full bg-zola-ink px-5 py-2.5 text-sm font-semibold text-zola-cream transition-transform duration-150 active:scale-[0.97]">
               Design your own
             </Link>
           </div>
@@ -412,7 +412,7 @@ function ShopPage() {
 
       {/* Category circles */}
       <section className="mx-auto max-w-[1400px] pl-6 md:pr-6 pb-10 pt-8">
-        <div className="flex items-center justify-center gap-10 max-md:justify-start max-md:overflow-x-auto max-md:gap-3 max-md:px-4 max-md:snap-x max-md:[scrollbar-width:none]">
+        <div className="flex items-center justify-center gap-10 max-md:justify-start max-md:overflow-x-auto max-md:gap-3 max-md:pl-4 max-md:snap-x max-md:[scrollbar-width:none]">
           {circles.map((c) => (
             <button
               key={c.cat}
@@ -575,7 +575,7 @@ function ShopPage() {
 
       {/* Footer */}
       <footer className="bg-zola-ink text-zola-cream">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-6 py-12 text-sm md:grid-cols-4">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 pl-6 md:pr-6 py-12 text-sm md:grid-cols-4">
           <div>
             <h4 className="font-serif text-xl mb-4">Impressions</h4>
             <p className="opacity-70">Wedding cards, made for you.</p>
@@ -591,7 +591,7 @@ function ShopPage() {
 
         </div>
         <div className="border-t border-zola-cream/10">
-          <p className="mx-auto max-w-[1400px] px-6 py-6 text-xs opacity-50">
+          <p className="mx-auto max-w-[1400px] pl-6 md:pr-6 py-6 text-xs opacity-50">
             &copy; {new Date().getFullYear()} Impressions Cards. All rights reserved.
           </p>
         </div>
