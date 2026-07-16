@@ -30,7 +30,7 @@ export function SharedHeader({ showSubnav, subnavContent }: SharedHeaderProps) {
       {/* Main header */}
       <div className="border-b border-border">
         <div className="mx-auto grid max-w-[1400px] grid-cols-3 items-center px-6 py-5">
-          <nav className="hidden items-center gap-8 text-sm lg:flex">
+          <nav className="flex items-center gap-8 text-sm">
             <Link to="/shop" className="flex items-center gap-1 hover:opacity-70">
               Shop <ChevronDown className="h-3.5 w-3.5" />
             </Link>
