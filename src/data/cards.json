@@ -1,5 +1,31 @@
 [
   {
+    "id": "CRAFT 1001",
+    "category": "CRAFT DIGITAL",
+    "price": 0,
+    "featured": false,
+    "minOrder": 100,
+    "size": "",
+    "material": "",
+    "description": "DIGITALPRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "top-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#918022",
+    "images": [
+      "src/assets/cards/display/craft-1001-1.PNG"
+    ],
+    "originals": [
+      "src/assets/cards/originals/craft-1001-1.PNG"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": []
+  },
+  {
     "id": "IM 122",
     "category": "TRADITIONAL",
     "price": 28,
