@@ -1,5 +1,40 @@
 [
   {
+    "id": "CRAFT 1010",
+    "category": "CRAFT DIGITAL",
+    "price": 0,
+    "featured": false,
+    "minOrder": 100,
+    "size": "195 MM X195 MM",
+    "material": "270 GSM VIRGIN CRAFT",
+    "description": "DIGITALPRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "top-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#f4f4f0",
+    "images": [
+      "src/assets/cards/display/craft-1010-1.PNG"
+    ],
+    "originals": [
+      "src/assets/cards/originals/craft-1010-1.PNG"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 6,
+        "material_id": 7,
+        "size": "195 MM X195 MM",
+        "material": "270 GSM VIRGIN CRAFT",
+        "price": 0
+      }
+    ]
+  },
+  {
     "id": "CRAFT 1009",
     "category": "CRAFT DIGITAL",
     "price": 28,
