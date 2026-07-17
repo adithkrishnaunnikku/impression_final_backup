@@ -5,15 +5,15 @@
     "price": 28,
     "featured": false,
     "minOrder": 100,
-    "size": "195 MM X195 MM",
-    "material": "270 GSM VIRGIN CRAFT",
+    "size": "15 CM X 21 CM",
+    "material": "260 GSM TEXTURED",
     "description": "DIGITALPRINTING",
     "instagram_url": "",
     "extraCharges": [],
     "applyWatermark": true,
-    "watermarkPos": "top-left",
+    "watermarkPos": "center",
     "watermarkSize": "medium",
-    "watermarkColor": "#e3ab4a",
+    "watermarkColor": "#eeece7",
     "images": [
       "src/assets/cards/display/craft-1003-1.PNG"
     ],
@@ -26,10 +26,10 @@
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 6,
-        "material_id": 7,
-        "size": "195 MM X195 MM",
-        "material": "270 GSM VIRGIN CRAFT",
+        "size_id": 8,
+        "material_id": 4,
+        "size": "15 CM X 21 CM",
+        "material": "260 GSM TEXTURED",
         "price": 28
       }
     ]
