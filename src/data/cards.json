@@ -1,5 +1,45 @@
 [
   {
+    "id": "ML 2001",
+    "category": "MINIMAL",
+    "price": 28,
+    "featured": false,
+    "minOrder": 200,
+    "size": "195 MMX 195 MM",
+    "material": "280 GSM BROWN +260 GSM OFF WHIT TEXTURED",
+    "description": "DIGITAL PRINTING + GOLD FOILING ON ENVELOPE",
+    "instagram_url": "",
+    "extraCharges": [
+      {
+        "name": "FOIL BLOCK",
+        "price": 800
+      }
+    ],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/ml-2001-1.PNG"
+    ],
+    "originals": [
+      "src/assets/cards/originals/ml-2001-1.PNG"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 11,
+        "material_id": 8,
+        "size": "195 MMX 195 MM",
+        "material": "280 GSM BROWN +260 GSM OFF WHIT TEXTURED",
+        "price": 28
+      }
+    ]
+  },
+  {
     "id": "CRAFT 1014",
     "category": "CRAFT DIGITAL",
     "price": 28,
