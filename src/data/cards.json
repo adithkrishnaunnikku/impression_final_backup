@@ -31,41 +31,6 @@
     "variants": []
   },
   {
-    "id": "ML 2001",
-    "category": "MINIMAL",
-    "price": 0,
-    "featured": false,
-    "minOrder": 100,
-    "size": "20 CM X 20 CM",
-    "material": "280 GSM BROWN +260 GSM OFF WHIT TEXTURED",
-    "description": "DIGITAL PRINTING + COPPER FOILING ON ENVELOPE",
-    "instagram_url": "",
-    "extraCharges": [],
-    "applyWatermark": true,
-    "watermarkPos": "bottom-left",
-    "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/ml-2001-1.PNG"
-    ],
-    "originals": [
-      "src/assets/cards/originals/ml-2001-1.PNG"
-    ],
-    "imageWatermarks": [
-      null
-    ],
-    "variants": [
-      {
-        "name": "",
-        "size_id": 12,
-        "material_id": 8,
-        "size": "20 CM X 20 CM",
-        "material": "280 GSM BROWN +260 GSM OFF WHIT TEXTURED",
-        "price": 0
-      }
-    ]
-  },
-  {
     "id": "CRAFT 1014",
     "category": "CRAFT DIGITAL",
     "price": 28,
