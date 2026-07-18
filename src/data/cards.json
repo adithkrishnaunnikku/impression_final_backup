@@ -1,5 +1,53 @@
 [
   {
+    "id": "IM 126",
+    "category": "FLORAL",
+    "price": 32,
+    "featured": false,
+    "minOrder": 200,
+    "size": "195 MM X195 MM",
+    "material": "260 GSM TEXTURED",
+    "description": "DIGITAL PRINTING + SILVER FOILING ON ENVELOPE",
+    "instagram_url": "",
+    "extraCharges": [
+      {
+        "name": "FOIL BLOCK",
+        "price": 800
+      }
+    ],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#b5b3a6",
+    "images": [
+      "src/assets/cards/display/im-126-1.PNG"
+    ],
+    "originals": [
+      "src/assets/cards/originals/im-126-1.PNG"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 6,
+        "material_id": 4,
+        "size": "195 MM X195 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 32
+      },
+      {
+        "name": "SMALL",
+        "size_id": 7,
+        "material_id": 4,
+        "size": "170 MMX 170 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 28
+      }
+    ]
+  },
+  {
     "id": "IM 125",
     "category": "TRADITIONAL",
     "price": 30,
