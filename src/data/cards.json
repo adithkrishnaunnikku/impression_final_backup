@@ -2,14 +2,19 @@
   {
     "id": "ML 2002",
     "category": "MINIMAL",
-    "price": 0,
+    "price": 28,
     "featured": false,
     "minOrder": 200,
-    "size": "195 MMX 195 MM",
-    "material": "270 GSM BLUE +260 GSM OFF WHIT TEXTURED",
+    "size": "15 CM X 21 CM",
+    "material": "260 GSM TEXTURED",
     "description": "DIGITAL PRINTING +GOLD FOILING ON ENVELOPE",
     "instagram_url": "",
-    "extraCharges": [],
+    "extraCharges": [
+      {
+        "name": "FOILING BLOCK",
+        "price": 800
+      }
+    ],
     "applyWatermark": true,
     "watermarkPos": "bottom-left",
     "watermarkSize": "medium",
@@ -26,11 +31,11 @@
     "variants": [
       {
         "name": "",
-        "size_id": 11,
-        "material_id": 9,
-        "size": "195 MMX 195 MM",
-        "material": "270 GSM BLUE +260 GSM OFF WHIT TEXTURED",
-        "price": 0
+        "size_id": 8,
+        "material_id": 4,
+        "size": "15 CM X 21 CM",
+        "material": "260 GSM TEXTURED",
+        "price": 28
       }
     ]
   },
