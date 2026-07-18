@@ -1,5 +1,48 @@
 [
   {
+    "id": "IM 124",
+    "category": "TRADITIONAL",
+    "price": 30,
+    "featured": false,
+    "minOrder": 100,
+    "size": "195 MM X195 MM",
+    "material": "260 GSM TEXTURED",
+    "description": "280 GSM BROWN +260 GSM OFF WHIT TEXTURED",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#979487",
+    "images": [
+      "src/assets/cards/display/im-124-1.PNG"
+    ],
+    "originals": [
+      "src/assets/cards/originals/im-124-1.PNG"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 6,
+        "material_id": 4,
+        "size": "195 MM X195 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 30
+      },
+      {
+        "name": "SMALL",
+        "size_id": 7,
+        "material_id": 4,
+        "size": "170 MMX 170 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 26
+      }
+    ]
+  },
+  {
     "id": "IM 123",
     "category": "TRADITIONAL",
     "price": 30,
