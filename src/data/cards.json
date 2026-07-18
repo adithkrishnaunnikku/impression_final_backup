@@ -1,36 +1,5 @@
 [
   {
-    "id": "ML 2001",
-    "category": "MINIMAL",
-    "price": 0,
-    "featured": false,
-    "minOrder": 200,
-    "size": "",
-    "material": "",
-    "description": "DIGITAL PRINTING +GOLD FOILING ON ENVELOPE\n",
-    "instagram_url": "",
-    "extraCharges": [
-      {
-        "name": "FOIL BLOCK",
-        "price": 800
-      }
-    ],
-    "applyWatermark": true,
-    "watermarkPos": "bottom-left",
-    "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/ml-2001-1.PNG"
-    ],
-    "originals": [
-      "src/assets/cards/originals/ml-2001-1.PNG"
-    ],
-    "imageWatermarks": [
-      null
-    ],
-    "variants": []
-  },
-  {
     "id": "CRAFT 1014",
     "category": "CRAFT DIGITAL",
     "price": 28,
