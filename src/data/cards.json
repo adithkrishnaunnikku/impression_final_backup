@@ -1,5 +1,40 @@
 [
   {
+    "id": "ML 2002",
+    "category": "MINIMAL",
+    "price": 0,
+    "featured": false,
+    "minOrder": 200,
+    "size": "195 MMX 195 MM",
+    "material": "270 GSM BLUE +260 GSM OFF WHIT TEXTURED",
+    "description": "DIGITAL PRINTING +GOLD FOILING ON ENVELOPE",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/ml-2002-1.PNG"
+    ],
+    "originals": [
+      "src/assets/cards/originals/ml-2002-1.PNG"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 11,
+        "material_id": 9,
+        "size": "195 MMX 195 MM",
+        "material": "270 GSM BLUE +260 GSM OFF WHIT TEXTURED",
+        "price": 0
+      }
+    ]
+  },
+  {
     "id": "ML 2001",
     "category": "MINIMAL",
     "price": 0,
