@@ -1,5 +1,40 @@
 [
   {
+    "id": "IM 127",
+    "category": "TRADITIONAL",
+    "price": 28,
+    "featured": false,
+    "minOrder": 100,
+    "size": "195 MMX 195 MM",
+    "material": "260 GSM TEXTURED",
+    "description": "DIGITAL PRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/im-127-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/im-127-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 4,
+        "material_id": 4,
+        "size": "195 MMX 195 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 28
+      }
+    ]
+  },
+  {
     "id": "IM 126",
     "category": "FLORAL",
     "price": 32,
