@@ -45,10 +45,10 @@
   {
     "id": "IM 128",
     "category": "TRADITIONAL",
-    "price": 24,
+    "price": 28,
     "featured": false,
     "minOrder": 100,
-    "size": "170 MM X 170 MM",
+    "size": "195 MMX 195 MM",
     "material": "260 GSM TEXTURED",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
@@ -67,6 +67,14 @@
       null
     ],
     "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 4,
+        "material_id": 4,
+        "size": "195 MMX 195 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 28
+      },
       {
         "name": "SMALL",
         "size_id": 5,
