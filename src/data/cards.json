@@ -14,15 +14,9 @@
     "watermarkPos": "bottom-right",
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/im-140-1.png"
-    ],
-    "originals": [
-      "src/assets/cards/originals/im-140-1.png"
-    ],
-    "imageWatermarks": [
-      null
-    ],
+    "images": [],
+    "originals": [],
+    "imageWatermarks": [],
     "variants": [
       {
         "name": "MEDIUM",
