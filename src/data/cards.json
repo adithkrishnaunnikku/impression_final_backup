@@ -921,12 +921,15 @@
     "watermarkSize": "medium",
     "watermarkColor": "#7473a5",
     "images": [
-      "src/assets/cards/display/im-141-1.png"
+      "src/assets/cards/display/im-141-1.png",
+      "src/assets/cards/display/im-141-2.png"
     ],
     "originals": [
-      "src/assets/cards/originals/im-141-1.png"
+      "src/assets/cards/originals/im-141-1.png",
+      "src/assets/cards/originals/im-141-2.png"
     ],
     "imageWatermarks": [
+      null,
       null
     ],
     "variants": [
