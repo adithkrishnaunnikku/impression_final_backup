@@ -1883,11 +1883,11 @@
   {
     "id": "CRAFT 1011",
     "category": "CRAFT DIGITAL",
-    "price": 0,
+    "price": 28,
     "featured": false,
     "minOrder": 100,
-    "size": "195 MM X195 MM",
-    "material": "270 GSM VIRGIN CRAFT",
+    "size": "195 MMX 195 MM",
+    "material": "260 GSM TEXTURED",
     "description": "DIGITALPRINTING",
     "instagram_url": "",
     "extraCharges": [],
@@ -1907,11 +1907,11 @@
     "variants": [
       {
         "name": "",
-        "size_id": 6,
-        "material_id": 7,
-        "size": "195 MM X195 MM",
-        "material": "270 GSM VIRGIN CRAFT",
-        "price": 0
+        "size_id": 4,
+        "material_id": 4,
+        "size": "195 MMX 195 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 28
       }
     ]
   },
