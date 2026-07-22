@@ -5,8 +5,8 @@
     "price": 26,
     "featured": false,
     "minOrder": 100,
-    "size": "200 MM X200 MM",
-    "material": "280 GSM VIOLET + 260 GSM TEXTURED OFF WHITE",
+    "size": "170 MM X 170 MM",
+    "material": "280 GSM RED + 260 GSM TEXTURED OFF WHITE",
     "description": "DIGITALPRINTING",
     "instagram_url": "",
     "extraCharges": [],
@@ -14,16 +14,22 @@
     "watermarkPos": "bottom-left",
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
-    "images": [],
-    "originals": [],
-    "imageWatermarks": [],
+    "images": [
+      "src/assets/cards/display/im-1001-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/im-1001-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 6,
-        "material_id": 6,
-        "size": "200 MM X200 MM",
-        "material": "280 GSM VIOLET + 260 GSM TEXTURED OFF WHITE",
+        "size_id": 5,
+        "material_id": 5,
+        "size": "170 MM X 170 MM",
+        "material": "280 GSM RED + 260 GSM TEXTURED OFF WHITE",
         "price": 26
       }
     ]
