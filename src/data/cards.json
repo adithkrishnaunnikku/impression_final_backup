@@ -1,40 +1,5 @@
 [
   {
-    "id": "IM 1001",
-    "category": "TAG CARDS",
-    "price": 26,
-    "featured": false,
-    "minOrder": 100,
-    "size": "170 MM X 170 MM",
-    "material": "280 GSM RED + 260 GSM TEXTURED OFF WHITE",
-    "description": "DIGITALPRINTING",
-    "instagram_url": "",
-    "extraCharges": [],
-    "applyWatermark": true,
-    "watermarkPos": "bottom-left",
-    "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/im-1001-1.png"
-    ],
-    "originals": [
-      "src/assets/cards/originals/im-1001-1.png"
-    ],
-    "imageWatermarks": [
-      null
-    ],
-    "variants": [
-      {
-        "name": "MEDIUM",
-        "size_id": 5,
-        "material_id": 5,
-        "size": "170 MM X 170 MM",
-        "material": "280 GSM RED + 260 GSM TEXTURED OFF WHITE",
-        "price": 26
-      }
-    ]
-  },
-  {
     "id": "IM 161",
     "category": "FLORAL",
     "price": 28,
