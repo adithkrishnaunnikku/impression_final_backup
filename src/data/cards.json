@@ -1,5 +1,40 @@
 [
   {
+    "id": "TAG 002",
+    "category": "TAG CARDS",
+    "price": 26,
+    "featured": false,
+    "minOrder": 100,
+    "size": "200 MM X200 MM",
+    "material": "280 GSM MEROON  + 260 GSM TEXTURED OFF WHITE",
+    "description": "DIGITAL PRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/tag-002-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/tag-002-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 6,
+        "material_id": 7,
+        "size": "200 MM X200 MM",
+        "material": "280 GSM MEROON  + 260 GSM TEXTURED OFF WHITE",
+        "price": 26
+      }
+    ]
+  },
+  {
     "id": "TAG 001",
     "category": "TAG CARDS",
     "price": 26,
