@@ -2,11 +2,11 @@
   {
     "id": "TAG 005",
     "category": "TAG CARDS",
-    "price": 0,
+    "price": 26,
     "featured": false,
     "minOrder": 100,
-    "size": "",
-    "material": "",
+    "size": "200 MM X200 MM",
+    "material": "260 GSM TEXTURED",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
     "extraCharges": [],
@@ -14,10 +14,25 @@
     "watermarkPos": "bottom-left",
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
-    "images": [],
-    "originals": [],
-    "imageWatermarks": [],
-    "variants": []
+    "images": [
+      "src/assets/cards/display/tag-005-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/tag-005-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 6,
+        "material_id": 4,
+        "size": "200 MM X200 MM",
+        "material": "260 GSM TEXTURED",
+        "price": 26
+      }
+    ]
   },
   {
     "id": "TAG 004",
