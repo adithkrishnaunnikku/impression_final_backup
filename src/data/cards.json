@@ -3422,8 +3422,8 @@
     "price": 28,
     "featured": false,
     "minOrder": 100,
-    "size": "195 MM X195 MM",
-    "material": "260 GSM TEXTURED",
+    "size": "100 MM X 220 MM",
+    "material": "230 DARK GREEN + 260 GSM TEXTURED OFF WHITE",
     "description": "DIGITALPRINTING",
     "instagram_url": "",
     "extraCharges": [],
@@ -3432,29 +3432,32 @@
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
     "images": [
-      "src/assets/cards/display/im-120-1.png"
+      "src/assets/cards/display/im-120-1.png",
+      "src/assets/cards/display/im-120-2.png"
     ],
     "originals": [
-      "src/assets/cards/originals/im-120-1.png"
+      "src/assets/cards/originals/im-120-1.png",
+      "src/assets/cards/originals/im-120-2.png"
     ],
     "imageWatermarks": [
+      null,
       null
     ],
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 6,
-        "material_id": 4,
-        "size": "195 MM X195 MM",
-        "material": "260 GSM TEXTURED",
+        "size_id": 9,
+        "material_id": 14,
+        "size": "100 MM X 220 MM",
+        "material": "230 DARK GREEN + 260 GSM TEXTURED OFF WHITE",
         "price": 28
       },
       {
         "name": "SMALL",
-        "size_id": 7,
-        "material_id": 4,
-        "size": "170 MMX 170 MM",
-        "material": "260 GSM TEXTURED",
+        "size_id": 9,
+        "material_id": 14,
+        "size": "100 MM X 220 MM",
+        "material": "230 DARK GREEN + 260 GSM TEXTURED OFF WHITE",
         "price": 24
       }
     ]
