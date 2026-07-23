@@ -1,5 +1,40 @@
 [
   {
+    "id": "TAG 015",
+    "category": "TAG CARDS",
+    "price": 19,
+    "featured": false,
+    "minOrder": 100,
+    "size": "175 MM X 175 MM",
+    "material": "230 GSM GREY + 260 GSM TEXTURED OFF WHITE",
+    "description": "DIGITAL PRINTING\n",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#8f7b0a",
+    "images": [
+      "src/assets/cards/display/tag-015-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/tag-015-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "SMALL",
+        "size_id": 8,
+        "material_id": 11,
+        "size": "175 MM X 175 MM",
+        "material": "230 GSM GREY + 260 GSM TEXTURED OFF WHITE",
+        "price": 19
+      }
+    ]
+  },
+  {
     "id": "TAG 014",
     "category": "TAG CARDS",
     "price": 19,
