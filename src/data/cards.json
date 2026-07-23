@@ -1,5 +1,40 @@
 [
   {
+    "id": "TAG 018",
+    "category": "TAG CARDS",
+    "price": 22,
+    "featured": false,
+    "minOrder": 100,
+    "size": "218 MM X 158 MM",
+    "material": "280 GSM BROWN + 260 GSM TEXTURED OFF WHITE",
+    "description": "DIGITAL PRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/tag-018-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/tag-018-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 13,
+        "material_id": 16,
+        "size": "218 MM X 158 MM",
+        "material": "280 GSM BROWN + 260 GSM TEXTURED OFF WHITE",
+        "price": 22
+      }
+    ]
+  },
+  {
     "id": "TAG 017",
     "category": "TAG CARDS",
     "price": 19,
