@@ -31,7 +31,7 @@
     "price": 22,
     "featured": false,
     "minOrder": 100,
-    "size": "218 MM X 158 MM",
+    "size": "100 MM X 220 MM",
     "material": "280 GSM DARK GREY + 260 GSM TEXTURED OFF WHITE",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
@@ -41,20 +41,23 @@
     "watermarkSize": "medium",
     "watermarkColor": "#b6b4a4",
     "images": [
-      "src/assets/cards/display/tag-021-1.png"
+      "src/assets/cards/display/tag-021-1.png",
+      "src/assets/cards/display/tag-021-2.png"
     ],
     "originals": [
-      "src/assets/cards/originals/tag-021-1.png"
+      "src/assets/cards/originals/tag-021-1.png",
+      "src/assets/cards/originals/tag-021-2.png"
     ],
     "imageWatermarks": [
+      null,
       null
     ],
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 13,
+        "size_id": 9,
         "material_id": 18,
-        "size": "218 MM X 158 MM",
+        "size": "100 MM X 220 MM",
         "material": "280 GSM DARK GREY + 260 GSM TEXTURED OFF WHITE",
         "price": 22
       }
