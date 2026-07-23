@@ -15,15 +15,12 @@
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
     "images": [
-      "src/assets/cards/display/test-two.0000-1.jpeg",
-      "src/assets/cards/display/test-two.0000-2.jpeg"
+      "src/assets/cards/display/test-two.0000-1.jpeg"
     ],
     "originals": [
-      "src/assets/cards/originals/test-two.0000-1.jpeg",
-      "src/assets/cards/originals/test-two.0000-2.jpeg"
+      "src/assets/cards/originals/test-two.0000-1.jpeg"
     ],
     "imageWatermarks": [
-      null,
       null
     ],
     "variants": [
