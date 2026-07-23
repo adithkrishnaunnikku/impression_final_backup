@@ -41,15 +41,12 @@
     "watermarkSize": "medium",
     "watermarkColor": "#b6b4a4",
     "images": [
-      "src/assets/cards/display/tag-021-1.png",
       "src/assets/cards/display/tag-021-2.png"
     ],
     "originals": [
-      "src/assets/cards/originals/tag-021-1.png",
       "src/assets/cards/originals/tag-021-2.png"
     ],
     "imageWatermarks": [
-      null,
       null
     ],
     "variants": [
