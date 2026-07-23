@@ -1,5 +1,40 @@
 [
   {
+    "id": "VELLUM 111",
+    "category": "TRANSLUCENT",
+    "price": 35,
+    "featured": false,
+    "minOrder": 100,
+    "size": "195 MM X 195 MM",
+    "material": "Premium 350 gsm",
+    "description": "DIGITAL PRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/vellum-111-1.jpg"
+    ],
+    "originals": [
+      "src/assets/cards/originals/vellum-111-1.jpg"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 5,
+        "material_id": 1,
+        "size": "195 MM X 195 MM",
+        "material": "Premium 350 gsm",
+        "price": 35
+      }
+    ]
+  },
+  {
     "id": "VELLUM 110",
     "category": "TRANSLUCENT",
     "price": 35,
