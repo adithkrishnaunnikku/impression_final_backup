@@ -32,7 +32,7 @@
     "featured": false,
     "minOrder": 100,
     "size": "100 MM X 220 MM",
-    "material": "280 GSM DARK GREY + 260 GSM TEXTURED OFF WHITE",
+    "material": "230 DARK GREEN + 260 GSM TEXTURED OFF WHITE",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
     "extraCharges": [],
@@ -53,9 +53,9 @@
       {
         "name": "MEDIUM",
         "size_id": 9,
-        "material_id": 18,
+        "material_id": 14,
         "size": "100 MM X 220 MM",
-        "material": "280 GSM DARK GREY + 260 GSM TEXTURED OFF WHITE",
+        "material": "230 DARK GREEN + 260 GSM TEXTURED OFF WHITE",
         "price": 22
       }
     ]
