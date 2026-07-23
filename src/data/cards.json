@@ -2,11 +2,11 @@
   {
     "id": "TAG 016",
     "category": "TAG CARDS",
-    "price": 0,
+    "price": 19,
     "featured": false,
     "minOrder": 100,
-    "size": "175 MM X 175 MM",
-    "material": "230 GSM VIOLET + 260 GSM OFF WHITE",
+    "size": "100 MM X 220 MM",
+    "material": "230 GSM BLUE + 260 GSM OFF WHITE",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
     "extraCharges": [],
@@ -26,11 +26,11 @@
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 8,
-        "material_id": 12,
-        "size": "175 MM X 175 MM",
-        "material": "230 GSM VIOLET + 260 GSM OFF WHITE",
-        "price": 0
+        "size_id": 9,
+        "material_id": 10,
+        "size": "100 MM X 220 MM",
+        "material": "230 GSM BLUE + 260 GSM OFF WHITE",
+        "price": 19
       }
     ]
   },
