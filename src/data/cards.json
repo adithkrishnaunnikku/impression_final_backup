@@ -2,10 +2,10 @@
   {
     "id": "TAG 017",
     "category": "TAG CARDS",
-    "price": 0,
+    "price": 19,
     "featured": false,
     "minOrder": 100,
-    "size": "175 MM X 175 MM",
+    "size": "100 MM X 220 MM",
     "material": "230 DARK GREEN + 260 GSM TEXTURED OFF WHITE",
     "description": "DIGITAL PRINTING",
     "instagram_url": "",
@@ -26,11 +26,11 @@
     "variants": [
       {
         "name": "MEDIUM",
-        "size_id": 8,
+        "size_id": 9,
         "material_id": 14,
-        "size": "175 MM X 175 MM",
+        "size": "100 MM X 220 MM",
         "material": "230 DARK GREEN + 260 GSM TEXTURED OFF WHITE",
-        "price": 0
+        "price": 19
       }
     ]
   },
