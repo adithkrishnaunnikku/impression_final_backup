@@ -3432,15 +3432,12 @@
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
     "images": [
-      "src/assets/cards/display/im-120-1.png",
       "src/assets/cards/display/im-120-2.png"
     ],
     "originals": [
-      "src/assets/cards/originals/im-120-1.png",
       "src/assets/cards/originals/im-120-2.png"
     ],
     "imageWatermarks": [
-      null,
       null
     ],
     "variants": [
