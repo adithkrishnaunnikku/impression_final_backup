@@ -1,5 +1,40 @@
 [
   {
+    "id": "VELLUM 109",
+    "category": "TRANSLUCENT",
+    "price": 21,
+    "featured": false,
+    "minOrder": 100,
+    "size": "150 MM X 200 MM",
+    "material": "260 GSM TEXTURED CARD + 120 GSM TRANSLUCENT PARER",
+    "description": "DIGITALPRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#8a7605",
+    "images": [
+      "src/assets/cards/display/vellum-109-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/vellum-109-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 14,
+        "material_id": 20,
+        "size": "150 MM X 200 MM",
+        "material": "260 GSM TEXTURED CARD + 120 GSM TRANSLUCENT PARER",
+        "price": 21
+      }
+    ]
+  },
+  {
     "id": "VELLUM 108",
     "category": "TRANSLUCENT",
     "price": 21,
