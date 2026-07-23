@@ -37,9 +37,9 @@
       },
       {
         "name": "Medium",
-        "size_id": 1,
+        "size_id": 2,
         "material_id": 3,
-        "size": "5\" x 7\"",
+        "size": "6\" x 8\"",
         "material": "Recycled Kraft",
         "price": 109
       },
