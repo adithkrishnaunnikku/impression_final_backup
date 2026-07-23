@@ -16,13 +16,16 @@
     "watermarkColor": "#ffd700",
     "images": [
       "src/assets/cards/display/al-tes-1.jpg",
-      "src/assets/cards/display/al-tes-2.jpg"
+      "src/assets/cards/display/al-tes-2.jpg",
+      "src/assets/cards/display/al-tes-3.jpg"
     ],
     "originals": [
       "src/assets/cards/originals/al-tes-1.jpg",
-      "src/assets/cards/originals/al-tes-2.jpg"
+      "src/assets/cards/originals/al-tes-2.jpg",
+      "src/assets/cards/originals/al-tes-3.jpg"
     ],
     "imageWatermarks": [
+      null,
       null,
       null
     ],
