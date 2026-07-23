@@ -1,5 +1,40 @@
 [
   {
+    "id": "TAG 021",
+    "category": "TAG CARDS",
+    "price": 22,
+    "featured": false,
+    "minOrder": 100,
+    "size": "218 MM X 158 MM",
+    "material": "280 GSM DARK GREY + 260 GSM TEXTURED OFF WHITE",
+    "description": "DIGITAL PRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#b6b4a4",
+    "images": [
+      "src/assets/cards/display/tag-021-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/tag-021-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "MEDIUM",
+        "size_id": 13,
+        "material_id": 18,
+        "size": "218 MM X 158 MM",
+        "material": "280 GSM DARK GREY + 260 GSM TEXTURED OFF WHITE",
+        "price": 22
+      }
+    ]
+  },
+  {
     "id": "TAG 020",
     "category": "TAG CARDS",
     "price": 22,
