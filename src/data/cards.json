@@ -15,15 +15,12 @@
     "watermarkSize": "medium",
     "watermarkColor": "#ffd700",
     "images": [
-      "src/assets/cards/display/al-tes-1.jpg",
-      "src/assets/cards/display/al-tes-3.jpg"
+      "src/assets/cards/display/al-tes-1.jpg"
     ],
     "originals": [
-      "src/assets/cards/originals/al-tes-1.jpg",
-      "src/assets/cards/originals/al-tes-3.jpg"
+      "src/assets/cards/originals/al-tes-1.jpg"
     ],
     "imageWatermarks": [
-      null,
       null
     ],
     "variants": [
