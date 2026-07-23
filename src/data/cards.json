@@ -38,17 +38,17 @@
       {
         "name": "Medium",
         "size_id": 1,
-        "material_id": 1,
+        "material_id": 3,
         "size": "5\" x 7\"",
-        "material": "Premium 350 gsm",
+        "material": "Recycled Kraft",
         "price": 109
       },
       {
         "name": "Large",
         "size_id": 1,
-        "material_id": 1,
+        "material_id": 2,
         "size": "5\" x 7\"",
-        "material": "Premium 350 gsm",
+        "material": "Textured Matte",
         "price": 129
       }
     ]
