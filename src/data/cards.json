@@ -1,5 +1,40 @@
 [
   {
+    "id": "UDAMBADY 001",
+    "category": "ODAMBADY",
+    "price": 85,
+    "featured": false,
+    "minOrder": 200,
+    "size": "195 MM X 195 MM",
+    "material": "260 GSM MILL TEXTURED WHITE + 120 GSM IMPORTED TRANSGLUCENT PAPER",
+    "description": "DIGITAL PRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#2f2f2d",
+    "images": [
+      "src/assets/cards/display/udambady-001-1.jpeg"
+    ],
+    "originals": [
+      "src/assets/cards/originals/udambady-001-1.jpeg"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 5,
+        "material_id": 4,
+        "size": "195 MM X 195 MM",
+        "material": "260 GSM MILL TEXTURED WHITE + 120 GSM IMPORTED TRANSGLUCENT PAPER",
+        "price": 85
+      }
+    ]
+  },
+  {
     "id": "VELLUM 115",
     "category": "TRANSLUCENT",
     "price": 35,
