@@ -4384,10 +4384,6 @@
     ],
     "materials": [
       {
-        "id": 1,
-        "label": "Premium 350 gsm"
-      },
-      {
         "id": 2,
         "label": "Textured Matte"
       },
