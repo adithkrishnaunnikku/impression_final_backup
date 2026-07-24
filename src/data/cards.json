@@ -4376,7 +4376,12 @@
   },
   {
     "id": "system_options",
-    "sizes": [],
+    "sizes": [
+      {
+        "id": 1,
+        "label": "195 MM X 195 MM"
+      }
+    ],
     "materials": [
       {
         "id": 4,
