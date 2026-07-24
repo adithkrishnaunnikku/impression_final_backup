@@ -4575,6 +4575,10 @@
       {
         "id": 6,
         "label": "12MM X 20 MM"
+      },
+      {
+        "id": 7,
+        "label": "12 X 15"
       }
     ],
     "materials": [
