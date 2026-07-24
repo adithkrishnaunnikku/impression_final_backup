@@ -1,5 +1,40 @@
 [
   {
+    "id": "VELLUM 112",
+    "category": "TRANSLUCENT",
+    "price": 35,
+    "featured": false,
+    "minOrder": 100,
+    "size": "195 MM X 195 MM",
+    "material": "260 GSM MILL TEXTURED WHITE + 120 GSM IMPORTED TRANSGLUCENT PAPER",
+    "description": "DIGITALPRINTING",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#342f13",
+    "images": [
+      "src/assets/cards/display/vellum-112-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/vellum-112-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 5,
+        "material_id": 4,
+        "size": "195 MM X 195 MM",
+        "material": "260 GSM MILL TEXTURED WHITE + 120 GSM IMPORTED TRANSGLUCENT PAPER",
+        "price": 35
+      }
+    ]
+  },
+  {
     "id": "VELLUM 111",
     "category": "TRANSLUCENT",
     "price": 35,
