@@ -4605,6 +4605,10 @@
       {
         "id": 6,
         "label": "Premium"
+      },
+      {
+        "id": 7,
+        "label": "Test material"
       }
     ]
   }
