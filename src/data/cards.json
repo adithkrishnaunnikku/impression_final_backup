@@ -4388,6 +4388,10 @@
       {
         "id": 3,
         "label": "200 MM X 200 MM"
+      },
+      {
+        "id": 4,
+        "label": "15 CM X 21 CM"
       }
     ],
     "materials": [
