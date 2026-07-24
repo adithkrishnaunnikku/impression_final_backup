@@ -4380,6 +4380,10 @@
       {
         "id": 1,
         "label": "195 MM X 195 MM"
+      },
+      {
+        "id": 2,
+        "label": "170 MM X 170 MM"
       }
     ],
     "materials": [
