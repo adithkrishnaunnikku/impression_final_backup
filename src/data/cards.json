@@ -1,40 +1,5 @@
 [
   {
-    "id": "AL - Tes",
-    "category": "CRAFT DIGITAL",
-    "price": 100,
-    "featured": false,
-    "minOrder": 100,
-    "size": "15 CM X 21 CM",
-    "material": "230 GSM BLUE + 260 GSM OFF WHITE",
-    "description": "",
-    "instagram_url": "",
-    "extraCharges": [],
-    "applyWatermark": true,
-    "watermarkPos": "bottom-left",
-    "watermarkSize": "medium",
-    "watermarkColor": "#ffd700",
-    "images": [
-      "src/assets/cards/display/al-tes-1.jpg"
-    ],
-    "originals": [
-      "src/assets/cards/originals/al-tes-1.jpg"
-    ],
-    "imageWatermarks": [
-      null
-    ],
-    "variants": [
-      {
-        "name": "Test Size 1",
-        "size_id": 4,
-        "material_id": 4,
-        "size": "15 CM X 21 CM",
-        "material": "230 GSM BLUE + 260 GSM OFF WHITE",
-        "price": 100
-      }
-    ]
-  },
-  {
     "id": "UDAMBADY 001",
     "category": "ODAMBADY",
     "price": 850,
