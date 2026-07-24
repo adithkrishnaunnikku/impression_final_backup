@@ -88,7 +88,9 @@ const ShopCard = memo(function ShopCard({ c, onSelect, onToggleFavorite, isFavor
             </span>
           )}
         </div>
-        <p className="mt-2 text-sm text-zola-ink/60">₹{c.price.toFixed(2)} each</p>
+        <p className="mt-2 text-sm text-zola-ink/60">
+          {c.category === "ODAMBADY" ? `₹${(c.price * 2).toFixed(2)} / pair` : `₹${c.price.toFixed(2)} each`}
+        </p>
         {c.description && (
           <p className="mt-1.5 line-clamp-1 text-sm text-zola-ink/50">{c.description}</p>
         )}
@@ -219,7 +221,7 @@ function ShopPage() {
 
   useEffect(() => {
     if (active) {
-      setModalQuantity(active.minOrder);
+      setModalQuantity(active.category === "ODAMBADY" ? 2 : active.minOrder);
       setSelectedVariantIdx(0);
     }
   }, [active?.id]);
@@ -259,6 +261,7 @@ function ShopPage() {
     return () => window.removeEventListener("keydown", handler);
   }, [galleryOpen, active]);
 
+  const isOdambadi = active?.category === "ODAMBADY";
   const activeVar = useMemo(() => active?.variants?.[selectedVariantIdx], [active, selectedVariantIdx]);
   const cardCost = useMemo(() => active ? modalQuantity * (activeVar?.price ?? active.price) : 0, [active, activeVar, modalQuantity]);
   const minChargeExtra = useMemo(() => active && active.minOrder < 200 && modalQuantity < 200
@@ -675,7 +678,7 @@ function ShopPage() {
                       {active.id}
                     </h2>
                     <p className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-[#1a1a1a]/10 bg-[#1a1a1a]/5 px-3 py-0.5 text-xs font-medium text-[#1a1a1a]/70">
-                      ₹{activeVar?.price ?? active.price} / card
+                      ₹{isOdambadi ? (activeVar?.price ?? active.price) * 2 : activeVar?.price ?? active.price} {isOdambadi ? "/ pair" : "/ card"}
                     </p>
                   </div>
                   <button
@@ -724,7 +727,7 @@ function ShopPage() {
                               {v.name || v.size}
                             </p>
                             <p className="mt-1 text-xs font-semibold text-[#1a1a1a]">
-                              ₹{v.price}/card
+                              ₹{isOdambadi ? v.price * 2 : v.price}/{isOdambadi ? "pair" : "card"}
                             </p>
                             {isSelected && (
                               <span className="absolute right-2.5 top-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#1a1a1a] text-[10px] text-white">
@@ -760,108 +763,127 @@ function ShopPage() {
                   );
                 })()}
 
-                {/* Calculator */}
-                <div className="mt-6 rounded-2xl border border-[#1a1a1a]/15 bg-white p-5">
-                  <label htmlFor="modal-qty" className="text-xs font-semibold uppercase tracking-[0.18em] opacity-70">Quantity</label>
-                  <div className="mt-3 flex items-center gap-3">
-                    <button
-                      onClick={() => setModalQuantity((q) => Math.max(active.minOrder, q - 50))}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a] active:scale-[0.95]"
-                    >−</button>
+                {/* Price / Calculator */}
+                {isOdambadi ? (
+                  <div className="mt-6 rounded-2xl border border-[#1a1a1a]/15 bg-white p-5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold uppercase tracking-[0.18em] opacity-70">Price</span>
+                      <span className="font-serif text-2xl text-[#1a1a1a]">₹{((activeVar?.price ?? active.price) * 2).toLocaleString()}</span>
+                    </div>
+                    <p className="mt-1 text-xs opacity-60">1 pair · 2 cards</p>
+                  </div>
+                ) : (
+                  <div className="mt-6 rounded-2xl border border-[#1a1a1a]/15 bg-white p-5">
+                    <label htmlFor="modal-qty" className="text-xs font-semibold uppercase tracking-[0.18em] opacity-70">Quantity</label>
+                    <div className="mt-3 flex items-center gap-3">
+                      <button
+                        onClick={() => setModalQuantity((q) => Math.max(active.minOrder, q - 50))}
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a] active:scale-[0.95]"
+                      >−</button>
+                      <input
+                        id="modal-qty"
+                        type="number"
+                        value={modalQuantity}
+                        inputMode="numeric"
+                        onChange={(e) => {
+                          const v = Number(e.target.value);
+                          if (Number.isFinite(v)) {
+                            const snapped = Math.round(v / 50) * 50;
+                            setModalQuantity(Math.max(active.minOrder, Math.min(2000, snapped)));
+                          }
+                        }}
+                        className="w-24 rounded-md border border-[#1a1a1a]/20 px-3 py-2 text-center text-sm text-[#1a1a1a]"
+                      />
+                      <button
+                        onClick={() => setModalQuantity((q) => Math.min(2000, q + 50))}
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a] active:scale-[0.95]"
+                      >+</button>
+                      <span className="text-xs opacity-60">pcs</span>
+                    </div>
                     <input
-                      id="modal-qty"
-                      type="number"
+                      type="range"
+                      min={active.minOrder}
+                      max={2000}
+                      step={50}
                       value={modalQuantity}
-                      inputMode="numeric"
-                      onChange={(e) => {
-                        const v = Number(e.target.value);
-                        if (Number.isFinite(v)) {
-                          const snapped = Math.round(v / 50) * 50;
-                          setModalQuantity(Math.max(active.minOrder, Math.min(2000, snapped)));
-                        }
-                      }}
-                      className="w-24 rounded-md border border-[#1a1a1a]/20 px-3 py-2 text-center text-sm text-[#1a1a1a]"
+                      onChange={(e) => setModalQuantity(Number(e.target.value))}
+                      aria-label="Select quantity"
+                      className="mt-4 w-full accent-[#1a1a1a]"
                     />
-                    <button
-                      onClick={() => setModalQuantity((q) => Math.min(2000, q + 50))}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1a1a1a]/20 text-lg text-[#1a1a1a] active:scale-[0.95]"
-                    >+</button>
-                    <span className="text-xs opacity-60">pcs</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={active.minOrder}
-                    max={2000}
-                    step={50}
-                    value={modalQuantity}
-                    onChange={(e) => setModalQuantity(Number(e.target.value))}
-                    aria-label="Select quantity"
-                    className="mt-4 w-full accent-[#1a1a1a]"
-                  />
-                  <p className="mt-1 text-xs opacity-50">
-                    5% off 500+ · 10% off 1000+
-                  </p>
+                    <p className="mt-1 text-xs opacity-50">
+                      5% off 500+ · 10% off 1000+
+                    </p>
 
-                  <div className="mt-5 space-y-1.5 text-sm">
-                    <div className="flex items-baseline justify-between">
-                      <span className="opacity-80">Card Cost · {modalQuantity} × ₹{activeVar?.price ?? active.price}</span>
-                      <span>₹{cardCost.toLocaleString()}</span>
+                    <div className="mt-5 space-y-1.5 text-sm">
+                      <div className="flex items-baseline justify-between">
+                        <span className="opacity-80">Card Cost · {modalQuantity} × ₹{activeVar?.price ?? active.price}</span>
+                        <span>₹{cardCost.toLocaleString()}</span>
+                      </div>
+
+                      {active.extraCharges?.map((ch) => (
+                        <div key={ch.name} className="flex items-baseline justify-between">
+                          <span className="opacity-80">{ch.name}</span>
+                          <span>₹{ch.price.toLocaleString()}</span>
+                        </div>
+                      ))}
+                      {minChargeExtra && (
+                        <div key={minChargeExtra.name} className="flex items-baseline justify-between">
+                          <span className="opacity-80">{minChargeExtra.name}</span>
+                          <span>₹{minChargeExtra.price.toLocaleString()}</span>
+                        </div>
+                      )}
+                      {(active.extraCharges?.length ?? 0) + (minChargeExtra ? 1 : 0) >= 2 && (
+                        <div className="flex items-baseline justify-between font-medium">
+                          <span className="opacity-80">Total Extra Charges</span>
+                          <span>₹{extraTotal.toLocaleString()}</span>
+                        </div>
+                      )}
+
+                      {discountPct > 0 && (
+                        <div className="flex items-baseline justify-between text-[#1a3c2a]">
+                          <span className="opacity-80">Volume discount ({discountPct}%)</span>
+                          <span>−₹{discountAmt.toLocaleString()}</span>
+                        </div>
+                      )}
+
+                      <div className="mt-3 flex items-baseline justify-between border-t border-[#1a1a1a]/10 pt-3">
+                        <span className="font-serif text-xl text-[#1a1a1a]">Total</span>
+                        <span className="font-serif text-2xl text-[#1a1a1a]">₹{finalTotal.toLocaleString()}</span>
+                      </div>
+                      {discountAmt > 0 && (
+                        <p className="text-xs text-[#1a3c2a]">You save ₹{discountAmt.toLocaleString()}</p>
+                      )}
                     </div>
-
-                    {active.extraCharges?.map((ch) => (
-                      <div key={ch.name} className="flex items-baseline justify-between">
-                        <span className="opacity-80">{ch.name}</span>
-                        <span>₹{ch.price.toLocaleString()}</span>
-                      </div>
-                    ))}
-                    {minChargeExtra && (
-                      <div key={minChargeExtra.name} className="flex items-baseline justify-between">
-                        <span className="opacity-80">{minChargeExtra.name}</span>
-                        <span>₹{minChargeExtra.price.toLocaleString()}</span>
-                      </div>
-                    )}
-                    {(active.extraCharges?.length ?? 0) + (minChargeExtra ? 1 : 0) >= 2 && (
-                      <div className="flex items-baseline justify-between font-medium">
-                        <span className="opacity-80">Total Extra Charges</span>
-                        <span>₹{extraTotal.toLocaleString()}</span>
-                      </div>
-                    )}
-
-                    {discountPct > 0 && (
-                      <div className="flex items-baseline justify-between text-[#1a3c2a]">
-                        <span className="opacity-80">Volume discount ({discountPct}%)</span>
-                        <span>−₹{discountAmt.toLocaleString()}</span>
-                      </div>
-                    )}
-
-                    <div className="mt-3 flex items-baseline justify-between border-t border-[#1a1a1a]/10 pt-3">
-                      <span className="font-serif text-xl text-[#1a1a1a]">Total</span>
-                      <span className="font-serif text-2xl text-[#1a1a1a]">₹{finalTotal.toLocaleString()}</span>
-                    </div>
-                    {discountAmt > 0 && (
-                      <p className="text-xs text-[#1a3c2a]">You save ₹{discountAmt.toLocaleString()}</p>
-                    )}
                   </div>
-                </div>
+                )}
 
                 {/* Buttons */}
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                   <a
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                      [
-                        `Hi Impressions! I'd like to order:`,
-                        ``,
-                        `• ${active.id}${activeVar?.name ? ` - ${activeVar.name}` : ''} (${active.category || "Allure"} Collection)`,
-                        `• Quantity: ${modalQuantity} pcs`,
-                        `• Card Cost: ₹${cardCost.toLocaleString()}`,
-                        ...(active.extraCharges?.map((ch) => `• ${ch.name}: ₹${ch.price}`) || []),
-                        ...(minChargeExtra ? [`• ${minChargeExtra.name}: ₹${minChargeExtra.price}`] : []),
-                        ...(discountAmt > 0
-                          ? [`• Volume discount (${discountPct}%): −₹${discountAmt.toLocaleString()}`]
-                          : []),
-                        `• Total: ₹${finalTotal.toLocaleString()}`,
-                        ...(discountAmt > 0 ? [`• You save: ₹${discountAmt.toLocaleString()}`] : []),
-                      ].join("\n")
+                      isOdambadi
+                        ? [
+                            `Hi Impressions! I'd like to order:`,
+                            ``,
+                            `• ${active.id} (${active.category || "Allure"} Collection)`,
+                            `• 1 pair (2 cards)`,
+                            `• Price: ₹${((activeVar?.price ?? active.price) * 2).toLocaleString()}`,
+                            `• Total: ₹${((activeVar?.price ?? active.price) * 2).toLocaleString()}`,
+                          ].join("\n")
+                        : [
+                            `Hi Impressions! I'd like to order:`,
+                            ``,
+                            `• ${active.id}${activeVar?.name ? ` - ${activeVar.name}` : ''} (${active.category || "Allure"} Collection)`,
+                            `• Quantity: ${modalQuantity} pcs`,
+                            `• Card Cost: ₹${cardCost.toLocaleString()}`,
+                            ...(active.extraCharges?.map((ch) => `• ${ch.name}: ₹${ch.price}`) || []),
+                            ...(minChargeExtra ? [`• ${minChargeExtra.name}: ₹${minChargeExtra.price}`] : []),
+                            ...(discountAmt > 0
+                              ? [`• Volume discount (${discountPct}%): −₹${discountAmt.toLocaleString()}`]
+                              : []),
+                            `• Total: ₹${finalTotal.toLocaleString()}`,
+                            ...(discountAmt > 0 ? [`• You save: ₹${discountAmt.toLocaleString()}`] : []),
+                          ].join("\n")
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
