@@ -4379,10 +4379,6 @@
     "sizes": [],
     "materials": [
       {
-        "id": 1,
-        "label": "Premium 350 gsm"
-      },
-      {
         "id": 3,
         "label": "Recycled Kraft"
       },
