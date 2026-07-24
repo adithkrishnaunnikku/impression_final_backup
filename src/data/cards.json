@@ -4378,10 +4378,6 @@
     "id": "system_options",
     "sizes": [
       {
-        "id": 1,
-        "label": "5\" x 7\""
-      },
-      {
         "id": 2,
         "label": "6\" x 8\""
       },
