@@ -1,5 +1,40 @@
 [
   {
+    "id": "test two",
+    "category": "testt",
+    "price": 0,
+    "featured": false,
+    "minOrder": 100,
+    "size": "15 CM X 21 CM",
+    "material": "230 GSM BLUE + 260 GSM OFF WHITE",
+    "description": "hjkkhkgkh",
+    "instagram_url": "",
+    "extraCharges": [],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "xlarge",
+    "watermarkColor": "#ff0000",
+    "images": [
+      "src/assets/cards/display/test-two-1.png"
+    ],
+    "originals": [
+      "src/assets/cards/originals/test-two-1.png"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "",
+        "size_id": 4,
+        "material_id": 4,
+        "size": "15 CM X 21 CM",
+        "material": "230 GSM BLUE + 260 GSM OFF WHITE",
+        "price": 0
+      }
+    ]
+  },
+  {
     "id": "Impressions Test",
     "category": "CRAFT DIGITAL",
     "price": 120,
