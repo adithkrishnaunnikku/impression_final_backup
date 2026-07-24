@@ -1,5 +1,53 @@
 [
   {
+    "id": "AL - Tes",
+    "category": "CRAFT DIGITAL",
+    "price": 100,
+    "featured": false,
+    "minOrder": 100,
+    "size": "170 MM X 170 MM",
+    "material": "230 GSM BLUE + 260 GSM OFF WHITE",
+    "description": "",
+    "instagram_url": "",
+    "extraCharges": [
+      {
+        "name": "Chumma oru charge irikkatte",
+        "price": 99
+      }
+    ],
+    "applyWatermark": true,
+    "watermarkPos": "bottom-left",
+    "watermarkSize": "medium",
+    "watermarkColor": "#ffd700",
+    "images": [
+      "src/assets/cards/display/al-tes-1.jpg"
+    ],
+    "originals": [
+      "src/assets/cards/originals/al-tes-1.jpg"
+    ],
+    "imageWatermarks": [
+      null
+    ],
+    "variants": [
+      {
+        "name": "Test 1",
+        "size_id": 2,
+        "material_id": 4,
+        "size": "170 MM X 170 MM",
+        "material": "230 GSM BLUE + 260 GSM OFF WHITE",
+        "price": 100
+      },
+      {
+        "name": "Test 2",
+        "size_id": 6,
+        "material_id": 6,
+        "size": "12MM X 20 MM",
+        "material": "Premium",
+        "price": 0
+      }
+    ]
+  },
+  {
     "id": "UDAMBADY 001",
     "category": "ODAMBADY",
     "price": 850,
