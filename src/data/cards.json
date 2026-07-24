@@ -4571,6 +4571,10 @@
       {
         "id": 5,
         "label": "12 CM X 24 CM"
+      },
+      {
+        "id": 6,
+        "label": "12MM X 20 MM"
       }
     ],
     "materials": [
