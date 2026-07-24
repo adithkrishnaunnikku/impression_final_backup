@@ -4376,12 +4376,7 @@
   },
   {
     "id": "system_options",
-    "sizes": [
-      {
-        "id": 3,
-        "label": "A6"
-      }
-    ],
+    "sizes": [],
     "materials": [
       {
         "id": 1,
