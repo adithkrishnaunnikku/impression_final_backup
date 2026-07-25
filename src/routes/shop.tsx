@@ -135,7 +135,7 @@ function ShopPage() {
     const allImg = invitations;
     const result = [{ label: "All Cards", cat: "All", image: allImg }];
     for (const cat of categories) {
-      if (typeof cat !== "string" || cat === "All" || !cat) continue;
+      if (cat === "All" || !cat) continue;
       const first = items.find((c) => c.category === cat);
       result.push({
         label: cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase(),
